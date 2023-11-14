@@ -31,8 +31,6 @@
    * 修复 LCD 干扰崩溃问题
 
 
-![9C7E3E6136BB41FAE921A1BA176A4396](https://github.com/wu58430/uv-k5-firmware-chinese/assets/52628935/dbe16fda-5521-44e1-876f-97405db2e2c5)
-![2654240ED703C0059732FB642D317ADA](https://github.com/wu58430/uv-k5-firmware-chinese/assets/52628935/1d4f02a7-6108-4316-b3e2-f688b3170c61)
 
 
 # 与最新版egzumer功能完全相同的中文固件
@@ -60,6 +58,14 @@
 另一方面，FM RX 音频应该是正常的。
 
 但是，它们是价格不错的玩具，很有趣。
+
+# 示例
+
+<p float="left">
+  <img src="![9C7E3E6136BB41FAE921A1BA176A4396](https://github.com/wu58430/uv-k5-firmware-chinese/assets/52628935/dbe16fda-5521-44e1-876f-97405db2e2c5)" width=300 />
+  <img src="![2654240ED703C0059732FB642D317ADA](https://github.com/wu58430/uv-k5-firmware-chinese/assets/52628935/1d4f02a7-6108-4316-b3e2-f688b3170c61)" width=300 />
+</p>
+
 
 # 用户功能自定义
 
@@ -107,8 +113,6 @@ ENABLE_BLMIN_TMP_OFF          := 0       additional function for configurable bu
 
 
 
-
-
 # License
 
 Copyright 2023 Dual Tachyon
@@ -126,16 +130,4 @@ You may obtain a copy of the License at
     See the License for the specific language governing permissions and
     limitations under the License.
 
-# Example changes/updates
 
-<p float="left">
-  <img src="/images/image1.png" width=300 />
-  <img src="/images/image2.png" width=300 />
-  <img src="/images/image3.png" width=300 />
-</p>
-
-Video showing the AM fix working ..
-
-<video src="/images/AM_fix.mp4"></video>
-
-<video src="https://github.com/OneOfEleven/uv-k5-firmware-custom/assets/51590168/2a3a9cdc-97da-4966-bf0d-1ce6ad09779c"></video>
