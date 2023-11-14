@@ -70,8 +70,6 @@ void Main(void)
 
 	boot_counter_10ms = 250;   // 2.5 sec
 
-	UART_Send(UART_Version, strlen(UART_Version));
-
 	// Not implementing authentic device checks
 
 	memset(&gEeprom, 0, sizeof(gEeprom));
@@ -213,7 +211,8 @@ void Main(void)
 
 	while (1)
 	{
-		APP_Update();
+
+        APP_Update();
 
 		if (gNextTimeslice)
 		{

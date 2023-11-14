@@ -917,7 +917,7 @@ void OnKeyDownStill(KEY_Code_t key) {
 }
 
 static void RenderFreqInput() {
-  UI_PrintString(freqInputString, 2, 127, 0, 8);
+    UI_PrintStringSmall(freqInputString, 2, 127, 0);
 }
 
 static void RenderStatus() {

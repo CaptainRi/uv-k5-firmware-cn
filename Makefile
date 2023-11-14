@@ -179,8 +179,7 @@ SIZE = arm-none-eabi-size
 
 # the user might not have/want git installed
 # can set own version string here (max 7 chars)
-GIT_HASH := $(shell git rev-parse --short HEAD)
-#GIT_HASH := 230930b
+GIT_HASH := cn_all
 
 $(info GIT_HASH = $(GIT_HASH))
 
@@ -328,17 +327,16 @@ endif
 ifeq ($(ENABLE_BLMIN_TMP_OFF),1)
 	CFLAGS  += -DENABLE_BLMIN_TMP_OFF
 endif
-
 LDFLAGS =
 ifeq ($(ENABLE_CLANG),0)
-	LDFLAGS += -mcpu=cortex-m0 -nostartfiles -Wl,-T,firmware.ld
+	LDFLAGS +=   -mcpu=cortex-m0 -nostartfiles -Wl,-T,firmware.ld
 else
 #	Fix warning about implied executable stack
 	LDFLAGS += -z noexecstack -mcpu=cortex-m0 -nostartfiles -Wl,-T,firmware.ld
 endif
 
 # Use newlib-nano instead of newlib
-LDFLAGS += --specs=nano.specs
+LDFLAGS +=  --specs=nano.specs
 
 ifeq ($(ENABLE_LTO),0)
 	# Throw away unneeded func/data sections like LTO does

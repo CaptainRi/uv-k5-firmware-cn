@@ -37,7 +37,7 @@ void UI_DisplayFM(void)
 
 	memset(String, 0, sizeof(String));
 	strcpy(String, "FM");
-	UI_PrintString(String, 0, 127, 0, 12);
+	UI_PrintStringSmall(String, 0, 127, 0);
 
 	memset(String, 0, sizeof(String));
 	if (gAskToSave)
@@ -78,7 +78,7 @@ void UI_DisplayFM(void)
 				sprintf(String, "A-SCAN(%u)", gFM_ChannelPosition + 1);
 		}
 	}
-	UI_PrintString(String, 0, 127, 2, 10);
+	UI_PrintStringSmall(String, 0, 127, 2);
 
 	memset(String, 0, sizeof(String));
 	if (gAskToSave || (gEeprom.FM_IsMrMode && gInputBoxIndex > 0))
@@ -106,7 +106,7 @@ void UI_DisplayFM(void)
 	{
 		sprintf(String, "CH-%02u", gEeprom.FM_SelectedChannel + 1);
 	}
-	UI_PrintString(String, 0, 127, 4, 10);
+	UI_PrintStringSmall(String, 0, 127, 4);
 
 	ST7565_BlitFullScreen();
 }

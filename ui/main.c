@@ -16,7 +16,7 @@
 
 #include <string.h>
 #include <stdlib.h>  // abs()
-
+#include "driver/uart.h"
 #include "app/dtmf.h"
 #ifdef ENABLE_AM_FIX_SHOW_DATA
 	#include "am_fix.h"
@@ -253,8 +253,8 @@ void UI_DisplayMain(void)
 
 	if (gEeprom.KEY_LOCK && gKeypadLocked > 0)
 	{	// tell user how to unlock the keyboard
-		UI_PrintString("Long press #", 0, LCD_WIDTH, 1, 8);
-		UI_PrintString("to unlock",    0, LCD_WIDTH, 3, 8);
+        UI_PrintStringSmall("Long press #", 0, LCD_WIDTH, 1);
+        UI_PrintStringSmall("to unlock",    0, LCD_WIDTH, 3);
 		ST7565_BlitFullScreen();
 		return;
 	}
@@ -263,7 +263,10 @@ void UI_DisplayMain(void)
 
 	for (vfo_num = 0; vfo_num < 2; vfo_num++)
 	{
-		const unsigned int line       = (vfo_num == 0) ? line0 : line1;
+
+
+
+        const unsigned int line       = (vfo_num == 0) ? line0 : line1;
 		const bool         isMainVFO   = (vfo_num == gEeprom.TX_VFO);
 		uint8_t           *p_line0    = gFrameBuffer[line + 0];
 		uint8_t           *p_line1    = gFrameBuffer[line + 1];
@@ -292,7 +295,7 @@ void UI_DisplayMain(void)
 				{
 					sprintf(String, ">%s", gDTMF_InputBox);
 				}
-				UI_PrintString(String, 2, 0, 0 + (vfo_num * 3), 8);
+                UI_PrintStringSmall(String, 2, 0, 0 + (vfo_num * 3));
 
 				memset(String,  0, sizeof(String));
 				if (!gDTMF_InputMode)
@@ -307,10 +310,11 @@ void UI_DisplayMain(void)
 					if (gDTMF_IsTx)
 						sprintf(String, ">%s", gDTMF_String);
 				}
-				UI_PrintString(String, 2, 0, 2 + (vfo_num * 3), 8);
+                UI_PrintStringSmall(String, 2, 0, 2 + (vfo_num * 3));
 
 				center_line = CENTER_LINE_IN_USE;
-				continue;
+
+                continue;
 			}
 
 			// highlight the selected/used VFO with a marker
@@ -409,13 +413,16 @@ void UI_DisplayMain(void)
 
 		if (state != VFO_STATE_NORMAL)
 		{
-			const char *state_list[] = {"", "BUSY", "BAT LOW", "TX DISABLE", "TIMEOUT", "ALARM", "VOLT HIGH"};
+
+            const char *state_list[] = {"", "BUSY", "BAT LOW", "TX DISABLE", "TIMEOUT", "ALARM", "VOLT HIGH"};
 			if (state < ARRAY_SIZE(state_list))
-				UI_PrintString(state_list[state], 31, 0, line, 8);
+                UI_PrintStringSmall(state_list[state], 31, 0, line);
 		}
 		else if (gInputBoxIndex > 0 && IS_FREQ_CHANNEL(gEeprom.ScreenChannel[vfo_num]) && gEeprom.TX_VFO == vfo_num)
 		{	// user entering a frequency
-			const char * ascii = INPUTBOX_GetAscii();
+
+
+            const char * ascii = INPUTBOX_GetAscii();
 			bool isGigaF = frequency>=100000000;
 			sprintf(String, "%.*s.%.3s", 3 + isGigaF, ascii, ascii + 3 + isGigaF);
 #ifdef ENABLE_BIG_FREQ
@@ -424,20 +431,22 @@ void UI_DisplayMain(void)
 				UI_PrintStringSmall(String + 7, 113, 0, line + 1);
 				String[7] = 0;
 				// show the main large frequency digits
+
 				UI_DisplayFrequency(String, 32, line, false);
 			}
 			else
 #endif
 			{
 				// show the frequency in the main font
-				UI_PrintString(String, 32, 0, line, 8);
+                UI_PrintStringSmall(String, 32, 0, line);
 			}
 
-			break;
+	//	if(vfo_num==1)	break;
 		}
 		else
 		{
-			if (gCurrentFunction == FUNCTION_TRANSMIT)
+
+            if (gCurrentFunction == FUNCTION_TRANSMIT)
 			{	// transmitting
 				if (activeTxVFO == vfo_num)
 					frequency = gEeprom.VfoInfo[vfo_num].pTX->Frequency;
@@ -471,20 +480,22 @@ void UI_DisplayMain(void)
 							UI_PrintStringSmall(String + 7, 113, 0, line + 1);
 							String[7] = 0;
 							// show the main large frequency digits
+
+
 							UI_DisplayFrequency(String, 32, line, false);
 						}
 						else
 #endif
 						{
 							// show the frequency in the main font
-							UI_PrintString(String, 32, 0, line, 8);
+                            UI_PrintStringSmall(String, 32, 0, line);
 						}
 
 						break;
 
 					case MDF_CHANNEL:	// show the channel number
 						sprintf(String, "CH-%03u", gEeprom.ScreenChannel[vfo_num] + 1);
-						UI_PrintString(String, 32, 0, line, 8);
+                        UI_PrintStringSmall(String, 32, 0, line);
 						break;
 
 					case MDF_NAME:		// show the channel name
@@ -497,7 +508,7 @@ void UI_DisplayMain(void)
 						}
 
 						if (gEeprom.CHANNEL_DISPLAY_MODE == MDF_NAME) {
-							UI_PrintString(String, 32, 0, line, 8);
+                            UI_PrintStringSmall(String, 32, 0, line);
 						}
 						else {
 #ifdef ENABLE_SMALL_BOLD
@@ -515,6 +526,7 @@ void UI_DisplayMain(void)
 			}
 			else
 			{	// frequency mode
+
 				sprintf(String, "%3u.%05u", frequency / 100000, frequency % 100000);
 
 #ifdef ENABLE_BIG_FREQ
@@ -529,7 +541,7 @@ void UI_DisplayMain(void)
 #endif
 				{
 					// show the frequency in the main font
-					UI_PrintString(String, 32, 0, line, 8);
+                    UI_PrintStringSmall(String, 32, 0, line);
 				}
 
 				// show the channel symbols

@@ -205,32 +205,13 @@ static void processFKeyFunction(const KEY_Code_t Key, const bool beep)
 			break;
 
 		case KEY_5:
-			if(beep) {
-#ifdef ENABLE_NOAA
 
-				if (!IS_NOAA_CHANNEL(gTxVfo->CHANNEL_SAVE))
-				{
-					gEeprom.ScreenChannel[Vfo] = gEeprom.NoaaChannel[gEeprom.TX_VFO];
-				}
-				else
-				{
-					gEeprom.ScreenChannel[Vfo] = gEeprom.FreqChannel[gEeprom.TX_VFO];
-#ifdef ENABLE_VOICE
-						gAnotherVoiceID = VOICE_ID_FREQUENCY_MODE;
-#endif
-				}
-				gRequestSaveVFO   = true;
-				gVfoConfigureMode = VFO_CONFIGURE_RELOAD;
-#elif defined(ENABLE_SPECTRUM)
+
 				APP_RunSpectrum();
 				gRequestDisplayScreen = DISPLAY_MAIN;
-#endif
-			}
-			else {
-#ifdef ENABLE_VOX
-				toggle_chan_scanlist();
-#endif
-			}
+
+
+
 
 			break;
 

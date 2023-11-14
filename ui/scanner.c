@@ -37,7 +37,7 @@ void UI_DisplayScanner(void)
 		sprintf(String, "FREQ:%u.%05u", gScanFrequency / 100000, gScanFrequency % 100000);
 	else
 		strcpy(String, "FREQ:**.*****");
-	UI_PrintString(String, 2, 0, 1, 8);
+    UI_PrintStringSmall(String, 2, 0, 1);
 
 	memset(String, 0, sizeof(String));
 	if (gScanCssState < SCAN_CSS_STATE_FOUND || !gScanUseCssResult)
@@ -47,7 +47,7 @@ void UI_DisplayScanner(void)
 		sprintf(String, "CTC:%u.%uHz", CTCSS_Options[gScanCssResultCode] / 10, CTCSS_Options[gScanCssResultCode] % 10);
 	else
 		sprintf(String, "DCS:D%03oN", DCS_Options[gScanCssResultCode]);
-	UI_PrintString(String, 2, 0, 3, 8);
+    UI_PrintStringSmall(String, 2, 0, 3);
 
 	memset(String, 0, sizeof(String));
 	if (gScannerSaveState == SCAN_SAVE_CHANNEL)
@@ -75,7 +75,7 @@ void UI_DisplayScanner(void)
 		Start     = 2;
 		bCentered = 0;
 	}
-	UI_PrintString(String, Start, bCentered ? 127 : 0, 5, 8);
+    UI_PrintStringSmall(String, Start, bCentered ? 127 : 0, 5);
 	
 	ST7565_BlitFullScreen();
 }

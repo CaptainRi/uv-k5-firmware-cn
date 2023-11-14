@@ -32,8 +32,8 @@ void UI_DisplayReleaseKeys(void)
 	memset(gStatusLine,  0, sizeof(gStatusLine));
 	memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
 
-	UI_PrintString("RELEASE", 0, 127, 1, 10);
-	UI_PrintString("ALL KEYS", 0, 127, 3, 10);
+    UI_PrintStringSmall("RELEASE", 0, 127, 1);
+    UI_PrintStringSmall("ALL KEYS", 0, 127, 3);
 
 	ST7565_BlitStatusLine();  // blank status line
 	ST7565_BlitFullScreen();
@@ -75,8 +75,8 @@ void UI_DisplayWelcome(void)
 			EEPROM_ReadBuffer(0x0EC0, WelcomeString1, 16);
 		}
 
-		UI_PrintString(WelcomeString0, 0, 127, 0, 10);
-		UI_PrintString(WelcomeString1, 0, 127, 2, 10);
+        UI_PrintStringSmall(WelcomeString0, 0, 127, 0);
+        UI_PrintStringSmall(WelcomeString1, 0, 127, 2);
 		UI_PrintStringSmall(Version, 0, 0, 6);
 
 		ST7565_BlitStatusLine();  // blank status line

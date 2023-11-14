@@ -40,7 +40,7 @@ void UI_DisplayAircopy(void)
 		strcpy(String, "AIR COPY");
 	else
 		strcpy(String, "AIR COPY(CMP)");
-	UI_PrintString(String, 2, 127, 0, 8);
+	UI_PrintStringSmall(String, 2, 127, 0);
 
 	if (gInputBoxIndex == 0)
 	{
@@ -64,7 +64,7 @@ void UI_DisplayAircopy(void)
 	else
 	if (gAirCopyIsSendMode == 1)
 		sprintf(String, "SND:%u", gAirCopyBlockNumber);
-	UI_PrintString(String, 2, 127, 4, 8);
+	UI_PrintStringSmall(String, 2, 127, 4);
 
 	ST7565_BlitFullScreen();
 }
