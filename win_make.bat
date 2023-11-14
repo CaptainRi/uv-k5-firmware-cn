@@ -29,8 +29,8 @@
 :: Do the compile
 ::
 make clean
-make
 
+make
 
 :: If you have python installed, you can create a 'packed' .bin from the compiled firmware.bin file.
 :: The Quansheng windows upload-to-radio program requires a 'packed' .bin file.
