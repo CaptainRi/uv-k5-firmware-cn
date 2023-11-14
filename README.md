@@ -1,83 +1,77 @@
-# Main features:
-* many of OneOfEleven mods:
-   * AM fix, huge improvement in reception quality
-   * longpress buttons functions replicating F+ action
-   * fast scanning
-   * channel name editing in the menu
-   * channel name + frequency display option
-   * shortcut for scannlist assignment (longpress `5 NOAA`)
-   * scannlist toggle (longpress `* Scan` while scanning)
-   * configurable button function selectable from menu
-   * battery percentage/voltage on status bar, selectable from menu
-   * longer backlight times
-   * mic bar
-   * RSSI s-meter
-   * more frequency steps
-   * squelch more sensitive
-* fagci spectrum analyzer (**F+5** to turn on)
-* some other mods introduced by me:
-   * SSB demodulation (adopted from fagci)
-   * backlight dimming
-   * battery voltage callibration from menu
-   * better battery percentage calculation, selectable for 1600mAh or 2200mAh
-   * more configurable button functions
-   * longpress MENU as another cofigurable button
-   * better DCS/CTCSS scanning in the menu (`* SCAN` while in RX DCS/CTCSS menu item)
-   * Piotr022 s-meter style
-   * restore initial freq/channel when scanning stopped with EXIT, remember last found transmission with MENU button
-   * reordered and renamed menu entries
-   * LCD interference crash fix
+# 主要功能：
+* 中文菜单
+* 许多来自 OneOfEleven 的模块：
+   * AM 修复，显著提高接收质量
+   * 长按按钮执行 F+ 操作的功能复制
+   * 快速扫描
+   * 菜单中的频道名称编辑
+   * 频道名称 + 频率显示选项
+   * 扫描列表分配的快捷方式（长按 `5 NOAA`）
+   * 扫描时的扫描列表切换（在扫描时长按 `* Scan`）
+   * 从菜单中可选择的可配置按钮功能
+   * 状态栏上的电池百分比/电压，可从菜单中选择
+   * 更长的背光时间
+   * 麦克风条
+   * 信号强度指示器（RSSI s-meter）
+   * 更多的频率步进
+   * 静噪更为敏感
 
- # Manual
-
-* [Radio operation](https://github.com/egzumer/uv-k5-firmware-custom/wiki/Radio-operation)
-
-* [Menu](https://github.com/egzumer/uv-k5-firmware-custom/wiki/Menu)
-
-* [Button functions](https://github.com/egzumer/uv-k5-firmware-custom/wiki/Button-functions)
-
-* [Spectrum analyzer](https://github.com/egzumer/uv-k5-firmware-custom/wiki/Spectrum-analyzer)
-
-* [Flashing the firmware](https://github.com/egzumer/uv-k5-firmware-custom/wiki/Flashing-the-firmware)
-
-<img src="images/main.jpg" width=300 /><img src="images/spectrum.jpg" width=300 /><img src="images/audiobar.jpg" width=300 /><img src="images/rssibar.jpg" width=300 />
+* fagci 频谱分析仪（**F+5** 打开）
+* 由我引入的一些其他修改：
+   * SSB 解调（从 fagci 采用）
+   * 背光调暗
+   * 来自菜单的电池电压校准
+   * 更好的电池百分比计算，可选择适用于 1600mAh 或 2200mAh
+   * 更多可配置的按钮功能
+   * 长按 MENU 作为另一个可配置按钮
+   * 菜单中的更好的 DCS/CTCSS 扫描（在 RX DCS/CTCSS 菜单项中按 `* SCAN`）
+   * Piotr022 信号强度样式
+   * 使用 EXIT 停止扫描时还原初始频率/频道，使用 MENU 按钮记住上次找到的传输
+   * 重新排序并重命名菜单条目
+   * 修复 LCD 干扰崩溃问题
 
 
-# Open reimplementation of the Quan Sheng UV-K5 v2.1.27 firmware
 
-This repository is a merge of OneOfEleven custom firmware with fagci spectrum analizer plus my few changes.
 
-https://github.com/OneOfEleven/uv-k5-firmware-custom<br>
-https://github.com/fagci/uv-k5-firmware-fagci-mod/tree/refactor
+# 与最新版egzumer功能完全相同的中文固件
 
-All is a cloned and customized version of DualTachyon's open firmware found here ..
+这个仓库是 OneOfEleven 定制固件与 fagci 频谱分析仪合并，并加入了egzumer的一些修改。
+并在egzumer修改的基础上汉化菜单
 
-https://github.com/DualTachyon/uv-k5-firmware .. a cool achievement !
+[https://github.com/egzumer/uv-k5-firmware-custom](https://github.com/egzumer/uv-k5-firmware-custom)  
+[https://github.com/OneOfEleven/uv-k5-firmware-custom](https://github.com/OneOfEleven/uv-k5-firmware-custom)  
+[https://github.com/fagci/uv-k5-firmware-fagci-mod/tree/refactor](https://github.com/fagci/uv-k5-firmware-fagci-mod/tree/refactor)
 
-Use this firmware at your own risk (entirely). There is absolutely no guarantee that it will work in any way shape or form on your radio(s), it may even brick your radio(s), in which case, you'd need to buy another radio.
-Anyway, have fun.
+所有这些都是 DualTachyon 的开源固件的克隆和定制版本，可以在以下位置找到：
 
-# Radio performance
+[https://github.com/DualTachyon/uv-k5-firmware](https://github.com/DualTachyon/uv-k5-firmware) .. 一个很酷的成果！
 
-Please note that the Quansheng UV-Kx radios are not professional quality transceivers, their
-performance is strictly limited. The RX front end has no track-tuned band pass filtering
-at all, and so are wide band/wide open to any and all signals over a large frequency range.
+在使用此固件时，请自担风险（全部）。绝对不能保证它在任何情况下都能在你的收音机上正常工作，它甚至可能会使你的收音机砖化，如果出现这种情况，你可能需要购买另一台收音机。
 
-Using the radio in high intensity RF environments will most likely make reception anything but
-easy (AM mode will suffer far more than FM ever will), the receiver simply doesn't have a
-great dynamic range, which results in distorted AM audio with stronger RX'ed signals.
-There is nothing more anyone can do in firmware/software to improve that, once the RX gain
-adjustment I do (AM fix) reaches the hardwares limit, your AM RX audio will be all but
-non-existant (just like Quansheng's firmware).
-On the other hand, FM RX audio will/should be fine.
+总之，玩得开心。
 
-But, they are nice toys for the price, fun to play with.
+# 收音机性能
 
-# User customization
+请注意，全胜 UV-Kx 收音机不是专业品质的收发器，它们的性能受到严格限制。RX 前端根本没有跟踪调谐的带通滤波，因此对大范围的频率信号都是宽带/全开放的。
 
-You can customize the firmware by enabling/disabling various compile options, this allows
-us to remove certain firmware features in order to make room in the flash for others.
-You'll find the options at the top of "Makefile" ('0' = disable, '1' = enable) ..
+在高强度射频环境中使用收音机很可能会使接收变得非常困难（AM 模式的影响远远大于 FM），接收机的动态范围并不大，这导致强信号的 AM 音频出现失真。在固件/软件中没有更多的操作可以改善这一点，一旦我所做的 RX 增益调整（AM 修复）达到硬件极限，你的 AM RX 音频几乎就不存在了（就像全胜的固件一样）。
+另一方面，FM RX 音频应该是正常的。
+
+但是，它们是价格不错的玩具，很有趣。
+
+# 示例
+
+<p float="left">
+  <img src="/images/cn1" width=300 />
+  <img src="/images/cn2" width=300 />
+</p>
+
+
+# 用户功能自定义
+
+你可以通过启用/禁用各种编译选项来定制固件，这允许我们删除某些固件功能，以便在闪存中为其他功能腾出空间。你会在 "Makefile" 的顶部找到这些选项（'0' = 禁用，'1' = 启用）... 
+
+（请注意：以下内容是一个示例，实际的 "Makefile" 可能会有所不同） 
 
 ```
 ENABLE_CLANG                  := 0     **experimental, builds with clang instead of gcc (LTO will be disabled if you enable this)
@@ -118,64 +112,6 @@ ENABLE_BLMIN_TMP_OFF          := 0       additional function for configurable bu
 ```
 
 
-# Compiler
-
-arm-none-eabi GCC version 10.3.1 is recommended, which is the current version on Ubuntu 22.04.03 LTS.
-Other versions may generate a flash file that is too big.
-You can get an appropriate version from: https://developer.arm.com/downloads/-/gnu-rm
-
-clang may be used but isn't fully supported. Resulting binaries may also be bigger.
-You can get it from: https://releases.llvm.org/download.html
-
-# Building
-
-If you have docker installed you can use `compile-with-docker.bat`, the output files are created in `compiled-firmware` folder. This method gives significantly smaller binaries, I've seen differences up to 1kb, so it can fit more functionalities this way. The challange can be (or not) installing the docker itself.
-
-
-To compile directly in windows:
-
-1. Open windows command line and run:
-    ```
-    winget install -e -h git.git Python.Python.3.8 GnuWin32.Make
-    winget install -e -h Arm.GnuArmEmbeddedToolchain -v "10 2021.10"
-    ```
-2. Close command line, open a new one and run:
-    ```
-    pip install --user --upgrade pip
-    pip install crcmod
-    mkdir c:\projects & cd /D c:/projects
-    git clone https://github.com/egzumer/uv-k5-firmware-custom.git
-    ```
-3. From now on you can build the firmware by going to `c:\projects\uv-k5-firmware-custom` and running `win_make.bat` or by running a command line:
-    ```
-    cd /D c:\projects\uv-k5-firmware-custom
-    win_make.bat
-    ```
-4. To reset the repository and pull new changes run (!!! it will delete all your changes !!!):
-    ```
-    cd /D c:\projects\uv-k5-firmware-custom
-    git reset --hard & git clean -fd & git pull
-    ```
-
-I've left some notes in the win_make.bat file to maybe help with stuff.
-
-# Credits
-
-Many thanks to various people on Telegram for putting up with me during this effort and helping:
-
-* [OneOfEleven](https://github.com/OneOfEleven)
-* [DualTachyon](https://github.com/DualTachyon)
-* [Mikhail](https://github.com/fagci)
-* [Andrej](https://github.com/Tunas1337)
-* [Manuel](https://github.com/manujedi)
-* @wagner
-* @Lohtse Shar
-* [@Matoz](https://github.com/spm81)
-* @Davide
-* @Ismo OH2FTG
-* [OneOfEleven](https://github.com/OneOfEleven)
-* @d1ced95
-* and others I forget
 
 # License
 
@@ -194,16 +130,4 @@ You may obtain a copy of the License at
     See the License for the specific language governing permissions and
     limitations under the License.
 
-# Example changes/updates
 
-<p float="left">
-  <img src="/images/image1.png" width=300 />
-  <img src="/images/image2.png" width=300 />
-  <img src="/images/image3.png" width=300 />
-</p>
-
-Video showing the AM fix working ..
-
-<video src="/images/AM_fix.mp4"></video>
-
-<video src="https://github.com/OneOfEleven/uv-k5-firmware-custom/assets/51590168/2a3a9cdc-97da-4966-bf0d-1ce6ad09779c"></video>
