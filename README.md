@@ -62,8 +62,8 @@
 # 示例
 
 <p float="left">
-  <img src="/images/cn1" width=300 />
-  <img src="/images/cn2" width=300 />
+  <img src="/images/cn1.png" width=300 />
+  <img src="/images/cn2.png" width=300 />
 </p>
 
 
