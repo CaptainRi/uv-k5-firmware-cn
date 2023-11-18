@@ -254,7 +254,7 @@ void UI_DisplayMain(void)
 	if (gEeprom.KEY_LOCK && gKeypadLocked > 0)
 	{	// tell user how to unlock the keyboard
         //translate
-        UI_PrintStringSmall("\x97\x94 # \\x96\\xCB\\x9B", 0, LCD_WIDTH, 1);
+        UI_PrintStringSmall("\x97\x94 # \x96\xCB\x9B\x00", 0, LCD_WIDTH, 1);
 //        UI_PrintStringSmall("to unlock",    0, LCD_WIDTH, 3);
 		ST7565_BlitFullScreen();
 		return;

@@ -610,8 +610,9 @@ void UI_DisplayMenu(void) {
         case MENU_R_DCS:
         case MENU_T_DCS:
             if (gSubMenuSelection == 0)
-//                strcpy(String, "OFF");
-            strcpy(String, "\xD9\xDF");
+             //  strcpy(String, "OFF");
+                //translate
+            strcpy(String, "\xD9\xDF\x00");
 
             else if (gSubMenuSelection < 105)
                 sprintf(String, "D%03oN", DCS_Options[gSubMenuSelection - 1]);
@@ -622,8 +623,9 @@ void UI_DisplayMenu(void) {
         case MENU_R_CTCS:
         case MENU_T_CTCS: {
             if (gSubMenuSelection == 0)
-                //                strcpy(String, "OFF");
-                strcpy(String, "\xD9\xDF");
+                           //     strcpy(String, "OFF");
+               // translate
+                strcpy(String, "\xD9\xDF\x00");
 
             else
                 sprintf(String, "%u.%uHz", CTCSS_Options[gSubMenuSelection - 1] / 10,
@@ -706,8 +708,8 @@ void UI_DisplayMenu(void) {
 #endif
 
         case MENU_AUTOLK:
-//            strcpy(String, (gSubMenuSelection == 0) ? "OFF" : "AUTO");
-            strcpy(String, (gSubMenuSelection == 0) ? "\xD9\xDF" : "\x99\x9A");
+  //strcpy          strcpy(String, (gSubMenuSelection == 0) ? "OFF" : "AUTO");
+//            strcpy(String, (gSubMenuSelection == 0) ? "\xD9\xDF" : "\x99\x9A");
 
 
             break;
@@ -833,16 +835,23 @@ void UI_DisplayMenu(void) {
 
         case MENU_RP_STE:
             if (gSubMenuSelection == 0)
-                strcpy(String, "\xD9\xDF");
+           //     strcpy(String, "OFF");
+//translate
+            strcpy(String, "\xD9\xDF\x00");
             else
                 sprintf(String, "%d*100ms", gSubMenuSelection);
             break;
 
         case MENU_S_LIST:
             if (gSubMenuSelection < 2)
-                sprintf(String, "\x86\x87 %u", 1 + gSubMenuSelection);
+             //   sprintf(String, "list %u", 1 + gSubMenuSelection);
+
+         //translate
+          sprintf(String, "\x86\x87 %u", 1 + gSubMenuSelection);
             else
-                strcpy(String, "\xED\xEE");
+          //      strcpy(String, "ALL");
+
+            strcpy(String, "\xED\xEE\x00");
             break;
 
 #ifdef ENABLE_ALARM
@@ -1067,7 +1076,7 @@ void UI_DisplayMenu(void) {
     }
 
     if ((UI_MENU_GetCurrentMenuId() == MENU_R_CTCS || UI_MENU_GetCurrentMenuId() == MENU_R_DCS) && gCssBackgroundScan)
-        UI_PrintStringSmall("\x8F\x90", menu_item_x1, menu_item_x2, 5);
+        UI_PrintStringSmall("SCAN", menu_item_x1, menu_item_x2, 5);
 
 
     if (UI_MENU_GetCurrentMenuId() == MENU_UPCODE)
@@ -1114,6 +1123,7 @@ void UI_DisplayMenu(void) {
 
 
 void UI_ShowChineseMenu() {
+  //  return;
     uint8_t cnt_char = 0;
 
     uint8_t size_menu = 0;
