@@ -761,13 +761,13 @@ void MENU_AcceptSetting(void)
 			break;
 
 		case MENU_F_LOCK: {
-			if(gSubMenuSelection == F_LOCK_NONE) { // select 10 times to enable
-				gUnlockAllTxConfCnt++;
-				if(gUnlockAllTxConfCnt < 10)
-					return;
-			}
-			else
-				gUnlockAllTxConfCnt = 0;
+//			if(gSubMenuSelection == F_LOCK_NONE) { // select 10 times to enable
+//				gUnlockAllTxConfCnt++;
+//				if(gUnlockAllTxConfCnt < 10)
+//					return;
+//			}
+//			else
+//				gUnlockAllTxConfCnt = 0;
 
 			gSetting_F_LOCK = gSubMenuSelection;
 			break;
