@@ -63,7 +63,7 @@ void UI_DisplayWelcome(void)
 
 		if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_VOLTAGE)
 		{
-			strcpy(WelcomeString0, "VOLTAGE");
+			strcpy(WelcomeString0, "\xA0\x7F");
 			sprintf(WelcomeString1, "%u.%02uV %u%%",
 				gBatteryVoltageAverage / 100,
 				gBatteryVoltageAverage % 100,
@@ -77,7 +77,9 @@ void UI_DisplayWelcome(void)
 
         UI_PrintStringSmall(WelcomeString0, 0, 127, 0);
         UI_PrintStringSmall(WelcomeString1, 0, 127, 2);
-		UI_PrintStringSmall(Version, 0, 0, 6);
+        UI_PrintStringSmall("Edited BY BG2FZV", 15, 0, 4);
+
+        UI_PrintStringSmall(Version, 15, 0, 6);
 
 		ST7565_BlitStatusLine();  // blank status line
 		ST7565_BlitFullScreen();

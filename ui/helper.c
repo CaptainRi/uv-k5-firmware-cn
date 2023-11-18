@@ -26,6 +26,24 @@
 #ifndef ARRAY_SIZE
 #define ARRAY_SIZE(arr) (sizeof(arr)/sizeof((arr)[0]))
 #endif
+#define IS_BIT_SET(byte, bit) ((byte>>bit) & (1))
+uint8_t menu_set_flag = 0;
+
+void set_bit(uint8_t *value, uint8_t bit_position, uint8_t bit_value) {
+    if (bit_value == 0) {
+        *value = *value & ~(1 << bit_position); // ��ָ��λ����Ϊ 0
+    } else {
+        *value = *value | (1 << bit_position);  // ��ָ��λ����Ϊ 1
+    }
+}
+
+uint8_t is_chn(uint8_t num) {
+
+    if (num >= 1 && num < 10)return num - 1;
+    else if (num > 10 && num < 32)return num - 2;
+    else if (num > 126 && num <= 254)return num - 96;
+    else return 255;
+}
 
 void UI_GenerateChannelString(char *pString, const uint8_t Channel) {
     unsigned int i;
@@ -82,19 +100,65 @@ void UI_GenerateChannelStringEx(char *pString, const bool bShowPrefix, const uin
 //}
 
 void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_t Line) {
-    const size_t Length = strlen(pString);
+   uint8_t Length = strlen(pString);
+
+    if (menu_set_flag == 1)
+    {
+        Length = Length > 7 ? 7 : Length;
+        menu_set_flag = 0;
+    }
     size_t i;
+    uint8_t sum_pixel = 0;
+    uint8_t chn_flag[Length];
+    for (size_t j = 0; j < Length; j++) {
+        chn_flag[j] = is_chn(pString[j]);
+        if (chn_flag[j] == 255)sum_pixel += 6;
+        else sum_pixel += 11;
+    }
 
     if (End > Start)
-        Start += (((End - Start) - (Length * 8)) + 1) / 2;
-
-    const unsigned int char_width = ARRAY_SIZE(gFontSmall[0]);
+        Start += (((End - Start) - (sum_pixel)) + 1) / 2;
+    //if(Start+sum_pixel>=128)Start=128-sum_pixel;
     uint8_t *pFb = gFrameBuffer[Line] + Start;
+    uint8_t *pFb1 = gFrameBuffer[Line + 1] + Start;
+
+    uint8_t now_pixel = 0;
     for (i = 0; i < Length; i++) {
-        if (pString[i] > ' ') {
-            const unsigned int index = (unsigned int) pString[i] - ' ' - 1;
-            if (index < ARRAY_SIZE(gFontSmall))
-                memmove(pFb + (i * (char_width + 1)) + 1, &gFontSmall[index], char_width);
+        if (chn_flag[i] == 255) {
+            if (pString[i] > ' ') {
+                const unsigned int index = (unsigned int) pString[i] - ' ' - 1;
+                if (index < ARRAY_SIZE(gFontSmall)) {
+                    memmove(pFb + now_pixel + 1, &gFontSmall[index], 6);
+                }
+                now_pixel += 6;
+
+            } else if(pString[i] == ' ')
+
+                now_pixel += 6;
+
+
+
+        } else {
+
+            uint8_t bit_cnt = 0;
+            uint8_t cntt = 0;
+            uint8_t gFontChinese[22] = {0};
+            for (int j = 0; j < 110; j++) {
+                if (IS_BIT_SET(gFontChinese_out[(j + chn_flag[i] * 110) / 8], (j + chn_flag[i] * 110) % 8))
+                    set_bit(&gFontChinese[cntt], bit_cnt, 1);
+                bit_cnt++;
+                if ((bit_cnt == 8 && cntt < 11) || (bit_cnt == 2 && cntt >= 11)) {
+                    bit_cnt = 0;
+
+                    cntt++;
+                }
+            }
+            memmove(pFb + now_pixel + 1, &gFontChinese[0], 11);
+            memmove(pFb1 + now_pixel + 1, &gFontChinese[11], 11);
+
+//            memmove(gFrameBuffer[Line + 0] + Start, &gFontChinese[0], 11);
+//            memmove(gFrameBuffer[Line + 1] + Start, &gFontChinese[11], 11);
+            now_pixel += 12;
         }
     }
 }
@@ -134,33 +198,36 @@ void UI_PrintStringSmallBuffer(const char *pString, uint8_t *buffer) {
         }
     }
 }
-void UI_DisplayFrequency(const char *string, uint8_t X, uint8_t Y, bool center)
-{
-    const unsigned int char_width  = 13;
-    uint8_t           *pFb0        = gFrameBuffer[Y] + X;
-    uint8_t           *pFb1        = pFb0 + 128;
-    bool               bCanDisplay = false;
+
+void UI_DisplayFrequency(const char *string, uint8_t X, uint8_t Y, bool center) {
+    const unsigned int char_width = 13;
+    uint8_t *pFb0 = gFrameBuffer[Y] + X;
+    uint8_t *pFb1 = pFb0 + 128;
+    bool bCanDisplay = false;
 
     uint8_t len = strlen(string);
-    for(int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++) {
         char c = string[i];
-        if(c=='-') c = '9' + 1;
-        if (bCanDisplay || c != ' ')
-        {
+        if (c == '-') c = '9' + 1;
+        if (bCanDisplay || c != ' ') {
             bCanDisplay = true;
-            if(c>='0' && c<='9' + 1) {
-                memcpy(pFb0 + 2, gFontBigDigits[c-'0'],                  char_width - 3);
-                memcpy(pFb1 + 2, gFontBigDigits[c-'0'] + char_width - 3, char_width - 3);
-            }
-            else if(c=='.') {
-                *pFb1 = 0x60; pFb0++; pFb1++;
-                *pFb1 = 0x60; pFb0++; pFb1++;
-                *pFb1 = 0x60; pFb0++; pFb1++;
+            if (c >= '0' && c <= '9' + 1) {
+                memcpy(pFb0 + 2, gFontBigDigits[c - '0'], char_width - 3);
+                memcpy(pFb1 + 2, gFontBigDigits[c - '0'] + char_width - 3, char_width - 3);
+            } else if (c == '.') {
+                *pFb1 = 0x60;
+                pFb0++;
+                pFb1++;
+                *pFb1 = 0x60;
+                pFb0++;
+                pFb1++;
+                *pFb1 = 0x60;
+                pFb0++;
+                pFb1++;
                 continue;
             }
 
-        }
-        else if (center) {
+        } else if (center) {
             pFb0 -= 6;
             pFb1 -= 6;
         }
@@ -175,47 +242,28 @@ void UI_DrawPixel(uint8_t x, uint8_t y, bool black) {
     gFrameBuffer[y / 8][x] |= black << (y % 8);
 }
 
-uint8_t more_bit = CHAR_ROW % 8U;
-
 
 void UI_PrintChineseChar(uint8_t character, uint8_t Start, uint8_t Line) {
-//    const uint8_t ofs = (unsigned int) Start;
-//    uint8_t gFontChinese[10] = {0};
-//    uint8_t bit_cnt = 0;
-//    uint8_t cnt = CHAR_ROW / 8U * CHAR_COL;
-//    for (uint8_t j = 10; j < CHAR_SIZE; j++) {
-//
-//        for (uint8_t k = character; k < more_bit; k++) {
-//            uint8_t tmp = GET_BIT(gFontChinese[0], bit_cnt);
-//            gFontChinese[j - 10] += tmp << k;
-//            bit_cnt++;
-//            if (bit_cnt == 8U) {
-//                bit_cnt = 0;
-//                cnt++;
-//            }
-//        }
-//    }
-//    memmove(gFrameBuffer[Line + 1] + ofs, gFontChinese,1);
-    const uint8_t ofs = (unsigned int) Start;
-    const uint8_t index = character;
-    uint8_t gFontChinese[10] = {0};
-    uint8_t bit_cnt = 0;
-    uint8_t cnt = CHAR_ROW / 8U * CHAR_COL;
-    for (uint8_t j = 10; j < CHAR_SIZE; j++) {
 
-        for (uint8_t k = 0; k < more_bit; k++) {
-            uint8_t tmp = GET_BIT(gFontChinese_out[index][cnt], bit_cnt);
-            gFontChinese[j - 10] += tmp << k;
-            bit_cnt++;
-            if (bit_cnt == 8U) {
-                bit_cnt = 0;
-                cnt++;
-            }
+
+    //int num_in = 2;
+
+    uint8_t bit_cnt = 0;
+    uint8_t cntt = 0;
+    uint8_t gFontChinese[22] = {0};
+    for (int i = 0; i < 110; i++) {
+        if (IS_BIT_SET(gFontChinese_out[(i + character * 110) / 8], (i + character * 110) % 8))
+            set_bit(&gFontChinese[cntt], bit_cnt, 1);
+        bit_cnt++;
+        if ((bit_cnt == 8 && cntt < 11) || (bit_cnt == 2 && cntt >= 11)) {
+            bit_cnt = 0;
+
+            cntt++;
         }
     }
-    memmove(gFrameBuffer[Line + 0] + ofs, &gFontChinese_out[index][0], 10);
-    memmove(gFrameBuffer[Line + 1] + ofs, &gFontChinese[0], 10);
 
+    memmove(gFrameBuffer[Line + 0] + Start, &gFontChinese[0], 11);
+    memmove(gFrameBuffer[Line + 1] + Start, &gFontChinese[11], 11);
 
 
 }
@@ -242,5 +290,5 @@ void UI_DisplayPopup(const char *string) {
     // DrawRectangle(9,9, 118,38, true);
 
     UI_PrintStringSmall(string, 9, 118, 2);
-    UI_PrintStringSmall("Press EXIT", 9, 118, 6);
+    UI_PrintStringSmall("\x94 EXIT \x96", 9, 118, 6);
 }

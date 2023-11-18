@@ -18,7 +18,7 @@
 #define FONT_H
 
 #include <stdint.h>
-extern const uint8_t gFontChinese_out[123][14];
+extern const uint8_t gFontChinese_out[2187];
 #define CHAR_SIZE 20U
 #define CHAR_COL 10U
 #define CHAR_ROW 11U

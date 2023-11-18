@@ -11,5 +11,6 @@
 	const char Version[]      = "OEFW-"VER;
 	const char UART_Version[] = "UV-K5 Firmware, Open Edition, OEFW-"VER"\r\n";
 #else
-	const char Version[]      = "egzumer-0.17"VER;
+	//const char Version[]      = "egzumer-0.17"VER;
+    const char Version[]      = "egzumer-0.17.1"VER;
 #endif

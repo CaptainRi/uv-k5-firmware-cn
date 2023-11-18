@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/uv_k5font.dir/font.cpp.obj"
+  "CMakeFiles/uv_k5font.dir/font.cpp.obj.d"
   "CMakeFiles/uv_k5font.dir/main.cpp.obj"
   "CMakeFiles/uv_k5font.dir/main.cpp.obj.d"
   "libuv_k5font.dll.a"

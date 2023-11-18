@@ -56,10 +56,10 @@ RM = "C:\Program Files\JetBrains\CLion 2023.1.1\bin\cmake\win\x64\bin\cmake.exe"
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\RUPC\CLionProjects\uv-k5font
+CMAKE_SOURCE_DIR = C:\Users\RUPC\Desktop\UV-K6\uv-k5font
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\RUPC\CLionProjects\uv-k5font\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\RUPC\Desktop\UV-K6\uv-k5font\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\RUPC\CLionProjects\uv-k5font\cmake-build-debug\CMakeFiles C:\Users\RUPC\CLionProjects\uv-k5font\cmake-build-debug\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\RUPC\Desktop\UV-K6\uv-k5font\cmake-build-debug\CMakeFiles C:\Users\RUPC\Desktop\UV-K6\uv-k5font\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\RUPC\CLionProjects\uv-k5font\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\RUPC\Desktop\UV-K6\uv-k5font\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,6 +128,30 @@ uv_k5font/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\uv_k5font.dir\build.make CMakeFiles/uv_k5font.dir/build
 .PHONY : uv_k5font/fast
 
+font.obj: font.cpp.obj
+.PHONY : font.obj
+
+# target to build an object file
+font.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uv_k5font.dir\build.make CMakeFiles/uv_k5font.dir/font.cpp.obj
+.PHONY : font.cpp.obj
+
+font.i: font.cpp.i
+.PHONY : font.i
+
+# target to preprocess a source file
+font.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uv_k5font.dir\build.make CMakeFiles/uv_k5font.dir/font.cpp.i
+.PHONY : font.cpp.i
+
+font.s: font.cpp.s
+.PHONY : font.s
+
+# target to generate assembly for a file
+font.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\uv_k5font.dir\build.make CMakeFiles/uv_k5font.dir/font.cpp.s
+.PHONY : font.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -161,6 +185,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... uv_k5font
+	@echo ... font.obj
+	@echo ... font.i
+	@echo ... font.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

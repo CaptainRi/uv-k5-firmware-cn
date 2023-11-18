@@ -179,8 +179,8 @@ SIZE = arm-none-eabi-size
 
 # the user might not have/want git installed
 # can set own version string here (max 7 chars)
-GIT_HASH := cn_all
-
+#GIT_HASH := cn_all
+GIT_HASH := cn
 $(info GIT_HASH = $(GIT_HASH))
 
 ASFLAGS = -c -mcpu=cortex-m0

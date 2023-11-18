@@ -39,224 +39,201 @@
 const t_menu_item MenuList[] =
         {
 //   text,     voice ID,                               menu ID
-                {VOICE_ID_FREQUENCY_STEP, MENU_STEP,"\x4F\x73\x80\x56"
-                },
-                {VOICE_ID_POWER, MENU_TXP,"\x1F\x2F\x1A\x56"
-                }, // was "TXP"
-                { VOICE_ID_DCS, MENU_R_DCS,"\x3F\x43\x45\x2A\x0C\x7E"
-                }, // was "R_DCS"
-                {VOICE_ID_CTCSS, MENU_R_CTCS,"\x3F\x43\x4E\x3C\x0C\x7E"
-                }, // was "R_CTCS"
-                { VOICE_ID_DCS, MENU_T_DCS, "\x1F\x74\x45\x2A\x0C\x7E"},
-                // was "T_DCS"
-                { VOICE_ID_CTCSS, MENU_T_CTCS, "\x1F\x74\x4E\x3C\x0C\x7E"
-                }, // was "T_CTCS"
-                { VOICE_ID_TX_OFFSET_FREQUENCY_DIRECTION, MENU_SFT_D, "\x80\x32\x46\x21"
-                }, // was "SFT_D"
-                { VOICE_ID_TX_OFFSET_FREQUENCY, MENU_OFFSET, "\x80\x32\x80\x56"
-                }, // was "OFFSET"
-                { VOICE_ID_CHANNEL_BANDWIDTH, MENU_W_N, "\x2D\x5F\x78\x67"
-                },
-                { VOICE_ID_SCRAMBLER_ON, MENU_SCR, "\x1B\x2E\x75\x6D"
-                }, // was "SCR"
-                { VOICE_ID_BUSY_LOCKOUT, MENU_BCL, "\x76\x37\x5E\x1F"
-                }, // was "BCL"
-                {VOICE_ID_INVALID, MENU_COMPAND, "\x1E\x3A"
-                },
-                { VOICE_ID_INVALID, MENU_AM, "\x6E\x19\x4E\x36"
-                }, // was "AM"
-                { VOICE_ID_INVALID, MENU_S_ADD1, "\x42\x62\x16\x6B\x01"
-                },
-                {VOICE_ID_INVALID, MENU_S_ADD2, "\x42\x62\x16\x6B\x02"
-                },
-                { VOICE_ID_MEMORY_CHANNEL, MENU_MEM_CH, "\x2B\x13\x12\x77"
-                }, // was "MEM-CH"
-                {VOICE_ID_DELETE_CHANNEL, MENU_DEL_CH, "\x17\x7C\x12\x77"
-                }, // was "DEL-CH"
-                { VOICE_ID_INVALID, MENU_MEM_NAME, "\x23\x20\x12\x77"
-                },
+                {/*"Step",*/   VOICE_ID_FREQUENCY_STEP,                MENU_STEP          ,"\x01\x02\x03\x04"},
+                {/*"TxPwr",*/  VOICE_ID_POWER,                         MENU_TXP           ,"\x05\x06\x07\x04"}, // was "TXP"
+                {/*"RxDCS",*/  VOICE_ID_DCS,                           MENU_R_DCS         ,"\x08\x09\x0B\x0C\x0D\x0E"}, // was "R_DCS"
+                {/*"RxCTCS",*/ VOICE_ID_CTCSS,                         MENU_R_CTCS        ,"\x08\x09\x0F\x10\x0D\x0E"}, // was "R_CTCS"
+                {/*"TxDCS",*/  VOICE_ID_DCS,                           MENU_T_DCS         ,"\x05\x11\x0B\x0C\x0D\x0E"}, // was "T_DCS"
+                {/*"TxCTCS",*/ VOICE_ID_CTCSS,                         MENU_T_CTCS        ,"\x05\x11\x0F\x10\x0D\x0E"}, // was "T_CTCS"
+                {/*"TxODir",*/ VOICE_ID_TX_OFFSET_FREQUENCY_DIRECTION, MENU_SFT_D         ,"\x03\x12\x13\x14"}, // was "SFT_D"
+                {/*"TxOffs",*/ VOICE_ID_TX_OFFSET_FREQUENCY,           MENU_OFFSET        ,"\x03\x12\x03\x04"}, // was "OFFSET"
+                {/*"W/N",*/    VOICE_ID_CHANNEL_BANDWIDTH,             MENU_W_N           ,"\x15\x16\x17\x18\x19"},
+                {/*"Scramb",*/ VOICE_ID_SCRAMBLER_ON,                  MENU_SCR           ,"\x1A\x1B\x1C\x1D"}, // was "SCR"
+                {/*"BusyCL",*/ VOICE_ID_BUSY_LOCKOUT,                  MENU_BCL           ,"\x1E\x1F\xE5\x05"}, // was "BCL"
+                {/*"Compnd",*/ VOICE_ID_INVALID,                       MENU_COMPAND       ,"\x7F\x80"},
+                {/*"Demodu",*/ VOICE_ID_INVALID,                       MENU_AM            ,"\x81\x82\x0F\x83"}, // was "AM"
+                {/*"ScAdd1",*/ VOICE_ID_INVALID,                       MENU_S_ADD1        ,"\x84\x85\x86\x87\x31"},
+                {/*"ScAdd2",*/ VOICE_ID_INVALID,                       MENU_S_ADD2        ,"\x84\x85\x86\x87\x32"},
+                {/*"ChSave",*/ VOICE_ID_MEMORY_CHANNEL,                MENU_MEM_CH        ,"\x88\x19\x89\x8A"}, // was "MEM-CH"
+                {/*"ChDele",*/ VOICE_ID_DELETE_CHANNEL,                MENU_DEL_CH        ,"\x8B\x8C\x89\x8A"}, // was "DEL-CH"
+                {/*"ChName",*/ VOICE_ID_INVALID,                       MENU_MEM_NAME      ,"\x8D\x8E\x89\x8A"},
 
-                { VOICE_ID_INVALID, MENU_S_LIST, "\x12\x77\x3B\x41\x16\x6B"
-                },
-                { VOICE_ID_INVALID, MENU_SLIST1, "\x3B\x41\x16\x6B\x01"
-                },
-                {VOICE_ID_INVALID, MENU_SLIST2, "\x3B\x41\x16\x6B\x02"
-                },
-                { VOICE_ID_INVALID, MENU_SC_REV, "\x42\x62\x38\x28\x4E\x36"
-                },
-#ifdef ENABLE_NOAA
-                {"NOAA-S", VOICE_ID_INVALID,                       MENU_NOAA_S        },
+                {/*"SList",*/  VOICE_ID_INVALID,                       MENU_S_LIST        ,"\x89\x8A\x8F\x90\x86\x87"},
+                {/*"SList1",*/ VOICE_ID_INVALID,                       MENU_SLIST1        ,"\x8F\x90\x86\x87\x31"},
+                {/*"SList2",*/ VOICE_ID_INVALID,                       MENU_SLIST2        ,"\x8F\x90\x86\x87\x32"},
+                {/*"ScnRev",*/ VOICE_ID_INVALID,                       MENU_SC_REV        ,"\x84\x85\x91\x92\x0F\x83"},
+#ifdef ENABLE_NOAA//0
+                {/*"NOAA-S",*/ VOICE_ID_INVALID,                       MENU_NOAA_S        ,""},
 #endif
 
-                { VOICE_ID_INVALID, MENU_F1SHRT, "\x5B\x3E\x11\x7A\x01"
-                },
-                {VOICE_ID_INVALID, MENU_F1LONG, "\x7B\x3E\x11\x7A\x01"
-                },
-                {VOICE_ID_INVALID, MENU_F2SHRT, "\x5B\x3E\x11\x7A\x02"
-                },
-                { VOICE_ID_INVALID, MENU_F2LONG, "\x7B\x3E\x11\x7A\x02"
-                },
-                { VOICE_ID_INVALID, MENU_MLONG, "\x7B\x3E\x06\x7A"
-                },
+                {/*"F1Shrt",*/    VOICE_ID_INVALID,                    MENU_F1SHRT        ,"\x93\x94\x95\x96\x31"},
+                {/*"F1Long",*/    VOICE_ID_INVALID,                    MENU_F1LONG        ,"\x97\x94\x95\x96\x31"},
+                {/*"F2Shrt",*/    VOICE_ID_INVALID,                    MENU_F2SHRT        ,"\x93\x94\x95\x96\x32"},
+                {/*"F2Long",*/    VOICE_ID_INVALID,                    MENU_F2LONG        ,"\x97\x94\x95\x96\x32"},
+                {/*"M Long",*/    VOICE_ID_INVALID,                    MENU_MLONG         ,"\x97\x94\x4D\x96"},
 
-                {VOICE_ID_INVALID, MENU_AUTOLK, "\x7A\x59\x6A\x1C\x79\x2C"
-                }, // was "AUTOLk"
-                {VOICE_ID_TRANSMIT_OVER_TIME, MENU_TOT, "\x1F\x74\x6F\x47"
-                }, // was "TOT"
-                { VOICE_ID_SAVE_MODE, MENU_SAVE, "\x5A\x57\x4E\x36"
-                }, // was "SAVE"
-                { VOICE_ID_INVALID, MENU_MIC, "\x82\x15\x81\x55\x44\x34"
-                },
-#ifdef ENABLE_AUDIO_BAR
-                {             VOICE_ID_INVALID,        MENU_MIC_BAR     ,"\x82\x15\x81\x3D\x5D\x4C"
-  },
+                {/*"KeyLck",*/ VOICE_ID_INVALID,                       MENU_AUTOLK        ,"\x96\x98\x99\x9A\x9B\x9C"}, // was "AUTOLk"
+                {/*"TxTOut",*/ VOICE_ID_TRANSMIT_OVER_TIME,            MENU_TOT           ,"\x05\x11\x9D\x9E"}, // was "TOT"
+                {/*"BatSav",*/ VOICE_ID_SAVE_MODE,                     MENU_SAVE          ,"\x9F\xA0\x0F\x83"}, // was "SAVE"
+                {/*"Mic",*/    VOICE_ID_INVALID,                       MENU_MIC           ,"\xA1\xA2\xA3\xA4\xA5"},
+#ifdef ENABLE_AUDIO_BAR//1
+                {/*"MicBar",*/ VOICE_ID_INVALID,                       MENU_MIC_BAR       ,"\xA1\xA2\xA3\xA6\xA7\xA8"},
+
 #endif
-                {VOICE_ID_INVALID, MENU_MDF, "\x12\x77\x48\x5D\x4E\x36"
-                }, // was "MDF"
-                { VOICE_ID_INVALID, MENU_PONMSG, "\x35\x4A\x12\x39"
-                },
-                {VOICE_ID_INVALID, MENU_BAT_TXT, "\x57\x50\x4D\x60"
-                },
-                { VOICE_ID_INVALID, MENU_ABR, "\x6A\x1C\x69\x14"
-                }, // was "ABR"
-                { VOICE_ID_INVALID, MENU_ABR_MIN, "\x49\x30\x0D\x34"
-                },
-                {VOICE_ID_INVALID, MENU_ABR_MAX, "\x49\x29\x0D\x34"
-                },
-                {VOICE_ID_INVALID, MENU_ABR_ON_TX_RX, "\x69\x14\x54\x52"
-                },
-                {VOICE_ID_BEEP_PROMPT, MENU_BEEP, "\x7A\x59\x3E\x7A\x7E"
-                },
-#ifdef ENABLE_VOICE
-                {"Voice",  VOICE_ID_VOICE_PROMPT,                  MENU_VOICE         },
+                {/*"ChDisp",*/ VOICE_ID_INVALID,                       MENU_MDF           ,"\x89\x8A\xA6\xA7\x0F\x83"}, // was "MDF"
+                {/*"POnMsg",*/ VOICE_ID_INVALID,                       MENU_PONMSG        ,"\xA9\xAA\x89\xAB"},
+                {/*"BatTxt",*/ VOICE_ID_INVALID,                       MENU_BAT_TXT       ,"\xA0\xAC\xA6\xA7"},
+                {/*"BackLt",*/ VOICE_ID_INVALID,                       MENU_ABR           ,"\x99\x9A\xAD\xAE"}, // was "ABR"
+                {/*"BLMin",*/  VOICE_ID_INVALID,                       MENU_ABR_MIN       ,"\xAF\xB0\xB1\xB2"},
+                {/*"BLMax",*/  VOICE_ID_INVALID,                       MENU_ABR_MAX       ,"\xAF\xB3\xB1\xB2"},
+                {/*"BltTRX",*/ VOICE_ID_INVALID,                       MENU_ABR_ON_TX_RX  ,"\xAD\xAE\xA9\xB4"},
+                {/*"Beep",*/   VOICE_ID_BEEP_PROMPT,                   MENU_BEEP          ,"\x96\x98\x94\x96\x0E"},
+#ifdef ENABLE_VOICE//0
+                {/*"Voice",*/  VOICE_ID_VOICE_PROMPT,                  MENU_VOICE         ,""},
 #endif
-                { VOICE_ID_INVALID, MENU_ROGER, "\x1F\x74\x65\x4B\x7E"
-                },
-                {VOICE_ID_INVALID, MENU_STE, "\x31\x7E\x53\x7C"
-                },
-                {VOICE_ID_INVALID, MENU_RP_STE, "\x72\x0B\x66\x31\x7E\x53\x7C"
-                },
-                {VOICE_ID_INVALID, MENU_1_CALL, "\x08\x7A\x1D\x22"
-                },
-#ifdef ENABLE_ALARM
-                {"AlarmT", VOICE_ID_INVALID,                       MENU_AL_MOD        },
+                {/*"Roger",*/  VOICE_ID_INVALID,                       MENU_ROGER         ,"\x05\x11\xB5\xB6\x0E"},
+                {/*"STE",*/    VOICE_ID_INVALID,                       MENU_STE           ,"\xB7\x0E\xB8\x8C"},
+                {/*"RP STE",*/ VOICE_ID_INVALID,                       MENU_RP_STE        ,"\xB9\xBA\xBB\xB7\x0E\xB8\x8C"},
+                {/*"1 Call",*/ VOICE_ID_INVALID,                       MENU_1_CALL        ,"\xBC\x96\xBD\xBE"},
+#ifdef ENABLE_ALARM//0
+                {/*"AlarmT",*/ VOICE_ID_INVALID,                       MENU_AL_MOD        ,""},
 #endif
-                {VOICE_ID_ANI_CODE, MENU_ANI_ID, "\x70\x0F\x5C"
-                },
-                { VOICE_ID_INVALID, MENU_UPCODE, "\x04\x07\x06\x05\x09\x64\x5C"
-                },
-                { VOICE_ID_INVALID, MENU_DWCODE, "\x04\x07\x06\x05\x0A\x64\x5C"
-                },
-                { VOICE_ID_INVALID, MENU_PTT_ID, "\x04\x07\x06\x05\x1F\x74"
-                },
-                {VOICE_ID_INVALID, MENU_D_ST, "\x04\x07\x06\x05\x11\x7E"
-                },
-                { VOICE_ID_INVALID, MENU_D_RSP, "\x04\x07\x06\x05\x24\x33"
-                },
-                { VOICE_ID_INVALID, MENU_D_HOLD, "\x04\x07\x06\x05\x28\x10"
-                },
-                {VOICE_ID_INVALID, MENU_D_PRE, "\x04\x07\x06\x05\x7F\x71\x51"
-                },
-                { VOICE_ID_INVALID, MENU_D_DCD, "\x04\x07\x06\x05\x6C\x5C"
-                },
-                { VOICE_ID_INVALID, MENU_D_LIST, "\x04\x07\x06\x05\x68\x61\x0E"
-                },
-                {VOICE_ID_INVALID, MENU_D_LIVE_DEC, "\x04\x07\x06\x05\x48\x5D"
-                }, // live DTMF decoder
-#ifdef ENABLE_AM_FIX
-                { VOICE_ID_INVALID,                       MENU_AM_FIX     ,"\x03\x06\x6A\x1C\x26\x58"
-   },
+                {/*"ANI ID",*/ VOICE_ID_ANI_CODE,                      MENU_ANI_ID        ,"\xBF\xC0\xC1"},
+                {/*"UPCode",*/ VOICE_ID_INVALID,                       MENU_UPCODE        ,"\x44\x54\x4D\x46\xC2\xC3\xC1"},
+                {/*"DWCode",*/ VOICE_ID_INVALID,                       MENU_DWCODE        ,"\x44\x54\x4D\x46\xC4\xC3\xC1"},
+                {/*"PTT ID",*/ VOICE_ID_INVALID,                       MENU_PTT_ID        ,"\x44\x54\x4D\x46\x05\x11"},
+                {/*"D ST",*/   VOICE_ID_INVALID,                       MENU_D_ST          ,"\x44\x54\x4D\x46\x95\x0E"},
+                {/*"D Resp",*/ VOICE_ID_INVALID,                       MENU_D_RSP         ,"\x44\x54\x4D\x46\xC5\xC6"},
+                {/*"D Hold",*/ VOICE_ID_INVALID,                       MENU_D_HOLD        ,"\x44\x54\x4D\x46\x92\xC7"},
+                {/*"D Prel",*/ VOICE_ID_INVALID,                       MENU_D_PRE         ,"\x44\x54\x4D\x46\xC8\xC9\xCA"},
+                {/*"D Decd",*/ VOICE_ID_INVALID,                       MENU_D_DCD         ,"\x44\x54\x4D\x46\xCB\xC1"},
+                {/*"D List",*/ VOICE_ID_INVALID,                       MENU_D_LIST        ,"\x44\x54\x4D\x46\xCC\xCD\xCE"},
+                {/*"D Live",*/ VOICE_ID_INVALID,                       MENU_D_LIVE_DEC    ,"\x44\x54\x4D\x46\xA6\xA7"}, // live DTMF decoder
+#ifdef ENABLE_AM_FIX//1
+                {/*"AM Fix",*/ VOICE_ID_INVALID,                       MENU_AM_FIX        ,"\x41\x4D\x99\x9A\xA4\xA5"},
 #endif
-#ifdef ENABLE_AM_FIX_TEST1
-                {"AM FT1", VOICE_ID_INVALID,                       MENU_AM_FIX_TEST1  },
+#ifdef ENABLE_AM_FIX_TEST1//0
+                {/*"AM FT1",*/ VOICE_ID_INVALID,                       MENU_AM_FIX_TEST1  ,""},
 #endif
-#ifdef ENABLE_VOX
-                {    VOICE_ID_VOX,                           MENU_VOX      ,"\x27\x40\x1F\x2F"
-     },
+#ifdef ENABLE_VOX//1
+                {/*"VOX",*/    VOICE_ID_VOX,                           MENU_VOX           ,"\xCF\xD0\x05\x06"},
 #endif
-                {VOICE_ID_INVALID, MENU_VOL, "\x57\x50\x57\x1E"
-                }, // was "VOL"
-                {VOICE_ID_DUAL_STANDBY, MENU_TDR, "\x43\x1F\x4E\x36"
-                },
-                {VOICE_ID_SQUELCH, MENU_SQL, "\x7D\x25\x63\x18"
-                },
+                {/*"BatVol",*/ VOICE_ID_INVALID,                       MENU_VOL           ,"\xA0\xAC\xA0\x7F"}, // was "VOL"
+                {/*"RxMode",*/ VOICE_ID_DUAL_STANDBY,                  MENU_TDR           ,"\x09\x05\x0F\x83"},
+                {/*"Sql",*/    VOICE_ID_SQUELCH,                       MENU_SQL           ,"\xD1\xD2\xD3\xD4"},
 
                 // hidden menu items from here on
                 // enabled if pressing both the PTT and upper side button at power-on
-                {VOICE_ID_INVALID, MENU_F_LOCK, "\x80\x56\x78\x67"},
-                {VOICE_ID_INVALID, MENU_200TX, "\x01\x85\x85\x06\x1f\x2f"}, // was "200TX"
-                {VOICE_ID_INVALID, MENU_350TX, "\x83\x84\x85\x06\x1f\x2f"}, // was "350TX"
-                { VOICE_ID_INVALID, MENU_500TX, "\x84\x85\x85\x06\x1f\x2f"}, // was "500TX"
-                {VOICE_ID_INVALID, MENU_350EN, "\x83\x84\x85\x06\x3f\x43"}, // was "350EN"
-                { VOICE_ID_INVALID, MENU_SCREN, "\x1b\x2e"}, // was "SCREN"
-#ifdef ENABLE_F_CAL_MENU
-                {"FrCali", VOICE_ID_INVALID,                       MENU_F_CALI        }, // reference xtal calibration
+                {/*"F Lock",*/ VOICE_ID_INVALID,                       MENU_F_LOCK        ,"\xD5\x9C\xD6\xD7\x03\xD8"},
+                {/*"Tx 200",*/ VOICE_ID_INVALID,                       MENU_200TX         ,"\x32\x30\x30\x4D\x05\x06"}, // was "200TX"
+                {/*"Tx 350",*/ VOICE_ID_INVALID,                       MENU_350TX         ,"\x33\x35\x30\x4D\x05\x06"}, // was "350TX"
+                {/*"Tx 500",*/ VOICE_ID_INVALID,                       MENU_500TX         ,"\x35\x30\x30\x4D\x05\x06"}, // was "500TX"
+                {/*"350 En",*/ VOICE_ID_INVALID,                       MENU_350EN         ,"\x33\x35\x30\x4D\x08\x09"}, // was "350EN"
+                {/*"ScraEn",*/ VOICE_ID_INVALID,                       MENU_SCREN         ,"\x1A\x1B\xA9\xD9"}, // was "SCREN"
+#ifdef ENABLE_F_CAL_MENU//0
+                {/*"FrCali",*/ VOICE_ID_INVALID,                       MENU_F_CALI        ,""}, // reference xtal calibration
 #endif
-                {VOICE_ID_INVALID, MENU_BATCAL, "\x57\x50\x6e\x1e"}, // battery voltage calibration
-                { VOICE_ID_INVALID, MENU_BATTYP, "\x57\x50\x29\x30"}, // battery type 1600/2200mAh
-                {VOICE_ID_INITIALISATION,MENU_RESET, "\x28\x10"}, // might be better to move this to the hidden menu items ?
+                {/*"BatCal",*/ VOICE_ID_INVALID,                       MENU_BATCAL        ,"\xA0\xAC\x81\x7F"}, // battery voltage calibration
+                {/*"BatTyp",*/ VOICE_ID_INVALID,                       MENU_BATTYP        ,"\xA0\xAC\xB3\xB0"}, // battery type 1600/2200mAh
+                {/*"Reset",*/  VOICE_ID_INITIALISATION,                MENU_RESET         ,"\xDA\x0B\x92\xC7"}, // might be better to move this to the hidden menu items ?
 
-                {VOICE_ID_INVALID, 0xff, ""}  // end of list - DO NOT delete or move this this
+                {/*"",*/       VOICE_ID_INVALID,                       0xff               ,"\x00"}  // end of list - DO NOT delete or move this this
         };
+
 
 const uint8_t FIRST_HIDDEN_MENU_ITEM = MENU_F_LOCK;
 
-const char gSubMenu_TXP[][5] =//5
+const char gSubMenu_TXP[][2] =//5
         {
-                "LOW",
-                "MID",
-                "HIGH"
+//                "LOW",
+//                "MID",
+//                "HIGH"
+"\xDB","\xBA","\xDC"
         };
 
-const char gSubMenu_SFT_D[][4] =//4
+const char gSubMenu_SFT_D[][11] =//4
         {
-                "OFF",
-                "+",
-                "-"
+//                "OFF",
+//                "+",
+//                "-"
+                "\x05\x11=\x08\x09",
+                "\x05\x11\x0a=\x08\x09+\xDD\xDE",
+                "\x05\x11\x0a=\x08\x09-\xDD\xDE"
+
         };
 
-const char gSubMenu_W_N[][7] =//7
+const char gSubMenu_W_N[][3] =//7
         {
-                "WIDE",
-                "NARROW"
+//                "WIDE",
+//                "NARROW"
+                "\x15\x03",
+                "\x16\x03"
         };
 
-const char gSubMenu_OFF_ON[][4] =//4
+const char gSubMenu_OFF_ON[][3] =//4
         {
-                "OFF",
-                "ON"
+//                "OFF",
+//                "ON"
+                "\xD9\xDF",
+                "\xA9\xB4"
         };
 
-const char gSubMenu_SAVE[][4] =//4
+const char gSubMenu_SAVE[][3] =//4
         {
-                "OFF",
-                "1:1",
-                "1:2",
-                "1:3",
-                "1:4"
+//                "OFF",
+//                "1:1",
+//                "1:2",
+//                "1:3",
+//                "1:4"
+
+                "\xD9\xDF",
+                "1 \xD4",
+                "2 \xD4",
+                "3 \xD4",
+                "4 \xD4"
+
         };
 
-const char gSubMenu_TOT[][7] =
+const char gSubMenu_TOT[][5] = //7
         {
-                "30 sec",
-                "1 min",
-                "2 min",
-                "3 min",
-                "4 min",
-                "5 min",
-                "6 min",
-                "7 min",
-                "8 min",
-                "9 min",
-                "15 min"
+//                "30 sec",
+//                "1 min",
+//                "2 min",
+//                "3 min",
+//                "4 min",
+//                "5 min",
+//                "6 min",
+//                "7 min",
+//                "8 min",
+//                "9 min",
+//                "15 min"
+
+                    "30 \xFE",
+                            "1 \xFD",
+                            "2 \xFD",
+                            "3 \xFD",
+                            "4 \xFD",
+                            "5 \xFD",
+                            "6 \xFD",
+                            "7 \xFD",
+                            "8 \xFD",
+                            "9 \xFD",
+                            "15 \xFD"
+
         };
 
 const char *gSubMenu_RXMode[] =
         {
-                "MAIN\nONLY",        // TX and RX on main only
-                "DUAL RX\nRESPOND", // Watch both and respond
-                "CROSS\nBAND",        // TX on main, RX on secondary
-                "MAIN TX\nDUAL RX"    // always TX on main, but RX on both
+
+//                "MAIN\nONLY",        // TX and RX on main only
+//                "DUAL RX\nRESPOND", // Watch both and respond
+//                "CROSS\nBAND",        // TX on main, RX on secondary
+//                "MAIN TX\nDUAL RX"    // always TX on main, but RX on both
+                "\xE0\x89\x8A\n\x08\x09\x05\x06",        // TX and RX on main only
+                "\xE1\x89\x8A\n\x08\x09", // Watch both and respond
+                "\xE0\x89\x8A\x05\x06\n\xE2\x89\x8A\x08\x09",        // TX on main, RX on secondary
+                "\xE0\x89\x8A\x05\x06\n\xE1\x89\x8A\x08\x09"    // always TX on main, but RX on both
+
         };
 
 #ifdef ENABLE_VOICE
@@ -268,19 +245,26 @@ const char gSubMenu_VOICE[][4] =
 };
 #endif
 
-const char gSubMenu_SC_REV[][8] =
+const char gSubMenu_SC_REV[][10] =//8
         {
-                "TIMEOUT",
-                "CARRIER",
-                "STOP"
+//                "TIMEOUT",
+//                "CARRIER",
+//                "STOP"
+                "\x1E\x89\xE3\n\x35\xFE\xE4\x84\x85",
+                "\x89\xE3\xE6\xE7\xE4\n\x84\x85",
+                "\x1E\x89\xE3\n\xE4\xE6\xE7\x84\x85"
         };
 
 const char *gSubMenu_MDF[] =
         {
-                "FREQ",
-                "CHANNEL\nNUMBER",
-                "NAME",
-                "NAME\n+\nFREQ"
+//                "FREQ",
+//                "CHANNEL\nNUMBER",
+//                "NAME",
+//                "NAME\n+\nFREQ"
+                "\x03\x04",
+                "\x89\x8A\xE3",
+                "\x8E\xE8",
+                "\x8E\xE8\n+\x03\x04"
         };
 
 #ifdef ENABLE_ALARM
@@ -291,42 +275,57 @@ const char gSubMenu_AL_MOD[][5] =
 };
 #endif
 
-const char gSubMenu_D_RSP[][11] =
+const char gSubMenu_D_RSP[][10] =//11
         {
-                "DO\nNOTHING",
-                "RING",
-                "REPLY",
-                "BOTH"
+//                "DO\nNOTHING",
+//                "RING",
+//                "REPLY",
+//                "BOTH"
+                "\xE9\xC5\xC6",
+                "\xEA\xD6\xC5\xEB",
+                "\xEC\x92\xC5\xC6",
+                "\xEA\xD6\xC5\xEB\n\xEC\x92\xC5\xC6"
         };
 
 const char *gSubMenu_PTT_ID[] =
         {
-                "OFF",
-                "UP CODE",
-                "DOWN CODE",
-                "UP+DOWN\nCODE",
-                "APOLLO\nQUINDAR"
+//                "OFF",
+//                "UP CODE",
+//                "DOWN CODE",
+//                "UP+DOWN\nCODE",
+//                "APOLLO\nQUINDAR"
+                "\xE9\x05\x11",
+                "\xC2\xC3\xC1",
+                "\xC4\xC3\xC1",
+                "\xC2\xC3\x2B\xC4\xC3\xC1",
+                "\x51\x75\x69\x6E\x64\x61\x72\xC1"
         };
 
-const char gSubMenu_PONMSG[][8] =
+const char gSubMenu_PONMSG[][5] =//8
         {
-                "FULL",
-                "MESSAGE",
-                "VOLTAGE",
-                "NONE"
+//                "FULL",
+//                "MESSAGE",
+//                "VOLTAGE",
+//                "NONE"
+                "\xED\xEE\xA6\xA7",
+                "\x89\xAB\xA6\xA7",
+                "\xA0\x7F\xA6\xA7",
+                "\xE9\xA6\xA7"
         };
 
 const char gSubMenu_ROGER[][6] =
         {
-                "OFF",
-                "ROGER",
-                "MDC"
+                "\xD9\xDF\xB5\xB6\x0E",
+                "\xA9\xB4\xB5\xB6\x0E",
+                "\x4D\x44\x43\xEF\xF0"
         };
 
-const char gSubMenu_RESET[][4] =
+const char gSubMenu_RESET[][6] =//4
         {
-                "VFO",
-                "ALL"
+//                "VFO",
+//                "ALL"
+                "\x8C\x89\x8A\xDA\x0B",
+                "\xF1\xF2\xDA\x0B"
         };
 
 const char *gSubMenu_F_LOCK[] =
@@ -337,28 +336,43 @@ const char *gSubMenu_F_LOCK[] =
                 "GB HAM\n144-148\n430-440",
                 "137-174\n400-430",
                 "137-174\n400-438",
-                "DISABLE\nALL",
-                "UNLOCK\nALL",
+//                "DISABLE\nALL",
+//                "UNLOCK\nALL",
+                "\xE5\xF3\xED\xEE",
+                "\xCB\x9B\xED\xEE",
         };
 
-const char gSubMenu_BACKLIGHT[][7] =
+const char gSubMenu_BACKLIGHT[][5] =//7
         {
-                "OFF",
-                "5 sec",
-                "10 sec",
-                "20 sec",
-                "1 min",
-                "2 min",
-                "4 min",
-                "ON"
+//                "OFF",
+//                "5 sec",
+//                "10 sec",
+//                "20 sec",
+//                "1 min",
+//                "2 min",
+//                "4 min",
+//                "ON"
+                "\xD9\xDF",
+                "5 \xFE",
+                "10 \xFE",
+                "20 \xFE",
+                "1 \xFD",
+                "2 \xFD",
+                "4 \xFD",
+                "\xD9\xDF"
+
         };
 
-const char gSubMenu_RX_TX[][6] =
+const char gSubMenu_RX_TX[][7] =//6
         {
-                "OFF",
-                "TX",
-                "RX",
-                "TX/RX"
+//                "OFF",
+//                "TX",
+//                "RX",
+//                "TX/RX"
+                "\xD9\xDF",
+                "\x05\x11\x9E",
+                "\x08\x09\x9E",
+                "\x05\x11\x2F\x08\x09\x9E"
         };
 
 #ifdef ENABLE_AM_FIX_TEST1
@@ -371,11 +385,14 @@ const char gSubMenu_AM_fix_test1[][8] =
 };
 #endif
 
-const char gSubMenu_BAT_TXT[][8] =
+const char gSubMenu_BAT_TXT[][3] =//8
         {
-                "NONE",
-                "VOLTAGE",
-                "PERCENT"
+//                "NONE",
+//                "VOLTAGE",
+//                "PERCENT"
+                "\xD9\xDF",
+                "\xA0\x7F",
+                "\xF4\xF5"
         };
 
 const char gSubMenu_BATTYP[][9] =
@@ -386,7 +403,9 @@ const char gSubMenu_BATTYP[][9] =
 
 const char gSubMenu_SCRAMBLER[][7] =
         {
-                "OFF",
+//                "OFF",
+                "\xD9\xDF",
+
                 "2600Hz",
                 "2700Hz",
                 "2800Hz",
@@ -401,27 +420,39 @@ const char gSubMenu_SCRAMBLER[][7] =
 
 const t_sidefunction SIDEFUNCTIONS[] =
         {
-                {"NONE", ACTION_OPT_NONE},
-                {"FLASH\nLIGHT", ACTION_OPT_FLASHLIGHT},
-                {"POWER", ACTION_OPT_POWER},
-                {"MONITOR", ACTION_OPT_MONITOR},
-                {"SCAN", ACTION_OPT_SCAN},
+//                {"NONE", ACTION_OPT_NONE},
+//                {"FLASH\nLIGHT", ACTION_OPT_FLASHLIGHT},
+//                {"POWER", ACTION_OPT_POWER},
+//                {"MONITOR", ACTION_OPT_MONITOR},
+//                {"SCAN", ACTION_OPT_SCAN},
+                {"\xE5\xF3", ACTION_OPT_NONE},
+                {"\xF6\xA0\xF7", ACTION_OPT_FLASHLIGHT},
+                {"\xF8\x19\x05\x06\x07\x04", ACTION_OPT_POWER},
+                {"\xF9\xFA", ACTION_OPT_MONITOR},
+                {"\x8F\x90", ACTION_OPT_SCAN},
 #ifdef ENABLE_VOX
-                {"VOX",				ACTION_OPT_VOX},
+//                {"VOX",				ACTION_OPT_VOX},
+  {"\xCF\xD0\x05\x06\xA9\xD9",				ACTION_OPT_VOX},
 #endif
 #ifdef ENABLE_ALARM
                 {"ALARM",			ACTION_OPT_ALARM},
 #endif
 #ifdef ENABLE_FMRADIO
-                {"FM RADIO",		ACTION_OPT_FM},
+//                {"FM RADIO",		ACTION_OPT_FM},
+                                {"\x46\x4D\x09\x0E\xAA",		ACTION_OPT_FM},
+
 #endif
 #ifdef ENABLE_TX1750
                 {"1750HZ",			ACTION_OPT_1750},
 #endif
-                {"LOCK\nKEYPAD", ACTION_OPT_KEYLOCK},
-                {"SWITCH\nVFO", ACTION_OPT_A_B},
-                {"VFO/MR", ACTION_OPT_VFO_MR},
-                {"SWITCH\nDEMODUL", ACTION_OPT_SWITCH_DEMODUL},
+//                {"LOCK\nKEYPAD", ACTION_OPT_KEYLOCK},
+//                {"SWITCH\nVFO", ACTION_OPT_A_B},
+//                {"VFO/MR", ACTION_OPT_VFO_MR},
+//                {"SWITCH\nDEMODUL", ACTION_OPT_SWITCH_DEMODUL},
+                {"\x9B\x9C\x96\x98", ACTION_OPT_KEYLOCK},
+                {"\xFB\xFC\x89\x8A", ACTION_OPT_A_B},
+                {"\x03\x04\x2F\x89\x8A\x0F\x83", ACTION_OPT_VFO_MR},
+                {"\xFB\xFC\x81\x82\x0F\x83", ACTION_OPT_SWITCH_DEMODUL},
 #ifdef ENABLE_BLMIN_TMP_OFF
                 {"BLMIN\nTMP OFF",  ACTION_OPT_BLMIN_TMP_OFF}, 		//BackLight Minimum Temporay OFF
 #endif
@@ -453,9 +484,6 @@ char edit_original[17]; // a copy of the text before editing so that we can easi
 char edit[17];
 int edit_index;
 
-void change_bit(unsigned char *data, unsigned char local, unsigned char num) {
-    *data = (*data & ~(1 << local)) | (num << local);
-}
 
 void UI_DisplayMenu(void) {
     const unsigned int menu_list_width = 6; // max no. of characters on the menu list (left side)
@@ -582,7 +610,9 @@ void UI_DisplayMenu(void) {
         case MENU_R_DCS:
         case MENU_T_DCS:
             if (gSubMenuSelection == 0)
-                strcpy(String, "OFF");
+//                strcpy(String, "OFF");
+            strcpy(String, "\xD9\xDF");
+
             else if (gSubMenuSelection < 105)
                 sprintf(String, "D%03oN", DCS_Options[gSubMenuSelection - 1]);
             else
@@ -592,7 +622,9 @@ void UI_DisplayMenu(void) {
         case MENU_R_CTCS:
         case MENU_T_CTCS: {
             if (gSubMenuSelection == 0)
-                strcpy(String, "OFF");
+                //                strcpy(String, "OFF");
+                strcpy(String, "\xD9\xDF");
+
             else
                 sprintf(String, "%u.%uHz", CTCSS_Options[gSubMenuSelection - 1] / 10,
                         CTCSS_Options[gSubMenuSelection - 1] % 10);
@@ -648,7 +680,7 @@ void UI_DisplayMenu(void) {
             strcpy(String, gSubMenu_BACKLIGHT[gSubMenuSelection]);
             
             
-            BACKLIGHT_SetBrightness(-1);
+//            BACKLIGHT_SetBrightness(-1);
             break;
 
         case MENU_ABR_MIN:
@@ -656,8 +688,8 @@ void UI_DisplayMenu(void) {
             sprintf(String, "%d", gSubMenuSelection);
             if (gIsInSubMenu)
                 BACKLIGHT_SetBrightness(gSubMenuSelection);
-            else
-                BACKLIGHT_SetBrightness(-1);
+//            else
+//                BACKLIGHT_SetBrightness(-1);
             break;
 
         case MENU_AM:
@@ -674,9 +706,10 @@ void UI_DisplayMenu(void) {
 #endif
 
         case MENU_AUTOLK:
-            strcpy(String, (gSubMenuSelection == 0) ? "OFF" : "AUTO");
-            
-            
+//            strcpy(String, (gSubMenuSelection == 0) ? "OFF" : "AUTO");
+            strcpy(String, (gSubMenuSelection == 0) ? "\xD9\xDF" : "\x99\x9A");
+
+
             break;
 
         case MENU_COMPAND:
@@ -800,16 +833,16 @@ void UI_DisplayMenu(void) {
 
         case MENU_RP_STE:
             if (gSubMenuSelection == 0)
-                strcpy(String, "OFF");
+                strcpy(String, "\xD9\xDF");
             else
                 sprintf(String, "%d*100ms", gSubMenuSelection);
             break;
 
         case MENU_S_LIST:
             if (gSubMenuSelection < 2)
-                sprintf(String, "LIST%u", 1 + gSubMenuSelection);
+                sprintf(String, "\x86\x87 %u", 1 + gSubMenuSelection);
             else
-                strcpy(String, "ALL");
+                strcpy(String, "\xED\xEE");
             break;
 
 #ifdef ENABLE_ALARM
@@ -889,10 +922,10 @@ void UI_DisplayMenu(void) {
             break;
 
         case MENU_F_LOCK:
-            if (!gIsInSubMenu && gUnlockAllTxConfCnt > 0 && gUnlockAllTxConfCnt < 10)
-                strcpy(String, "READ\nMANUAL");
-            
-            else
+//            if (!gIsInSubMenu && gUnlockAllTxConfCnt > 0&& gUnlockAllTxConfCnt < 10)
+//                strcpy(String, "READ\nMANUAL");
+//
+//            else
                 strcpy(String, gSubMenu_F_LOCK[gSubMenuSelection]);
             
             
@@ -1034,7 +1067,7 @@ void UI_DisplayMenu(void) {
     }
 
     if ((UI_MENU_GetCurrentMenuId() == MENU_R_CTCS || UI_MENU_GetCurrentMenuId() == MENU_R_DCS) && gCssBackgroundScan)
-        UI_PrintStringSmall("SCAN", menu_item_x1, menu_item_x2, 5);
+        UI_PrintStringSmall("\x8F\x90", menu_item_x1, menu_item_x2, 5);
 
 
     if (UI_MENU_GetCurrentMenuId() == MENU_UPCODE)
@@ -1078,55 +1111,42 @@ void UI_DisplayMenu(void) {
 }
 
 //
+
+
 void UI_ShowChineseMenu() {
     uint8_t cnt_char = 0;
 
     uint8_t size_menu = 0;
-    for (uint8_t i = 0; i < 7 && MenuList[gMenuCursor].name[i] != 0; i++) {
-        cnt_char = MenuList[gMenuCursor].name[i];
-        if (cnt_char <= 145)size_menu++;
-        else break;
+    uint8_t cnt_menu=0;
+    for ( cnt_menu = 0; cnt_menu < 7 && MenuList[gMenuCursor].name[cnt_menu] != 0; cnt_menu++) {
+
+            if(is_chn(MenuList[gMenuCursor].name[cnt_menu])!=255)//中文
+                size_menu+=13;
+            else//英文
+                size_menu+=7;
 
     }
     cnt_char = 0;
-    if (size_menu < 4)cnt_char = (48 - size_menu * 10) / 2;
+    if (size_menu < 48)cnt_char = (48 - size_menu ) / 2;
+    menu_set_flag=1;
+    UI_PrintStringSmall(MenuList[gMenuCursor].name, (cnt_char), 0, 0);
+//
+//    for (uint8_t i = 0; i < cnt_menu; i++) {
+//        uint8_t num_solve=is_chn(MenuList[gMenuCursor].name[i]);
+//        if(num_solve==255)//数字/字母
+//        {
+//            char tmp[2]={0};
+//            tmp[0]=MenuList[gMenuCursor].name[i];
+//            UI_PrintStringSmall((const char *)tmp, (cnt_char), 0, 0);
+//            cnt_char += 7;
+//        } else  {
+//
+//
+//            UI_PrintChineseChar(num_solve, cnt_char, 0);
+//
+//            cnt_char += 13;
+//        }
+//
+//    }
 
-    for (uint8_t i = 0; i < size_menu; i++) {
-        uint8_t now_char[2] = {0};
-        now_char[0] = MenuList[gMenuCursor].name[i];
-        if(now_char[0]<=7|| (now_char[0] > 130&&now_char[0] <= 133))//数字/字母
-        {
-            if(now_char[0]<3)now_char[0]+='0';
-            else if(now_char[0]==3)now_char[0]='A';
-            else if(now_char[0]==4)now_char[0]='D';
-            else if(now_char[0]==5)now_char[0]='F';
-            else if(now_char[0]==6)now_char[0]='M';
-            else if(now_char[0]==7)now_char[0]='T';
-            else if(now_char[0]==0x83)now_char[0]='3';
-            else if(now_char[0]==0x84)now_char[0]='5';
-            else if(now_char[0]==0x85)now_char[0]='0';
-
-//            0x83 3
-//            0x84 5
-//            0x85 0
-
-            UI_PrintStringSmall((const char *) now_char, (cnt_char), 0, 0);
-
-
-            //UI_PrintChar(now_char, (cnt_char%48), );
-
-            cnt_char += 8;
-        } else if (now_char[0] <= 130) {
-
-
-            UI_PrintChineseChar(now_char[0] - 8, (cnt_char), 0);
-
-            cnt_char += 12;
-        }
-
-    }
-//    UI_PrintChineseChar(0,  start, start_line);
-//    UI_PrintChineseChar(1,  start+16, start_line);
-//    UI_PrintChineseChar(2,  32, 0);
-//    UI_PrintChineseChar(3,  0, 2);
 }

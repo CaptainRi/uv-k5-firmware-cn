@@ -25,6 +25,7 @@ void UI_GenerateChannelStringEx(char *pString, const bool bShowPrefix, const uin
 void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_t Line);
 void UI_PrintChineseChar(uint8_t character, uint8_t Start, uint8_t Line);
 //void UI_PrintCharSmall(char character, uint8_t Start, uint8_t Line) ;
+uint8_t is_chn(uint8_t num);
 
 
 #ifdef ENABLE_SMALL_BOLD
@@ -35,6 +36,7 @@ void UI_DisplayFrequency(const char *string, uint8_t X, uint8_t Y, bool center);
 #endif
 
 void UI_DisplayPopup(const char *string);
+extern uint8_t  menu_set_flag;
 
 //void UI_DrawPixel(uint8_t x, uint8_t y, bool black);
 //void UI_DrawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, bool black);
