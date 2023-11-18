@@ -112,8 +112,8 @@ void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_
     uint8_t chn_flag[Length];
     for (size_t j = 0; j < Length; j++) {
         chn_flag[j] = is_chn(pString[j]);
-        if (chn_flag[j] == 255)sum_pixel += 6;
-        else sum_pixel += 11;
+        if (chn_flag[j] == 255)sum_pixel += 7;
+        else sum_pixel += 12;
     }
 
     if (End > Start)
@@ -130,11 +130,11 @@ void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_
                 if (index < ARRAY_SIZE(gFontSmall)) {
                     memmove(pFb + now_pixel + 1, &gFontSmall[index], 6);
                 }
-                now_pixel += 6;
+                now_pixel += 7;
 
             } else if(pString[i] == ' ')
 
-                now_pixel += 6;
+                now_pixel += 7;
 
 
 
