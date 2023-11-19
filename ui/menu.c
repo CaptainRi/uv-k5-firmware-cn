@@ -318,10 +318,14 @@ const char gSubMenu_PONMSG[][5] =//8
                 "\xE9\xA6\xA7"
         };
 
-const char gSubMenu_ROGER[][6] =
+const char gSubMenu_ROGER[][9] =
         {
+//                "OFF",
+//                "ROGER",
+//                "MDC"
+
                 "\xD9\xDF\xB5\xB6\x0E",
-                "\xA9\xB4\xB5\xB6\x0E",
+                "ROGER\xB5\xB6\x0E",
                 "\x4D\x44\x43\xEF\xF0"
         };
 

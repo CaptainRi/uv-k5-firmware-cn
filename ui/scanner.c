@@ -34,44 +34,65 @@ void UI_DisplayScanner(void)
 
 	memset(String, 0, sizeof(String));
 	if (gScanSingleFrequency || (gScanCssState != SCAN_CSS_STATE_OFF && gScanCssState != SCAN_CSS_STATE_FAILED))
-		sprintf(String, "FREQ:%u.%05u", gScanFrequency / 100000, gScanFrequency % 100000);
-	else
-		strcpy(String, "FREQ:**.*****");
+//
+
+    sprintf(String, "\x03\x04:%u.%05u", gScanFrequency / 100000, gScanFrequency % 100000);
+    else
+
+//		strcpy(String, "FREQ:**.*****");
+
+        strcpy(String, "\x03\x04:**.*****");
     UI_PrintStringSmall(String, 2, 0, 1);
 
 	memset(String, 0, sizeof(String));
 	if (gScanCssState < SCAN_CSS_STATE_FOUND || !gScanUseCssResult)
-		strcpy(String, "CTC:******");
+//		strcpy(String, "CTC:******");
+
+    strcpy(String, "\x0F\x10\x0D\x0E:******");
+
 	else
 	if (gScanCssResultType == CODE_TYPE_CONTINUOUS_TONE)
-		sprintf(String, "CTC:%u.%uHz", CTCSS_Options[gScanCssResultCode] / 10, CTCSS_Options[gScanCssResultCode] % 10);
+//		sprintf(String, "CTC:%u.%uHz", CTCSS_Options[gScanCssResultCode] / 10, CTCSS_Options[gScanCssResultCode] % 10);
+        sprintf(String, "\x0F\x10\x0D\x0E:%u.%uHz", CTCSS_Options[gScanCssResultCode] / 10, CTCSS_Options[gScanCssResultCode] % 10);
 	else
-		sprintf(String, "DCS:D%03oN", DCS_Options[gScanCssResultCode]);
+//		sprintf(String, "DCS:D%03oN", DCS_Options[gScanCssResultCode]);
+
+    sprintf(String, "\x0B\x0C\x0D\x0E:D%03oN", DCS_Options[gScanCssResultCode]);
     UI_PrintStringSmall(String, 2, 0, 3);
 
 	memset(String, 0, sizeof(String));
 	if (gScannerSaveState == SCAN_SAVE_CHANNEL)
 	{
-		strcpy(String, "SAVE?");
+//		strcpy(String, "SAVE?");
 
+        strcpy(String, "\x19\x88?");
 		Start     = 0;
 		bCentered = 1;
 	}
 	else
 	{
 		if (gScannerSaveState == SCAN_SAVE_CHAN_SEL) {
-			strcpy(String, "SAVE:");
-			UI_GenerateChannelStringEx(String + 5, gShowChPrefix, gScanChannel);
+//			strcpy(String, "SAVE:");
+//            \x88\x19
+//			UI_GenerateChannelStringEx(String + 5, gShowChPrefix, gScanChannel);
+            strcpy(String, "\x19\x88:");
+
+			UI_GenerateChannelStringEx(String + 3, gShowChPrefix, gScanChannel);
 		}
 		else if (gScanCssState < SCAN_CSS_STATE_FOUND) {
-			strcpy(String, "SCAN");
-			memset(String + 4, '.', (gScanProgressIndicator & 7) + 1);
+			//strcpy(String, "SCAN");
+			//memset(String + 4, '.', (gScanProgressIndicator & 7) + 1);
+            strcpy(String, "\x8F\x90");
+            memset(String + 2, '.', (gScanProgressIndicator & 7) + 1);
 		}
 		else if (gScanCssState == SCAN_CSS_STATE_FOUND)
-			strcpy(String, "SCAN CMP.");
-		else
-			strcpy(String, "SCAN FAIL.");
+			//strcpy(String, "SCAN CMP.");
+        strcpy(String, "\x8F\x90 OK.");
 
+
+        else
+//			strcpy(String, "SCAN FAIL.");
+            strcpy(String, "\x8F\x90 FAIL.");
 		Start     = 2;
 		bCentered = 0;
 	}
