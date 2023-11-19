@@ -246,7 +246,7 @@ void UI_DisplayMain(void)
 	memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
 
 	if(gLowBattery && !gLowBatteryConfirmed) {
-		UI_DisplayPopup("LOW BATTERY");
+		UI_DisplayPopup("\xDB\xA0\x7F");
 		ST7565_BlitFullScreen();
 		return;
 	}
@@ -254,8 +254,20 @@ void UI_DisplayMain(void)
 	if (gEeprom.KEY_LOCK && gKeypadLocked > 0)
 	{	// tell user how to unlock the keyboard
         //translate
-        UI_PrintStringSmall("\x97\x94 # \x96\xCB\x9B\x00", 0, LCD_WIDTH, 1);
-//        UI_PrintStringSmall("to unlock",    0, LCD_WIDTH, 3);
+
+
+
+#ifdef test
+        UI_PrintStringSmall("press # long", 0, LCD_WIDTH, 1);
+
+
+        UI_PrintStringSmall("to unlock",    0, LCD_WIDTH, 3);
+#else
+        UI_PrintStringSmall("\x97\x94 # \x96\xCB\x9B", 0, LCD_WIDTH, 1);
+
+#endif
+
+
 		ST7565_BlitFullScreen();
 		return;
 	}
@@ -415,7 +427,7 @@ void UI_DisplayMain(void)
 		if (state != VFO_STATE_NORMAL)
 		{
 
-            const char *state_list[] = {"", "BUSY", "BAT LOW", "TX DISABLE", "TIMEOUT", "ALARM", "VOLT HIGH"};
+            const char *state_list[] = {"", "\x1E\x1F", "\xDB\xA0\x7F", "\x05\x06\xE5\xF3", "\x05\x11\x9D\x9E", "ALARM", "\xDC\xA0\x7F"};
 			if (state < ARRAY_SIZE(state_list))
                 UI_PrintStringSmall(state_list[state], 31, 0, line);
 		}

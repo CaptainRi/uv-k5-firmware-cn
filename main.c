@@ -104,7 +104,7 @@ void Main(void)
     /***********boot*************/
 
 //	BootMode = BOOT_GetMode();
-    gDebounceCounter = 2;
+  //  gDebounceCounter = 2;
 
     gF_LOCK = true;
     //if (BootMode == BOOT_MODE_F_LOCK)

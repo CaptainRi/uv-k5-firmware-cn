@@ -112,13 +112,14 @@ void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_
     uint8_t chn_flag[Length];
     for (size_t j = 0; j < Length; j++) {
         chn_flag[j] = is_chn(pString[j]);
-        if (chn_flag[j] == 255)sum_pixel += 7;
-        else sum_pixel += 12;
+        if (chn_flag[j] == 255&&pString[j]!='\n'&&pString[j]!='\0')sum_pixel += 7;
+
+        else if(chn_flag[j] != 255)sum_pixel += 12;
     }
 
     if (End > Start)
         Start += (((End - Start) - (sum_pixel)) + 1) / 2;
-    //if(Start+sum_pixel>=128)Start=128-sum_pixel;
+//    if(Start+sum_pixel>=128)Start=128-sum_pixel;
     uint8_t *pFb = gFrameBuffer[Line] + Start;
     uint8_t *pFb1 = gFrameBuffer[Line + 1] + Start;
 
@@ -139,7 +140,6 @@ void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_
 
 
         } else {
-
             uint8_t bit_cnt = 0;
             uint8_t cntt = 0;
             uint8_t gFontChinese[22] = {0};
@@ -290,5 +290,5 @@ void UI_DisplayPopup(const char *string) {
     // DrawRectangle(9,9, 118,38, true);
 
     UI_PrintStringSmall(string, 9, 118, 2);
-    UI_PrintStringSmall("\x94 EXIT \x96", 9, 118, 6);
+    UI_PrintStringSmall("\x94 EXIT \x96\x00", 9, 118, 6);
 }

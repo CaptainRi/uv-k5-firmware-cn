@@ -63,9 +63,13 @@ void UI_DisplayWelcome(void)
 
 		if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_VOLTAGE)
 		{//translate
-          //  strcpy(WelcomeString0, "v:");
+#ifdef test
+              strcpy(WelcomeString0, "v:");
 
-            strcpy(WelcomeString0, "\xA0\x7F:\x00");
+#else
+            strcpy(WelcomeString0, "\xA0\x7F:");
+
+            #endif
 			sprintf(WelcomeString1, "%u.%02uV %u%%",
 				gBatteryVoltageAverage / 100,
 				gBatteryVoltageAverage % 100,

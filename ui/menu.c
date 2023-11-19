@@ -157,8 +157,8 @@ const char gSubMenu_SFT_D[][11] =//4
 //                "+",
 //                "-"
                 "\x05\x11=\x08\x09",
-                "\x05\x11\x0a=\x08\x09+\xDD\xDE",
-                "\x05\x11\x0a=\x08\x09-\xDD\xDE"
+                "\x05\x11=\x0a\x08\x09+\xDD\xDE",
+                "\x05\x11=\x0a\x08\x09-\xDD\xDE"
 
         };
 
@@ -178,7 +178,7 @@ const char gSubMenu_OFF_ON[][3] =//4
                 "\xA9\xB4"
         };
 
-const char gSubMenu_SAVE[][3] =//4
+const char gSubMenu_SAVE[][4] =//4
         {
 //                "OFF",
 //                "1:1",
@@ -250,9 +250,14 @@ const char gSubMenu_SC_REV[][10] =//8
 //                "TIMEOUT",
 //                "CARRIER",
 //                "STOP"
-                "\x1E\x89\xE3\n\x35\xFE\xE4\x84\x85",
-                "\x89\xE3\xE6\xE7\xE4\n\x84\x85",
-                "\x1E\x89\xE3\n\xE4\xE6\xE7\x84\x85"
+                "\x1E\x89\xE3\n\x35\xFE\xE4\x84\x85",//遇信号  \n5秒后搜索
+
+                "\x89\xE3\xE6\xE7\xE4\x0a\x84\x85", //信号停止后搜索
+
+                "\x1E\x89\xE3\xE4\x0a\xE6\xE7\x84\x85"//遇信号后停止搜索
+//                "\xEA\xD6\xC5\xEB",
+//                "\xEC\x92\xC5\xC6",
+//                "\xEA\xD6\xC5\xEB\n\xEC\x92\xC5\xC6"
         };
 
 const char *gSubMenu_MDF[] =
@@ -487,7 +492,7 @@ int edit_index;
 
 void UI_DisplayMenu(void) {
     const unsigned int menu_list_width = 6; // max no. of characters on the menu list (left side)
-    const unsigned int menu_item_x1 = (8 * menu_list_width) + 2;
+    const unsigned int menu_item_x1 = (8 * menu_list_width) ;//+ 2;
     const unsigned int menu_item_x2 = LCD_WIDTH - 1;
     unsigned int i;
     char String[64];  // bigger cuz we can now do multi-line in one string (use '\n' char)
@@ -610,9 +615,14 @@ void UI_DisplayMenu(void) {
         case MENU_R_DCS:
         case MENU_T_DCS:
             if (gSubMenuSelection == 0)
-             //  strcpy(String, "OFF");
                 //translate
-            strcpy(String, "\xD9\xDF\x00");
+#ifdef test
+                  strcpy(String, "OFF");
+
+#else
+                strcpy(String, "\xD9\xDF");
+
+#endif
 
             else if (gSubMenuSelection < 105)
                 sprintf(String, "D%03oN", DCS_Options[gSubMenuSelection - 1]);
@@ -623,9 +633,14 @@ void UI_DisplayMenu(void) {
         case MENU_R_CTCS:
         case MENU_T_CTCS: {
             if (gSubMenuSelection == 0)
-                           //     strcpy(String, "OFF");
                // translate
-                strcpy(String, "\xD9\xDF\x00");
+#ifdef test
+                    strcpy(String, "OFF");
+
+#else
+                strcpy(String, "\xD9\xDF");
+
+#endif
 
             else
                 sprintf(String, "%u.%uHz", CTCSS_Options[gSubMenuSelection - 1] / 10,
@@ -708,8 +723,14 @@ void UI_DisplayMenu(void) {
 #endif
 
         case MENU_AUTOLK:
-  //strcpy          strcpy(String, (gSubMenuSelection == 0) ? "OFF" : "AUTO");
-//            strcpy(String, (gSubMenuSelection == 0) ? "\xD9\xDF" : "\x99\x9A");
+            //translate
+#ifdef test
+                  strcpy(String, (gSubMenuSelection == 0) ? "OFF" : "AUTO");
+
+#else
+            strcpy(String, (gSubMenuSelection == 0) ? "\xD9\xDF" : "\x99\x9A");
+
+#endif
 
 
             break;
@@ -822,36 +843,64 @@ void UI_DisplayMenu(void) {
 #endif
 
         case MENU_SC_REV:
+//            if(gSubMenuSelection==0)            strcpy(String, "\x1E\x89\xE3\x35\x0a\xFE\xE4\x84\x85\x00");
+//
+//            else if(gSubMenuSelection==1)             strcpy(String, "\x89\xE3\xE6\xE7\xE4\x0a\x84\x85\x00");
+//
+//            else             strcpy(String, "\x1E\x89\xE3\x0a\xE4\xE6\xE7\x84\x85\x00");
+
             strcpy(String, gSubMenu_SC_REV[gSubMenuSelection]);
-            
-            
+
+//            strncpy(String, gSubMenu_SC_REV[gSubMenuSelection] , sizeof( gSubMenu_SC_REV[gSubMenuSelection] ));
+//            String[sizeof( gSubMenu_SC_REV[gSubMenuSelection])] = '\0';
             break;
 
         case MENU_MDF:
-            strcpy(String, gSubMenu_MDF[gSubMenuSelection]);
+
+
+    strcpy(String, gSubMenu_MDF[gSubMenuSelection]);
             
             
             break;
 
         case MENU_RP_STE:
             if (gSubMenuSelection == 0)
-           //     strcpy(String, "OFF");
 //translate
-            strcpy(String, "\xD9\xDF\x00");
+#ifdef test
+                   strcpy(String, "OFF");
+
+#else
+                strcpy(String, "\xD9\xDF");
+
+#endif
+
+
             else
                 sprintf(String, "%d*100ms", gSubMenuSelection);
             break;
 
         case MENU_S_LIST:
             if (gSubMenuSelection < 2)
-             //   sprintf(String, "list %u", 1 + gSubMenuSelection);
 
          //translate
-          sprintf(String, "\x86\x87 %u", 1 + gSubMenuSelection);
-            else
-          //      strcpy(String, "ALL");
 
-            strcpy(String, "\xED\xEE\x00");
+#ifdef test
+                   sprintf(String, "list %u", 1 + gSubMenuSelection);
+
+#else
+                sprintf(String, "\x86\x87 %u", 1 + gSubMenuSelection);
+
+#endif
+
+            else
+
+#ifdef test
+                  strcpy(String, "ALL");
+
+#else
+            strcpy(String, "\xED\xEE");
+
+#endif
             break;
 
 #ifdef ENABLE_ALARM
@@ -987,7 +1036,7 @@ void UI_DisplayMenu(void) {
             // count number of lines
             for (i = 0; i < len; i++) {
                 if (String[i] == '\n' && i < (len - 1)) {    // found new line char
-                    lines++;
+                    lines+=1;
                     String[i] = 0;  // null terminate the line
                 }
             }
@@ -1012,11 +1061,11 @@ void UI_DisplayMenu(void) {
                     UI_PrintStringSmall(String + i, menu_item_x1, menu_item_x2, y + 1);
 
                 // look for start of next line
-                while (i < len && String[i] >= 32)
+                while (i < len && String[i] !=0&&String[i] !='\n')
                     i++;
 
                 // hop over the null term char(s)
-                while (i < len && String[i] < 32)
+                while (i < len && (String[i] ==0||String[i] =='\n'))
                     i++;
 
                 y += small ? 1 : 2;
@@ -1076,7 +1125,7 @@ void UI_DisplayMenu(void) {
     }
 
     if ((UI_MENU_GetCurrentMenuId() == MENU_R_CTCS || UI_MENU_GetCurrentMenuId() == MENU_R_DCS) && gCssBackgroundScan)
-        UI_PrintStringSmall("SCAN", menu_item_x1, menu_item_x2, 5);
+        UI_PrintStringSmall("\x8F\x90", menu_item_x1, menu_item_x2, 5);
 
 
     if (UI_MENU_GetCurrentMenuId() == MENU_UPCODE)
@@ -1131,7 +1180,7 @@ void UI_ShowChineseMenu() {
     for ( cnt_menu = 0; cnt_menu < 7 && MenuList[gMenuCursor].name[cnt_menu] != 0; cnt_menu++) {
 
             if(is_chn(MenuList[gMenuCursor].name[cnt_menu])!=255)//中文
-                size_menu+=13;
+                size_menu+=12;
             else//英文
                 size_menu+=7;
 
