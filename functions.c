@@ -232,8 +232,9 @@ void FUNCTION_Select(FUNCTION_Type_t Function)
 					break;
 				}
 			#endif
+            if (gCurrentVfo->SCRAMBLING_TYPE > 0/* && gSetting_ScrambleEnable*/)
 
-			if (gCurrentVfo->SCRAMBLING_TYPE > 0 && gSetting_ScrambleEnable)
+		//	if (gCurrentVfo->SCRAMBLING_TYPE > 0 && gSetting_ScrambleEnable)
 				BK4819_EnableScramble(gCurrentVfo->SCRAMBLING_TYPE - 1);
 			else
 				BK4819_DisableScramble();

@@ -32,8 +32,8 @@ void UI_DisplayReleaseKeys(void)
 	memset(gStatusLine,  0, sizeof(gStatusLine));
 	memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
 
-    UI_PrintStringSmall("RELEASE", 0, 127, 1);
-    UI_PrintStringSmall("ALL KEYS", 0, 127, 3);
+    UI_PrintStringSmall("\xCB\x9B", 0, 127, 1);
+    UI_PrintStringSmall("\xED\xEE\x94\x96", 0, 127, 3);
 
 	ST7565_BlitStatusLine();  // blank status line
 	ST7565_BlitFullScreen();
@@ -83,7 +83,7 @@ void UI_DisplayWelcome(void)
 
         UI_PrintStringSmall(WelcomeString0, 0, 127, 0);
         UI_PrintStringSmall(WelcomeString1, 0, 127, 2);
-        UI_PrintStringSmall("Edited BY BG2FZV", 7, 0, 4);
+        UI_PrintStringSmall("BY BG2FZV", 36, 0, 4);
 
         UI_PrintStringSmall(Version, 7, 0, 6);
 

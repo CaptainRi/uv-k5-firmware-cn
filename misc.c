@@ -83,7 +83,7 @@ bool              gSetting_200TX;
 bool              gSetting_500TX;
 bool              gSetting_350EN;
 uint8_t           gSetting_F_LOCK;
-bool              gSetting_ScrambleEnable;
+//bool              gSetting_ScrambleEnable;
 
 uint8_t           gSetting_backlight_on_tx_rx;
 

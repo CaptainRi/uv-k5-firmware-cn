@@ -129,7 +129,7 @@ const t_menu_item MenuList[] =
                 {/*"Tx 350",*/ VOICE_ID_INVALID,                       MENU_350TX         ,"\x33\x35\x30\x4D\x05\x06"}, // was "350TX"
                 {/*"Tx 500",*/ VOICE_ID_INVALID,                       MENU_500TX         ,"\x35\x30\x30\x4D\x05\x06"}, // was "500TX"
                 {/*"350 En",*/ VOICE_ID_INVALID,                       MENU_350EN         ,"\x33\x35\x30\x4D\x08\x09"}, // was "350EN"
-                {/*"ScraEn",*/ VOICE_ID_INVALID,                       MENU_SCREN         ,"\x1A\x1B\xA9\xD9"}, // was "SCREN"
+          //      {/*"ScraEn",*/ VOICE_ID_INVALID,                       MENU_SCREN         ,"\x1A\x1B\xA9\xD9"}, // was "SCREN"
 #ifdef ENABLE_F_CAL_MENU//0
                 {/*"FrCali",*/ VOICE_ID_INVALID,                       MENU_F_CALI        ,""}, // reference xtal calibration
 #endif
@@ -137,7 +137,7 @@ const t_menu_item MenuList[] =
                 {/*"BatTyp",*/ VOICE_ID_INVALID,                       MENU_BATTYP        ,"\xA0\xAC\xB3\xB0"}, // battery type 1600/2200mAh
                 {/*"Reset",*/  VOICE_ID_INITIALISATION,                MENU_RESET         ,"\xDA\x0B\x92\xC7"}, // might be better to move this to the hidden menu items ?
 
-                {/*"",*/       VOICE_ID_INVALID,                       0xff               ,"\x00"}  // end of list - DO NOT delete or move this this
+             //   {/*"",*/       VOICE_ID_INVALID,                       0xff               ,"\x00"}  // end of list - DO NOT delete or move this this
         };
 
 
@@ -681,7 +681,8 @@ void UI_DisplayMenu(void) {
             strcpy(String, gSubMenu_SCRAMBLER[gSubMenuSelection]);
        
 #if 1
-            if (gSubMenuSelection > 0 && gSetting_ScrambleEnable)
+          //  if (gSubMenuSelection > 0 && gSetting_ScrambleEnable)
+            if (gSubMenuSelection > 0 )
                 BK4819_EnableScramble(gSubMenuSelection - 1);
             else
                 BK4819_DisableScramble();
@@ -764,11 +765,13 @@ void UI_DisplayMenu(void) {
         case MENU_200TX:
         case MENU_500TX:
         case MENU_350EN:
-        case MENU_SCREN:
-            strcpy(String, gSubMenu_OFF_ON[gSubMenuSelection]);
-            
-            
+                       strcpy(String, gSubMenu_OFF_ON[gSubMenuSelection]);
             break;
+//        case MENU_SCREN:
+//            strcpy(String, gSubMenu_OFF_ON[gSubMenuSelection]);
+//
+//
+//            break;
 
         case MENU_MEM_CH:
         case MENU_1_CALL:

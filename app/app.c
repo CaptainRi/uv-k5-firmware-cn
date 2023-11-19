@@ -1870,7 +1870,8 @@ static void ProcessKey(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 
 						BK4819_ExitDTMF_TX(false);
 
-						if (gCurrentVfo->SCRAMBLING_TYPE == 0 || !gSetting_ScrambleEnable)
+				//		if (gCurrentVfo->SCRAMBLING_TYPE == 0 || !gSetting_ScrambleEnable)
+                        if (gCurrentVfo->SCRAMBLING_TYPE == 0 )
 							BK4819_DisableScramble();
 						else
 							BK4819_EnableScramble(gCurrentVfo->SCRAMBLING_TYPE - 1);

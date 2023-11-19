@@ -173,7 +173,7 @@ void SETTINGS_SaveSettings(void)
 	State[3]  = gSetting_200TX;
 	State[4]  = gSetting_500TX;
 	State[5]  = gSetting_350EN;
-	State[6]  = gSetting_ScrambleEnable;
+//	State[6]  = gSetting_ScrambleEnable;
 	//if (!gSetting_TX_EN)             State[7] &= ~(1u << 0);
 	if (!gSetting_live_DTMF_decoder) State[7] &= ~(1u << 1);
 	State[7] = (State[7] & ~(3u << 2)) | ((gSetting_battery_text & 3u) << 2);

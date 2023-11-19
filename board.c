@@ -707,7 +707,7 @@ void BOARD_EEPROM_Init(void)
 	gSetting_200TX             = (Data[3] < 2) ? Data[3] : false;
 	gSetting_500TX             = (Data[4] < 2) ? Data[4] : false;
 	gSetting_350EN             = (Data[5] < 2) ? Data[5] : true;
-	gSetting_ScrambleEnable    = (Data[6] < 2) ? Data[6] : true;
+	//gSetting_ScrambleEnable    = (Data[6] < 2) ? Data[6] : true;
 	//gSetting_TX_EN             = (Data[7] & (1u << 0)) ? true : false;
 	gSetting_live_DTMF_decoder = (Data[7] & (1u << 1)) ? true : false;
 	gSetting_battery_text      = (((Data[7] >> 2) & 3u) <= 2) ? (Data[7] >> 2) & 3 : 2;

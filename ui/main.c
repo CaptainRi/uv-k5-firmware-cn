@@ -112,7 +112,7 @@ void UI_DisplayAudioBar(void)
 		{
 			return;  // screen is in use
 		}
-				
+
 #if defined(ENABLE_ALARM) || defined(ENABLE_TX1750)
 		if (gAlarmState != ALARM_STATE_OFF)
 			return;
@@ -168,14 +168,14 @@ static void DisplayRSSIBar(const int16_t rssi, const bool now)
 
 		if (now)
 			memset(p_line, 0, LCD_WIDTH);
-			
+
 		const int16_t      s0_dBm       = -147;                  // S0 .. base level
 		const int16_t      rssi_dBm     = (rssi / 2) - 160;
 
 		const uint8_t s_level = MIN(MAX((rssi_dBm - s0_dBm) / 6, 0), 9); // S0 - S9
 		uint8_t overS9dBm = MIN(MAX(rssi_dBm - (s0_dBm + 9*6), 0), 99);
 		uint8_t overS9Bars = MIN(overS9dBm/10, 4);
-		
+
 		if(overS9Bars == 0) {
 			sprintf(str, "% 4d S%d", rssi_dBm, s_level);
 		}
@@ -218,14 +218,14 @@ static void DisplayRSSIBar(const int16_t rssi, const bool now)
 void UI_UpdateRSSI(const int16_t rssi, const int vfo)
 {
 	(void)vfo;  // unused
-	
+
 	// optional larger RSSI dBm, S-point and bar level
 
 	if (gCurrentFunction == FUNCTION_RECEIVE ||
 		gCurrentFunction == FUNCTION_MONITOR ||
 		gCurrentFunction == FUNCTION_INCOMING)
 	{
-		
+
 		DisplayRSSIBar(rssi, true);
 	}
 
@@ -271,7 +271,7 @@ void UI_DisplayMain(void)
 		ST7565_BlitFullScreen();
 		return;
 	}
-							
+
 	unsigned int activeTxVFO = gRxVfoIsActive ? gEeprom.RX_VFO : gEeprom.TX_VFO;
 
 	for (vfo_num = 0; vfo_num < 2; vfo_num++)
@@ -614,7 +614,7 @@ void UI_DisplayMain(void)
 			default:
 				s = gModulationStr[mod];
 			break;
-		}		
+		}
 		UI_PrintStringSmall(s, LCD_WIDTH + 24, 0, line + 1);
 
 		if (state == VFO_STATE_NORMAL || state == VFO_STATE_ALARM)
@@ -654,8 +654,12 @@ void UI_DisplayMain(void)
 			UI_PrintStringSmall("DTMF", LCD_WIDTH + 78, 0, line + 1);
 
 		// show the audio scramble symbol
-		if (gEeprom.VfoInfo[vfo_num].SCRAMBLING_TYPE > 0 && gSetting_ScrambleEnable)
+        if (gEeprom.VfoInfo[vfo_num].SCRAMBLING_TYPE > 0/* && gSetting_ScrambleEnable*/)
+
+         //   if (gEeprom.VfoInfo[vfo_num].SCRAMBLING_TYPE > 0 && gSetting_ScrambleEnable)
 			UI_PrintStringSmall("SCR", LCD_WIDTH + 106, 0, line + 1);
+
+//        UI_PrintStringSmall("\x1A\xF3", LCD_WIDTH + 106, 0, line + 1);
 	}
 
 	if (center_line == CENTER_LINE_NONE)
@@ -705,9 +709,9 @@ void UI_DisplayMain(void)
 					if (gScreenToDisplay != DISPLAY_MAIN ||
 						gDTMF_CallState != DTMF_CALL_STATE_NONE)
 						return;
-						
+
 					center_line = CENTER_LINE_DTMF_DEC;
-					
+
 					strcpy(String, "DTMF ");
 					strcat(String, gDTMF_RX_live + idx);
 					UI_PrintStringSmall(String, 2, 0, 3);
@@ -723,7 +727,7 @@ void UI_DisplayMain(void)
 						return;
 
 					center_line = CENTER_LINE_DTMF_DEC;
-					
+
 					strcpy(String, "DTMF ");
 					strcat(String, gDTMF_RX + idx);
 					UI_PrintStringSmall(String, 2, 0, 3);
@@ -736,9 +740,9 @@ void UI_DisplayMain(void)
 				if (gScreenToDisplay != DISPLAY_MAIN ||
 					gDTMF_CallState != DTMF_CALL_STATE_NONE)
 					return;
-						
+
 				center_line = CENTER_LINE_CHARGE_DATA;
-					
+
 				sprintf(String, "Charge %u.%02uV %u%%",
 					gBatteryVoltageAverage / 100, gBatteryVoltageAverage % 100,
 					BATTERY_VoltsToPercent(gBatteryVoltageAverage));
