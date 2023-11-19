@@ -257,7 +257,9 @@ int MENU_GetLimits(uint8_t menu_id, int32_t *pMin, int32_t *pMax)
 //			*pMin = 0;
 //			*pMax = ARRAY_SIZE(gSubMenu_OFF_ON) - 1;
 //			break;
-
+            *pMin = 0;
+            *pMax = ARRAY_SIZE(gSubMenu_OFF_ON) - 1;
+            break;
 		case MENU_AM:
 			*pMin = 0;
 			*pMax = ARRAY_SIZE(gModulationStr) - 1;

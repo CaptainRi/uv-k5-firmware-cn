@@ -766,6 +766,7 @@ void UI_DisplayMenu(void) {
         case MENU_500TX:
         case MENU_350EN:
                        strcpy(String, gSubMenu_OFF_ON[gSubMenuSelection]);
+
             break;
 //        case MENU_SCREN:
 //            strcpy(String, gSubMenu_OFF_ON[gSubMenuSelection]);

@@ -84,20 +84,20 @@ void UI_GenerateChannelStringEx(char *pString, const bool bShowPrefix, const uin
 // Example usage:
 // UI_PrintChar('A', 0, 0, 8);
 
-//void UI_PrintCharSmall(char character, uint8_t Start, uint8_t Line) {
-//    const uint8_t char_width = ARRAY_SIZE(gFontSmall[0]);
-//
-//    // Calculate the position for the character
-//    uint8_t *pFb = gFrameBuffer[Line] + Start + (char_width + 1) / 2;
-//
-//    // Display the character if it's a printable character
-//    if (character > ' ') {
-//        const unsigned int index = (unsigned int)character - ' ' - 1;
-//        if (index < ARRAY_SIZE(gFontSmall)) {
-//            memmove(pFb, &gFontSmall[index], char_width);
-//        }
-//    }
-//}
+void UI_PrintCharSmall(char character, uint8_t Start, uint8_t Line) {
+    const uint8_t char_width = ARRAY_SIZE(gFontSmall[0]);
+
+    // Calculate the position for the character
+    uint8_t *pFb = gFrameBuffer[Line] + Start + (char_width + 1) / 2;
+
+    // Display the character if it's a printable character
+    if (character > ' ') {
+        const unsigned int index = (unsigned int)character - ' ' - 1;
+        if (index < ARRAY_SIZE(gFontSmall)) {
+            memmove(pFb, &gFontSmall[index], char_width);
+        }
+    }
+}
 
 void UI_PrintStringSmall(const char *pString, uint8_t Start, uint8_t End, uint8_t Line) {
    uint8_t Length = strlen(pString);
