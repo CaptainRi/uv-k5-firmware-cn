@@ -117,6 +117,8 @@ ENABLE_BLMIN_TMP_OFF          := 0       可配置按钮的附加功能，可打
 
 如果这个项目对您有帮助，可以考虑赞助来支持开发工作。
 
+[赞助名单](https://github.com/wu58430/uv-k5-firmware-chinese/blob/main/payment/sponsors.md) 中。
+
 [![赞赏码](https://github.com/wu58430/uv-k5-firmware-chinese/blob/main/payment/show.jpg)](https://github.com/wu58430/uv-k5-firmware-chinese/blob/main/payment/payment-codes.md)
 
 # 免责声明：
