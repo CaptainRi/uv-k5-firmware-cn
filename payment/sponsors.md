@@ -4,7 +4,7 @@
 
 ## 赞助渠道
 
-[![赞赏码](https://github.com/wu58430/uv-k5-firmware-chinese/blob/main/payment/show.jpg)](https://github.com/wu58430/uv-k5-firmware-chinese/blob/main/payment/payment-codes.md)
+[![赞赏码](https://github.com/wu58430/uv-k5-firmware-chinese/blob/main/payment/show.png)](https://github.com/wu58430/uv-k5-firmware-chinese/blob/main/payment/payment-codes.md)
 
 以上渠道收到的每一笔赞助都会公开。
 
