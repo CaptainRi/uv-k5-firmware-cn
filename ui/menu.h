@@ -128,7 +128,7 @@ extern const uint8_t FIRST_HIDDEN_MENU_ITEM;
 extern const t_menu_item MenuList[];
 
 extern const char        gSubMenu_TXP[3][2];//5
-extern const char        gSubMenu_SFT_D[3][11];//3
+extern const char        gSubMenu_SFT_D[3][10];//3
 extern const char        gSubMenu_W_N[2][3];//7
 extern const char        gSubMenu_OFF_ON[2][3];//4
 extern const char        gSubMenu_SAVE[5][4];//4

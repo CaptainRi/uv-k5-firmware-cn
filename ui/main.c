@@ -453,7 +453,7 @@ void UI_DisplayMain(void)
 				// show the frequency in the main font
                 UI_PrintStringSmall(String, 32, 0, line);
 			}
-
+            continue;
 	//	if(vfo_num==1)	break;
 		}
 		else

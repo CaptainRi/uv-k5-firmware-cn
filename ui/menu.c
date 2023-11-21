@@ -151,14 +151,14 @@ const char gSubMenu_TXP[][2] =//5
 "\xDB","\xBA","\xDC"
         };
 
-const char gSubMenu_SFT_D[][11] =//4
+const char gSubMenu_SFT_D[][10] =//4
         {
 //                "OFF",
 //                "+",
 //                "-"
-                "\x05\x11=\x08\x09",
-                "\x05\x11=\x0a\x08\x09+\xDD\xDE",
-                "\x05\x11=\x0a\x08\x09-\xDD\xDE"
+                "\x05\x11=\x08\x09\0",
+                "\x05\x11=\n\x08\x09+\xDD\xDE\0",
+                "\x05\x11=\n\x08\x09-\xDD\xDE\0"
 
         };
 
