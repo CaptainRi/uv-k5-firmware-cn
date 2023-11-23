@@ -21,15 +21,15 @@
 #include <stdint.h>
 
 #ifndef ARRAY_SIZE
-	#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
+#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 #endif
 
 #ifndef MAX
-	#define MAX(a, b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
+#define MAX(a, b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a > _b ? _a : _b; })
 #endif
 
 #ifndef MIN
-	#define MIN(a, b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a < _b ? _a : _b; })
+#define MIN(a, b) ({ __typeof__ (a) _a = (a); __typeof__ (b) _b = (b); _a < _b ? _a : _b; })
 #endif
 
 #define IS_MR_CHANNEL(x)       ((x) <= MR_CHANNEL_LAST)
@@ -38,48 +38,48 @@
 #define IS_NOAA_CHANNEL(x)     ((x) >= NOAA_CHANNEL_FIRST && (x) <= NOAA_CHANNEL_LAST)
 
 enum {
-	MR_CHANNEL_FIRST   = 0,
-	MR_CHANNEL_LAST    = 199u,
-	FREQ_CHANNEL_FIRST = 200u,
-	FREQ_CHANNEL_LAST  = 206u,
-	NOAA_CHANNEL_FIRST = 207u,
-	NOAA_CHANNEL_LAST  = 216u,
-	LAST_CHANNEL
+    MR_CHANNEL_FIRST   = 0,
+    MR_CHANNEL_LAST    = 199u,
+    FREQ_CHANNEL_FIRST = 200u,
+    FREQ_CHANNEL_LAST  = 206u,
+    NOAA_CHANNEL_FIRST = 207u,
+    NOAA_CHANNEL_LAST  = 216u,
+    LAST_CHANNEL
 };
 
 enum {
-	FLASHLIGHT_OFF = 0,
-	FLASHLIGHT_ON,
-	FLASHLIGHT_BLINK,
-	FLASHLIGHT_SOS
+    FLASHLIGHT_OFF = 0,
+    FLASHLIGHT_ON,
+    FLASHLIGHT_BLINK,
+    FLASHLIGHT_SOS
 };
 
 enum {
-	VFO_CONFIGURE_NONE = 0,
-	VFO_CONFIGURE,
-	VFO_CONFIGURE_RELOAD
+    VFO_CONFIGURE_NONE = 0,
+    VFO_CONFIGURE,
+    VFO_CONFIGURE_RELOAD
 };
 
 enum AlarmState_t {
-	ALARM_STATE_OFF = 0,
-	ALARM_STATE_TXALARM,
-	ALARM_STATE_ALARM,
-	ALARM_STATE_TX1750
+    ALARM_STATE_OFF = 0,
+    ALARM_STATE_TXALARM,
+    ALARM_STATE_ALARM,
+    ALARM_STATE_TX1750
 };
 typedef enum AlarmState_t AlarmState_t;
 
 enum ReceptionMode_t {
-	RX_MODE_NONE = 0,   // squelch close ?
-	RX_MODE_DETECTED,   // signal detected
-	RX_MODE_LISTENING   //
+    RX_MODE_NONE = 0,   // squelch close ?
+    RX_MODE_DETECTED,   // signal detected
+    RX_MODE_LISTENING   //
 };
 typedef enum ReceptionMode_t ReceptionMode_t;
 
 enum BacklightOnRxTx_t {
-	BACKLIGHT_ON_TR_OFF,
-	BACKLIGHT_ON_TR_TX,
-	BACKLIGHT_ON_TR_RX,
-	BACKLIGHT_ON_TR_TXRX
+    BACKLIGHT_ON_TR_OFF,
+    BACKLIGHT_ON_TR_TX,
+    BACKLIGHT_ON_TR_RX,
+    BACKLIGHT_ON_TR_TXRX
 };
 
 extern const uint8_t         fm_radio_countdown_500ms;
@@ -111,7 +111,7 @@ extern const uint16_t        power_save1_10ms;
 extern const uint16_t        power_save2_10ms;
 
 #ifdef ENABLE_VOX
-	extern const uint16_t    vox_stop_count_down_10ms;
+extern const uint16_t    vox_stop_count_down_10ms;
 #endif
 
 extern const uint16_t        NOAA_countdown_10ms;
@@ -125,7 +125,7 @@ extern const uint16_t        dual_watch_count_after_2_10ms;
 extern const uint16_t        dual_watch_count_toggle_10ms;
 extern const uint16_t        dual_watch_count_noaa_10ms;
 #ifdef ENABLE_VOX
-	extern const uint16_t    dual_watch_count_after_vox_10ms;
+extern const uint16_t    dual_watch_count_after_vox_10ms;
 #endif
 
 extern const uint16_t        scan_pause_delay_in_1_10ms;
@@ -147,18 +147,18 @@ extern bool                  gSetting_200TX;
 extern bool                  gSetting_500TX;
 extern bool                  gSetting_350EN;
 extern uint8_t               gSetting_F_LOCK;
-//extern bool                  gSetting_ScrambleEnable;
+extern bool                  gSetting_ScrambleEnable;
 
 extern uint8_t               gSetting_backlight_on_tx_rx;
 
 #ifdef ENABLE_AM_FIX
-	extern bool              gSetting_AM_fix;
+extern bool              gSetting_AM_fix;
 #endif
 #ifdef ENABLE_AM_FIX_TEST1
-	extern uint8_t           gSetting_AM_fix_test1;
+extern uint8_t           gSetting_AM_fix_test1;
 #endif
 #ifdef ENABLE_AUDIO_BAR
-	extern bool              gSetting_mic_bar;
+extern bool              gSetting_mic_bar;
 #endif
 extern bool                  gSetting_live_DTMF_decoder;
 extern uint8_t               gSetting_battery_text;
@@ -176,7 +176,18 @@ extern uint16_t              gEEPROM_RSSI_CALIB[7][4];
 extern uint16_t              gEEPROM_1F8A;
 extern uint16_t              gEEPROM_1F8C;
 
-extern uint8_t               gMR_ChannelAttributes[207];
+typedef union {
+    struct {
+        uint8_t
+                band : 4,
+                compander : 2,
+                scanlist2 : 1,
+                scanlist1 : 1;
+    };
+    uint8_t __val;
+} ChannelAttributes_t;
+
+extern ChannelAttributes_t   gMR_ChannelAttributes[207];
 
 extern volatile uint16_t     gBatterySaveCountdown_10ms;
 
@@ -198,10 +209,10 @@ extern volatile bool         gTxTimeoutReached;
 extern volatile uint16_t     gTailNoteEliminationCountdown_10ms;
 
 #ifdef ENABLE_FMRADIO
-	extern volatile uint16_t gFmPlayCountdown_10ms;
+extern volatile uint16_t gFmPlayCountdown_10ms;
 #endif
 #ifdef ENABLE_NOAA
-	extern volatile uint16_t gNOAA_Countdown_10ms;
+extern volatile uint16_t gNOAA_Countdown_10ms;
 #endif
 extern bool                  gEnableSpeaker;
 extern uint8_t               gKeyInputCountdown;
@@ -226,9 +237,9 @@ extern bool         gCssBackgroundScan;
 
 enum
 {
-	SCAN_REV = -1,
-	SCAN_OFF =  0,
-	SCAN_FWD = +1
+    SCAN_REV = -1,
+    SCAN_OFF =  0,
+    SCAN_FWD = +1
 };
 
 extern volatile bool     gScheduleScanListen;
@@ -246,7 +257,7 @@ extern bool                  gRequestSaveVFO;
 extern uint8_t               gRequestSaveChannel;
 extern bool                  gRequestSaveSettings;
 #ifdef ENABLE_FMRADIO
-	extern bool              gRequestSaveFM;
+extern bool              gRequestSaveFM;
 #endif
 extern uint8_t               gKeypadLocked;
 extern bool                  gFlagPrepareTX;
@@ -258,14 +269,14 @@ extern bool                  gFlagSaveVfo;
 extern bool                  gFlagSaveSettings;
 extern bool                  gFlagSaveChannel;
 #ifdef ENABLE_FMRADIO
-	extern bool              gFlagSaveFM;
+extern bool              gFlagSaveFM;
 #endif
 extern bool                  g_CDCSS_Lost;
 extern uint8_t               gCDCSSCodeType;
 extern bool                  g_CTCSS_Lost;
 extern bool                  g_CxCSS_TAIL_Found;
 #ifdef ENABLE_VOX
-	extern bool              g_VOX_Lost;
+extern bool              g_VOX_Lost;
 	extern bool              gVOX_NoiseDetected;
 	extern uint16_t          gVoxResumeCountdown;
 	extern uint16_t          gVoxPauseCountdown;
@@ -279,7 +290,7 @@ extern bool                  gFlagEndTransmission;
 extern uint8_t               gNextMrChannel;
 extern ReceptionMode_t       gRxReceptionMode;
 
- //TRUE when dual watch is momentarly suspended and RX_VFO is locked to either last TX or RX
+//TRUE when dual watch is momentarly suspended and RX_VFO is locked to either last TX or RX
 extern bool                  gRxVfoIsActive;
 extern uint8_t               gAlarmToneCounter;
 extern uint16_t              gAlarmRunningCounter;
@@ -290,34 +301,34 @@ extern uint8_t               gMenuListCount;
 extern uint8_t               gBackup_CROSS_BAND_RX_TX;
 extern uint8_t               gScanDelay_10ms;
 #ifdef ENABLE_AIRCOPY
-	extern uint8_t           gAircopySendCountdown;
+extern uint8_t           gAircopySendCountdown;
 #endif
 extern uint8_t               gFSKWriteIndex;
 #ifdef ENABLE_NOAA
-	extern bool              gIsNoaaMode;
+extern bool              gIsNoaaMode;
 	extern uint8_t           gNoaaChannel;
 #endif
 extern volatile bool         gNextTimeslice;
 extern bool                  gUpdateDisplay;
 extern bool                  gF_LOCK;
 #ifdef ENABLE_FMRADIO
-	extern uint8_t           gFM_ChannelPosition;
+extern uint8_t           gFM_ChannelPosition;
 #endif
 extern uint8_t               gShowChPrefix;
 extern volatile uint8_t      gFoundCDCSSCountdown_10ms;
 extern volatile uint8_t      gFoundCTCSSCountdown_10ms;
 #ifdef ENABLE_VOX
-	extern volatile uint16_t gVoxStopCountdown_10ms;
+extern volatile uint16_t gVoxStopCountdown_10ms;
 #endif
 extern volatile bool         gNextTimeslice40ms;
 #ifdef ENABLE_NOAA
-	extern volatile uint16_t gNOAACountdown_10ms;
+extern volatile uint16_t gNOAACountdown_10ms;
 	extern volatile bool     gScheduleNOAA;
 #endif
 extern volatile bool         gFlagTailNoteEliminationComplete;
 extern volatile uint8_t      gVFOStateResumeCountdown_500ms;
 #ifdef ENABLE_FMRADIO
-	extern volatile bool     gScheduleFM;
+extern volatile bool     gScheduleFM;
 #endif
 extern int16_t               gCurrentRSSI[2];   // now one per VFO
 extern uint8_t               gIsLocked;
@@ -327,4 +338,3 @@ int32_t NUMBER_AddWithWraparound(int32_t Base, int32_t Add, int32_t LowerLimit, 
 unsigned long StrToUL(const char * str);
 
 #endif
-

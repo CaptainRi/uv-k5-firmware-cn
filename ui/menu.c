@@ -17,7 +17,7 @@
 #include <string.h>
 #include <stdlib.h>  // abs()
 #include "bitmaps.h"
-
+#include "driver/uart.h"
 #include "app/dtmf.h"
 #include "app/menu.h"
 #include "board.h"
@@ -312,7 +312,7 @@ const char gSubMenu_PONMSG[][5] =//8
 //                "MESSAGE",
 //                "VOLTAGE",
 //                "NONE"
-                "\xED\xEE\xA6\xA7",
+             //   "\xED\xEE\xA6\xA7",
                 "\x89\xAB\xA6\xA7",
                 "\xA0\x7F\xA6\xA7",
                 "\xE9\xA6\xA7"
@@ -499,7 +499,7 @@ void UI_DisplayMenu(void) {
     const unsigned int menu_item_x1 = (8 * menu_list_width) ;//+ 2;
     const unsigned int menu_item_x2 = LCD_WIDTH - 1;
     unsigned int i;
-    char String[64];  // bigger cuz we can now do multi-line in one string (use '\n' char)
+    char String[128];  // bigger cuz we can now do multi-line in one string (use '\n' char)
     char Contact[16];
 
     // clear the screen buffer
@@ -690,9 +690,10 @@ void UI_DisplayMenu(void) {
             break;
 
 #ifdef ENABLE_VOX
+
             case MENU_VOX:
                 if (gSubMenuSelection == 0)
-                    strcpy(String, "OFF");
+                    strcpy(String, "\xD9\xDF");
                 else
                     sprintf(String, "%d", gSubMenuSelection);
                 break;
@@ -716,8 +717,10 @@ void UI_DisplayMenu(void) {
 
         case MENU_AM:
             strcpy(String, gModulationStr[gSubMenuSelection]);
-            
-            
+//            UART_Send(gModulationStr[gSubMenuSelection],3);
+//            char a[2]={0};a[0]=gSubMenuSelection+'0';
+//            UART_Send(a,1);
+
             break;
 
 #ifdef ENABLE_AM_FIX_TEST1

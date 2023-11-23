@@ -109,7 +109,6 @@ void Main(void)
 	{
 		gF_LOCK = true;            // flag to say include the hidden menu items
         gMenuListCount = 68;
-
     }else gMenuListCount=60;
 	// count the number of menu items
 
@@ -154,7 +153,7 @@ void Main(void)
 	{
 		UI_DisplayWelcome();
 
-		BACKLIGHT_TurnOn();
+        BACKLIGHT_TurnOn();
 
 		if (gEeprom.POWER_ON_DISPLAY_MODE != POWER_ON_DISPLAY_MODE_NONE)
 		{	// 2.55 second boot-up screen

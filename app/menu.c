@@ -15,7 +15,7 @@
  */
 
 #include <string.h>
-
+#include "driver/uart.h"
 #if !defined(ENABLE_OVERLAY)
 	#include "ARMCM0.h"
 #endif
@@ -388,7 +388,7 @@ void MENU_AcceptSetting(void)
 		else
 		if (gSubMenuSelection > Max) gSubMenuSelection = Max;
 	}
-
+    char a[2]={0};a[0]=gSubMenuSelection+'0';UART_Send(a,1);
 	switch (UI_MENU_GetCurrentMenuId())
 	{
 		default:

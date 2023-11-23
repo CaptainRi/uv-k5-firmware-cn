@@ -51,11 +51,11 @@ void UI_DisplayWelcome(void)
 	{
 		ST7565_FillScreen(0xFF);
 	}
-	else
-	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_FULL_SCREEN)
-	{
-		ST7565_FillScreen(0xFF);
-	}
+//	else
+//	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_FULL_SCREEN)
+//	{
+//		ST7565_FillScreen(0xFF);
+//	}
 	else
 	{
 		memset(WelcomeString0, 0, sizeof(WelcomeString0));
@@ -83,9 +83,10 @@ void UI_DisplayWelcome(void)
 
         UI_PrintStringSmall(WelcomeString0, 0, 127, 0);
         UI_PrintStringSmall(WelcomeString1, 0, 127, 2);
-        UI_PrintStringSmall("BY BG2FZV", 36, 0, 4);
 
-        UI_PrintStringSmall(Version, 7, 0, 6);
+     //  UI_PrintStringSmall("egcn173 BY BG2FZV", 4, 0, 6);
+
+       UI_PrintStringSmall(Version, 40, 0, 6);
 
 		ST7565_BlitStatusLine();  // blank status line
 		ST7565_BlitFullScreen();
