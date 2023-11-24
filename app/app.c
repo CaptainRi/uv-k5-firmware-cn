@@ -611,7 +611,8 @@ static void DualwatchAlternate(void)
 	}
 
 	RADIO_SetupRegisters(false);
-
+    if (gMonitor)
+        gFlagReconfigureVfos = true; //turn the monitor back on
 	#ifdef ENABLE_NOAA
 		gDualWatchCountdown_10ms = gIsNoaaMode ? dual_watch_count_noaa_10ms : dual_watch_count_toggle_10ms;
 	#else
@@ -1726,6 +1727,8 @@ static void ProcessKey(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 
 			// cancel user input
 			cancelUserInputModes();
+            if (gMonitor)
+                ACTION_Monitor(); //turn off the monitor
 		}
 
 		if (gScreenToDisplay == DISPLAY_MENU)       // 1of11
