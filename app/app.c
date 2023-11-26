@@ -1377,6 +1377,8 @@ void APP_TimeSlice500ms(void)
 		{
 			cancelUserInputModes();
 
+
+
 			if (gBeepToPlay != BEEP_NONE)
 			{
 				AUDIO_PlayBeep(gBeepToPlay);

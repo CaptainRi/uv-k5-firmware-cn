@@ -2,7 +2,10 @@ import math
 
 import cv2
 import sys
+import os
+import numpy as np
 
+# 在获取图像路径输入之前，对路径进行解码
 # 读取命令行参数
 arguments = sys.argv[1]  # 忽略第一个参数，因为它是脚本的名称
 
@@ -11,7 +14,6 @@ scale_factor = 20  # 可根据需要调整放大倍数
 
 # 是否输出图像内容
 output_image = False
-import os
 
 def process_file_path(file_path):
     file_name_with_extension = os.path.basename(file_path)  # 获取包含后缀的文件名
@@ -65,10 +67,17 @@ def on_space_pressed():
 
 
 # 获取图像路径输入
-image_path = arguments
 
 # 读取图像
+#image_path = arguments
+cv2.imdecode(np.fromfile(arguments, dtype=np.uint8), cv2.IMREAD_UNCHANGED)
+# image_path= os.path.abspath(os.path.realpath(arguments)).encode('utf-8').decode('utf-8')
+# print(image_path)
 image = cv2.imread(image_path, 0)  # 以灰度模式读取图像
+
+if image is None:
+    print(f"Error: Couldn't read the image from path: {image_path}")
+    sys.exit(1)  # Exit the script with an error code
 image2=image.copy()
 if image is None:
     print("Error: Couldn't read the image.")

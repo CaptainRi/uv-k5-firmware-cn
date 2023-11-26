@@ -34,6 +34,7 @@ uint8_t is_chn(uint8_t num);
 void UI_PrintStringSmallBuffer(const char *pString, uint8_t *buffer);
 void UI_DisplayFrequency(const char *string, uint8_t X, uint8_t Y, bool center);
 #endif
+void UI_DrawPixelBuffer(uint8_t (*buffer)[128], uint8_t x, uint8_t y, bool black);
 
 void UI_DisplayPopup(const char *string);
 extern uint8_t  menu_set_flag;

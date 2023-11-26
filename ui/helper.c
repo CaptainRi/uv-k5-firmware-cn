@@ -237,9 +237,12 @@ void UI_DisplayFrequency(const char *string, uint8_t X, uint8_t Y, bool center) 
 }
 
 
-void UI_DrawPixel(uint8_t x, uint8_t y, bool black) {
-    gFrameBuffer[y / 8][x] &= ~(1 << (y % 8));
-    gFrameBuffer[y / 8][x] |= black << (y % 8);
+void UI_DrawPixelBuffer(uint8_t (*buffer)[128], uint8_t x, uint8_t y, bool black)
+{
+    if(black)
+        buffer[y/8][x] |= 1 << (y%8);
+    else
+        buffer[y/8][x] &= ~(1 << (y%8));
 }
 
 
