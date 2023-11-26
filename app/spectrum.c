@@ -534,6 +534,9 @@ static void UpdateFreqInput(KEY_Code_t key) {
   }
   if (key == KEY_EXIT) {
     freqInputIndex--;
+    if(freqInputDotIndex==freqInputIndex)
+        freqInputDotIndex=0;
+
   } else {
     freqInputArr[freqInputIndex++] = key;
   }
