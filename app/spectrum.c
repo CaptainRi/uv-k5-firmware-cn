@@ -1000,17 +1000,24 @@ bool HandleUserInput() {
   kbd.prev = kbd.current;
   kbd.current = GetKey();
 
-  if (kbd.current == KEY_INVALID) {
-    kbd.counter = 0;
-    return true;
+    if (kbd.current != KEY_INVALID && kbd.current == kbd.prev) {
+        kbd.counter = 0;
+        if(kbd.counter < 16)
+            return true;
+        kbd.counter++;
+    }
+    else
+
+        kbd.counter-=3;
+    if  (  kbd  .  current   ==   kbd  .  prev   &&   kbd  .  counter  <=  16  ) {
+        SYSTEM_DelayMs(20);
   }
 
-  if (kbd.current == kbd.prev && kbd.counter <= 16) {
-    kbd.counter++;
-    SYSTEM_DelayMs(20);
-  }
+    else {
+        kbd.counter = 0;
+    }
 
-  if (kbd.counter == 3 || kbd.counter > 16) {
+    if (kbd.counter == 3 || kbd.counter == 16) {
     switch (currentState) {
     case SPECTRUM:
       OnKeyDown(kbd.current);
