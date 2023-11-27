@@ -27,69 +27,68 @@
 #include "ui/status.h"
 #include "version.h"
 
-void UI_DisplayReleaseKeys(void)
-{
-	memset(gStatusLine,  0, sizeof(gStatusLine));
-	memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
+void UI_DisplayReleaseKeys(BOOT_Mode_t BootMode) {
+    memset(gStatusLine, 0, sizeof(gStatusLine));
+    memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
+    if (BootMode == BOOT_MODE_F_LOCK) {
+        //解锁，全部按键
+        UI_PrintStringSmall("\xC9\x9A", 0, 127, 1);
+        UI_PrintStringSmall("\xEC\xED\xF3\x88", 0, 127, 3);
+        ST7565_BlitStatusLine();  // blank status line
+        ST7565_BlitFullScreen();
+    } else {
+        ST7565_FillScreen(0xFF);
 
-    UI_PrintStringSmall("\xCB\x9B", 0, 127, 1);
-    UI_PrintStringSmall("\xED\xEE\x94\x96", 0, 127, 3);
+    }
 
-	ST7565_BlitStatusLine();  // blank status line
-	ST7565_BlitFullScreen();
 }
 
-void UI_DisplayWelcome(void)
-{
-	char WelcomeString0[16];
-	char WelcomeString1[16];
-	
-	memset(gStatusLine,  0, sizeof(gStatusLine));
-	memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
+void UI_DisplayWelcome(void) {
+    char WelcomeString0[16];
+    char WelcomeString1[16];
 
-	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE)
-	{
-		ST7565_FillScreen(0xFF);
-	}
+    memset(gStatusLine, 0, sizeof(gStatusLine));
+    memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
+
+    if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE) {
+        ST7565_FillScreen(0xFF);
+    }
 //	else
 //	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_FULL_SCREEN)
 //	{
 //		ST7565_FillScreen(0xFF);
 //	}
-	else
-	{
-		memset(WelcomeString0, 0, sizeof(WelcomeString0));
-		memset(WelcomeString1, 0, sizeof(WelcomeString1));
+    else {
+        memset(WelcomeString0, 0, sizeof(WelcomeString0));
+        memset(WelcomeString1, 0, sizeof(WelcomeString1));
 
-		if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_VOLTAGE)
-		{//translate
+        if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_VOLTAGE) {//translate
 #ifdef test
-              strcpy(WelcomeString0, "v:");
+            strcpy(WelcomeString0, "v:");
 
 #else
-            strcpy(WelcomeString0, "\xA0\x7F:");
+            //电压
+            strcpy(WelcomeString0, "\x9F\x1F:");
 
-            #endif
-			sprintf(WelcomeString1, "%u.%02uV %u%%",
-				gBatteryVoltageAverage / 100,
-				gBatteryVoltageAverage % 100,
-				BATTERY_VoltsToPercent(gBatteryVoltageAverage));
-		}
-		else
-		{
-			EEPROM_ReadBuffer(0x0EB0, WelcomeString0, 16);
-			EEPROM_ReadBuffer(0x0EC0, WelcomeString1, 16);
-		}
+#endif
+            sprintf(WelcomeString1, "%u.%02uV %u%%",
+                    gBatteryVoltageAverage / 100,
+                    gBatteryVoltageAverage % 100,
+                    BATTERY_VoltsToPercent(gBatteryVoltageAverage));
+        } else {
+            EEPROM_ReadBuffer(0x0EB0, WelcomeString0, 16);
+            EEPROM_ReadBuffer(0x0EC0, WelcomeString1, 16);
+        }
 
         UI_PrintStringSmall(WelcomeString0, 0, 127, 0);
         UI_PrintStringSmall(WelcomeString1, 0, 127, 2);
 
-     //  UI_PrintStringSmall("egcn173 BY BG2FZV", 4, 0, 6);
+        //  UI_PrintStringSmall("egcn173 BY BG2FZV", 4, 0, 6);
 
-       UI_PrintStringSmall(Version, 40, 0, 6);
+        UI_PrintStringSmall(Version, 40, 0, 6);
 
-		ST7565_BlitStatusLine();  // blank status line
-		ST7565_BlitFullScreen();
-	}
+        ST7565_BlitStatusLine();  // blank status line
+        ST7565_BlitFullScreen();
+    }
 }
 

@@ -125,7 +125,7 @@ void Main(void)
 	     KEYBOARD_Poll() != KEY_INVALID ||
 		 BootMode != BOOT_MODE_NORMAL)
 	{	// keys are pressed
-		UI_DisplayReleaseKeys();
+		UI_DisplayReleaseKeys(BootMode);
 		BACKLIGHT_TurnOn();
 		i = 0;
 		while (i < 50)  // 500ms

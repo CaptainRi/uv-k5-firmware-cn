@@ -27,6 +27,7 @@
 enum {
 	FM_SCAN_OFF = 0U,
 };
+extern bool              FM_EXIT_FLAG;
 
 extern uint16_t          gFM_Channels[20];
 extern bool              gFmRadioMode;

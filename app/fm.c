@@ -35,6 +35,7 @@
 #ifndef ARRAY_SIZE
 	#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 #endif
+bool              FM_EXIT_FLAG=0;
 
 uint16_t          gFM_Channels[20];
 bool              gFmRadioMode;
@@ -103,6 +104,7 @@ void FM_TurnOff(void)
 	BK1080_Init(0, false);
 
 	gUpdateStatus  = true;
+    FM_EXIT_FLAG=true;
 }
 
 void FM_EraseChannels(void)

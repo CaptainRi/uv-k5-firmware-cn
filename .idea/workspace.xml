@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="uv_k5_firmware_custom_0_17" targetName="uv_k5_firmware_custom_0_17" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cea36e80-e289-4d69-9030-7186d540ac0e" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/release.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uv-k5-firmware-chinese.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uv-k5-firmware-chinese.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-7d695398b296b940e7a1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-9ba3a415d1d17549d4f8.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-b1878b93f7b330664107.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-18T01-36-57-0894.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-22T15-19-42-0054.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-uv_k5_firmware_custom_0_17-Debug-0a05ae8ef5d58aff753e.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-94cdc2371958afdf1df3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/CMakeCCompilerId.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/CMakeCXXCompilerId.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cmake.check_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/action.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/aircopy.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/chFrScanner.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/common.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/dtmf.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/fm.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/generic.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/main.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/scanner.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/app/spectrum.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/compiler_depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/compiler_depend.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/driver/aes.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/driver/backlight.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/driver/bk1080.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/driver/bk4819.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/driver/crc.c.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/includes_C.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/includes_CXX.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/linkLibs.rsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/objects1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/uv_k5_firmware_custom_0_17.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font.c" beforeDir="false" afterPath="$PROJECT_DIR$/font.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/font.h" beforeDir="false" afterPath="$PROJECT_DIR$/font.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/helper.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/helper.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/helper.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/helper.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/menu.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/scanner.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/scanner.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/welcome.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/welcome.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/chinese_array.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/chinese_array.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/cache-v2-56821c16020f90475290.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/cache-v2-61e1c62688eace8b51ea.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-2c17fa3e7b12f4b9b183.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-47c3565ee3d8162c4c36.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-789e9839130998fe5fcb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-f293244e8cc62737f4fb.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-16T13-05-39-0815.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/index-2023-11-17T13-27-38-0533.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/target-uv_k5font-Debug-000f46b0603e133c2549.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/target-uv_k5font-Debug-93c4e0a99bad69a65338.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-94cdc2371958afdf1df3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeRCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CMakeRCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdC/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/3.25.2/CompilerIdCXX/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/compiler_depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/compiler_depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/compiler_depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/compiler_depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/flags.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/font.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/font.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/objects.a" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/CMakeFiles/uv_k5font.dir/objects.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/uv_k5font.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/uv_k5font.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/uv_k5font.exe" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/cmake-build-debug/uv_k5font.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/ee" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/ee" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/font.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/font.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/font.h" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/font.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/font.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/font.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/name.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/name.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/name_out.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/name_out.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv-k5font/name_tmp.txt" beforeDir="false" afterPath="$PROJECT_DIR$/uv-k5font/name_tmp.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2YjxwYbNRRzsRCROtwgMrRc7uSS" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="uv_k5_firmware_custom_0_17" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="uv_k5_firmware_custom_0_17" TARGET_NAME="uv_k5_firmware_custom_0_17" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="uv_k5_firmware_custom_0_17" RUN_TARGET_NAME="uv_k5_firmware_custom_0_17">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="cea36e80-e289-4d69-9030-7186d540ac0e" name="更改" comment="" />
+      <created>1701053029574</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701053029574</updated>
+      <workItem from="1701053033259" duration="3753000" />
+      <workItem from="1701058563073" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

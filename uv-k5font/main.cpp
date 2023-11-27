@@ -7,7 +7,8 @@
 #include <map>
 #include "bits/stdc++.h"
 #include "font.h"
-
+#define SUM_BYTE 2090
+#define CHAR_NUM 152
 using namespace std;
 #define IS_BIT_SET(byte, bit) ((byte>>bit) & (1))
 
@@ -221,6 +222,7 @@ int main() {
     // 使用自定义的比较函数按值排序
     sort(vec.begin(), vec.end(), sortByValue);
     en_flag['\n'] = true;
+    en_flag[' '] = true;
 
     for (int i = '!'; i <= '~'; i++) {
         en_flag[i] = true;
@@ -228,7 +230,7 @@ int main() {
     // 输出排序后的键值对
     int now_code = 1;
     for (const auto &pair: vec) {
-        //cout << "{" << static_cast<int>(pair.first[0]) << ", " << static_cast<int>(pair.first[1]) << "} : " << pair.second << endl;
+      // cout << "{" << static_cast<int>(pair.first[0]) << ", " << static_cast<int>(pair.first[1]) << "} : " << pair.second << endl;
         array<unsigned char, 2> tmp = {0};
         tmp[0] = pair.first[0];
         tmp[1] = pair.first[1];
@@ -252,6 +254,9 @@ int main() {
         //   cout << tmp[0] << tmp[1]<<"','\\" <<endl;
 
     }
+
+
+
     for (int i = 0; i < num_names; i++) {
         for (size_t j = 0; j < names[i].size(); ++j) {
             if (isGBKChineseCharacter(names[i], j)) {
@@ -259,13 +264,16 @@ int main() {
                 array<unsigned char, 2> tmp = {0};
                 tmp[0] = names[i][j];
                 tmp[1] = names[i][j + 1];
-                outFile << "\\x" << hex << setw(2) << setfill('0') << uppercase << (int) all_code[tmp];
+               outFile << "\\x" << hex << setw(2) << setfill('0') << uppercase << (int) all_code[tmp];
+             //   outFile << "\\x" << hex << setw(2) << setfill('0') << uppercase << static_cast<unsigned int>(all_code[tmp]);
 
             } else {
                 array<unsigned char, 2> tmp = {0};
                 tmp[0] = 5;
                 tmp[1] = names[i][j];
-                outFile << "\\x" << hex << setw(2) << setfill('0') << uppercase << (int) all_code[tmp];
+               outFile << "\\x" << hex << setw(2) << setfill('0') << uppercase << (int) all_code[tmp];
+              //  outFile << "\\x" << hex << setw(2) << setfill('0') << uppercase << static_cast<unsigned int>(all_code[tmp]);
+
             }
 
         }
@@ -279,13 +287,12 @@ int main() {
     std::string outputFile = "../name_out.txt"; // Replace with your output file name
 
     removeNullStrings(inputFile, outputFile);
-    check_num(0);
 
 
     cout << "chinese num:" << num_chinese << endl;
     cout << "english num" << num_english << endl;
 
-    for (int i = 0; i < 159; i++) {
+    for (int i = 0; i < CHAR_NUM; i++) {
         for (int j = 0; j < 14; j++) {
             if(j==13) {
                 set_bit(&chn_font[i][j], 6, 1);
@@ -295,13 +302,13 @@ int main() {
             chn_font[i][j] = ~chn_font[i][j];
         }
     }
-    check_num(0);
+   // check_num(0);
 
     cout << endl;
-    uint8_t chinese_font[2187] = {0};
+    uint8_t chinese_font[SUM_BYTE] = {0};
     int cnt_bit = 0;
     int cnt = 0;
-    for (int i = 0; i < 159; i++) {
+    for (int i = 0; i < CHAR_NUM; i++) {
         for (int j = 0; j < 14; j++) {
             int up = 0;
             if (j == 13)up = 6;
@@ -318,53 +325,51 @@ int main() {
     }
 
 
-    cout << endl;
-    int sum = 0;
-       for(int num_in=1;num_in<2;num_in++) {
-    //int num_in = 2;
-    int num = 0;
-    if (num_in >= 1 && num_in < 10)num = num_in - 1;
-    else if (num_in > 10 && num_in < 33)num = num_in - 2;
-    else if (num_in > 126 && num_in <= 253)num = num_in - 96;
-    uint8_t bit_cnt = 0;
-    uint8_t cntt = 0;
-    uint8_t get[22] = {0};
-    for (int i = 0; i < 110; i++) {
-    //    cout << IS_BIT_SET(chinese_font[(i + num * 110) / 8], (i + num * 110
-    //    ) % 8);
-        if (IS_BIT_SET(chinese_font[(i + num * 110) / 8], (i + num * 110) % 8))
-            set_bit(&get[cntt], bit_cnt, 1);
-        bit_cnt++;
-        if (bit_cnt == 8&&cntt<11) {
-            bit_cnt = 0;
-            cntt++;
-        }else if(bit_cnt == 2&&cntt>=11)
-        {
-            bit_cnt = 0;
-            cntt++;
-        }
-    }
-//           for (int o = 0; o < 22; o++) {
-//               ::printf("%02X ",get[o]);
-//           }
-
-}
-       cout<<endl;
-//    for (int o = 0; o < 14; o++) {
-//        ::printf("%02X ",chn_font[0][o]);
-//    }
+    {
+        int num_in=248;
+           //int num_in = 2;
+           int num = 0;
+           if (num_in >= 1 && num_in < 10)num = num_in - 1;
+           else if (num_in > 10 && num_in < 32)num = num_in - 2;
+           else if (num_in > 126 && num_in <= 250)num = num_in - 97;
+           uint8_t bit_cnt = 0;
+           uint8_t cntt = 0;
+           uint8_t get[22] = {0};
+           for (int i = 0; i < 110; i++) {
+               //    cout << IS_BIT_SET(chinese_font[(i + num * 110) / 8], (i + num * 110
+               //    ) % 8);
+               if (IS_BIT_SET(chinese_font[(i + num * 110) / 8], (i + num * 110) % 8))
+                   set_bit(&get[cntt], bit_cnt, 1);
+               bit_cnt++;
+               if (bit_cnt == 8 && cntt < 11) {
+                   bit_cnt = 0;
+                   cntt++;
+               } else if (bit_cnt == 2 && cntt >= 11) {
+                   bit_cnt = 0;
+                   cntt++;
+               }
+           }
+           for (int o = 0; o < 22; o++) {
+               ::printf("%02X ", get[o]);
+           }
 
 
-    out_chinese_array<<"gFontChinese_out[2187]={"<<endl;
+           cout << endl;
+           for (int o = 0; o < 14; o++) {
+               ::printf("%02X ", chn_font[num][o]);
+           }
+       }
+
+    out_chinese_array<<"gFontChinese_out[SUM_BYTE]={"<<endl;
     for (int i = 0; i < sizeof (chinese_font); i++) {
         out_chinese_array << "0X" << hex << setw(2) << setfill('0') << uppercase << (int) chinese_font[i]<<",";
         if(i%6==0&&i!=0)out_chinese_array<<endl;
-
     }
     out_chinese_array<<"};";
     out_chinese_array.close();
-    string a="1\x30";
-    cout<<a<<endl;
+
+return 0;
+
 }
 
 

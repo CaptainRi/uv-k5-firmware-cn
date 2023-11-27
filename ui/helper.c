@@ -41,7 +41,7 @@ uint8_t is_chn(uint8_t num) {
 
     if (num >= 1 && num < 10)return num - 1;
     else if (num > 10 && num < 32)return num - 2;
-    else if (num > 126 && num <= 254)return num - 96;
+    else if (num > 126 && num <= 248)return num - 97;
     else return 255;
 }
 
@@ -246,30 +246,6 @@ void UI_DrawPixelBuffer(uint8_t (*buffer)[128], uint8_t x, uint8_t y, bool black
 }
 
 
-void UI_PrintChineseChar(uint8_t character, uint8_t Start, uint8_t Line) {
-
-
-    //int num_in = 2;
-
-    uint8_t bit_cnt = 0;
-    uint8_t cntt = 0;
-    uint8_t gFontChinese[22] = {0};
-    for (int i = 0; i < 110; i++) {
-        if (IS_BIT_SET(gFontChinese_out[(i + character * 110) / 8], (i + character * 110) % 8))
-            set_bit(&gFontChinese[cntt], bit_cnt, 1);
-        bit_cnt++;
-        if ((bit_cnt == 8 && cntt < 11) || (bit_cnt == 2 && cntt >= 11)) {
-            bit_cnt = 0;
-
-            cntt++;
-        }
-    }
-
-    memmove(gFrameBuffer[Line + 0] + Start, &gFontChinese[0], 11);
-    memmove(gFrameBuffer[Line + 1] + Start, &gFontChinese[11], 11);
-
-
-}
 
 
 void UI_DisplayPopup(const char *string) {
@@ -293,5 +269,6 @@ void UI_DisplayPopup(const char *string) {
     // DrawRectangle(9,9, 118,38, true);
 
     UI_PrintStringSmall(string, 9, 118, 2);
-    UI_PrintStringSmall("\x94 EXIT \x96\x00", 9, 118, 6);
+    //按EXIT键
+    UI_PrintStringSmall("\x94 EXIT \x96", 9, 118, 6);
 }
