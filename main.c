@@ -121,7 +121,7 @@ void Main(void)
 //	}
 
 	// wait for user to release all butts before moving on
-	if (!GPIO_CheckBit(&GPIOC->DATA, GPIOC_PIN_PTT) ||
+	if (/*!GPIO_CheckBit(&GPIOC->DATA, GPIOC_PIN_PTT) ||*/
 	     KEYBOARD_Poll() != KEY_INVALID ||
 		 BootMode != BOOT_MODE_NORMAL)
 	{	// keys are pressed

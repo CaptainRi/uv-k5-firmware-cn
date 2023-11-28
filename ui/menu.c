@@ -254,7 +254,7 @@ const char gSubMenu_SC_REV[][10] =//8
 
                 "\x89\xDE\xE1\xE2\xE0\n\x83\x84", //信号停止后搜索
 
-                "\x89\xDE\xE1\xE2\n\xE0\x83\x84"//遇信号后停止搜索
+                "\x1C\x89\xDE\xE0\n\xE1\xE2\x83\x84"//遇信号后停止搜索
 
         };
 
