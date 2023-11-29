@@ -35,7 +35,6 @@
 #ifndef ARRAY_SIZE
 	#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 #endif
-bool              FM_EXIT_FLAG=0;
 
 uint16_t          gFM_Channels[20];
 bool              gFmRadioMode;
@@ -47,6 +46,19 @@ uint8_t           gFM_ChannelPosition;
 bool              gFM_FoundFrequency;
 bool              gFM_AutoScan;
 uint16_t          gFM_RestoreCountdown_10ms;
+
+
+
+const uint8_t BUTTON_STATE_PRESSED = 1 << 0;
+const uint8_t BUTTON_STATE_HELD = 1 << 1;
+
+const uint8_t BUTTON_EVENT_PRESSED = BUTTON_STATE_PRESSED;
+const uint8_t BUTTON_EVENT_HELD = BUTTON_STATE_PRESSED | BUTTON_STATE_HELD;
+const uint8_t BUTTON_EVENT_SHORT =  0;
+const uint8_t BUTTON_EVENT_LONG =  BUTTON_STATE_HELD;
+
+
+static void Key_FUNC(KEY_Code_t Key, uint8_t state);
 
 bool FM_CheckValidChannel(uint8_t Channel)
 {
@@ -104,7 +116,6 @@ void FM_TurnOff(void)
 	BK1080_Init(0, false);
 
 	gUpdateStatus  = true;
-    FM_EXIT_FLAG=true;
 }
 
 void FM_EraseChannels(void)
@@ -225,32 +236,23 @@ Bail:
 	return ret;
 }
 
-static void FM_Key_DIGITS(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
+static void Key_DIGITS(KEY_Code_t Key, uint8_t state)
 {
-	#define STATE_FREQ_MODE 0
-	#define STATE_MR_MODE   1
-	#define STATE_SAVE      2
+	enum { STATE_FREQ_MODE, STATE_MR_MODE, STATE_SAVE };
 
-	if (!bKeyHeld && bKeyPressed)
-	{
-		if (!gWasFKeyPressed)
-		{
+	if (state == BUTTON_EVENT_SHORT && !gWasFKeyPressed) {
 			uint8_t State;
 
-			if (gAskToDelete)
-			{
+			if (gAskToDelete) {
 				gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
 				return;
 			}
 
-			if (gAskToSave)
-			{
+			if (gAskToSave) {
 				State = STATE_SAVE;
 			}
-			else
-			{
-				if (gFM_ScanState != FM_SCAN_OFF)
-				{
+			else {
+				if (gFM_ScanState != FM_SCAN_OFF) {
 					gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
 					return;
 				}
@@ -262,59 +264,47 @@ static void FM_Key_DIGITS(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 
 			gRequestDisplayScreen = DISPLAY_FM;
 
-			if (State == STATE_FREQ_MODE)
-			{
-				if (gInputBoxIndex == 1)
-				{
-					if (gInputBox[0] > 1)
-					{
+			if (State == STATE_FREQ_MODE) {
+				if (gInputBoxIndex == 1) {
+					if (gInputBox[0] > 1) {
 						gInputBox[1] = gInputBox[0];
 						gInputBox[0] = 0;
 						gInputBoxIndex = 2;
 					}
 				}
-				else
-				if (gInputBoxIndex > 3)
-				{
+				else if (gInputBoxIndex > 3) {
 					uint32_t Frequency;
 
 					gInputBoxIndex = 0;
 					Frequency = StrToUL(INPUTBOX_GetAscii());
 
-					if (Frequency < gEeprom.FM_LowerLimit || gEeprom.FM_UpperLimit < Frequency)
-					{
+					if (Frequency < gEeprom.FM_LowerLimit || gEeprom.FM_UpperLimit < Frequency) {
 						gBeepToPlay           = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
 						gRequestDisplayScreen = DISPLAY_FM;
 						return;
 					}
 
 					gEeprom.FM_SelectedFrequency = (uint16_t)Frequency;
-
-					#ifdef ENABLE_VOICE
-						gAnotherVoiceID = (VOICE_ID_t)Key;
-					#endif
-
+#ifdef ENABLE_VOICE
+					gAnotherVoiceID = (VOICE_ID_t)Key;
+#endif
 					gEeprom.FM_FrequencyPlaying = gEeprom.FM_SelectedFrequency;
 					BK1080_SetFrequency(gEeprom.FM_FrequencyPlaying);
 					gRequestSaveFM = true;
 					return;
 				}
 			}
-			else
-			if (gInputBoxIndex == 2)
-			{
+			else if (gInputBoxIndex == 2) {
 				uint8_t Channel;
 
 				gInputBoxIndex = 0;
 				Channel = ((gInputBox[0] * 10) + gInputBox[1]) - 1;
 
-				if (State == STATE_MR_MODE)
-				{
-					if (FM_CheckValidChannel(Channel))
-					{
-						#ifdef ENABLE_VOICE
-							gAnotherVoiceID = (VOICE_ID_t)Key;
-						#endif
+				if (State == STATE_MR_MODE) {
+					if (FM_CheckValidChannel(Channel)) {
+#ifdef ENABLE_VOICE
+						gAnotherVoiceID = (VOICE_ID_t)Key;
+#endif
 						gEeprom.FM_SelectedChannel = Channel;
 						gEeprom.FM_FrequencyPlaying = gFM_Channels[Channel];
 						BK1080_SetFrequency(gEeprom.FM_FrequencyPlaying);
@@ -322,12 +312,10 @@ static void FM_Key_DIGITS(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 						return;
 					}
 				}
-				else
-				if (Channel < 20)
-				{
-					#ifdef ENABLE_VOICE
-						gAnotherVoiceID = (VOICE_ID_t)Key;
-					#endif
+				else if (Channel < 20) {
+#ifdef ENABLE_VOICE
+					gAnotherVoiceID = (VOICE_ID_t)Key;
+#endif
 					gRequestDisplayScreen = DISPLAY_FM;
 					gInputBoxIndex = 0;
 					gFM_ChannelPosition = Channel;
@@ -338,25 +326,31 @@ static void FM_Key_DIGITS(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 				return;
 			}
 
-			#ifdef ENABLE_VOICE
-				gAnotherVoiceID = (VOICE_ID_t)Key;
-			#endif
+#ifdef ENABLE_VOICE
+			gAnotherVoiceID = (VOICE_ID_t)Key;
+#endif
+	}
+	else
+		Key_FUNC(Key, state);
+}
 
-			return;
-		}
+static void Key_FUNC(KEY_Code_t Key, uint8_t state)
+{
+	if (state == BUTTON_EVENT_SHORT || state == BUTTON_EVENT_HELD)
+	{
+		bool autoScan = gWasFKeyPressed || (state == BUTTON_EVENT_HELD);
 
 		gBeepToPlay           = BEEP_1KHZ_60MS_OPTIONAL;
 		gWasFKeyPressed       = false;
 		gUpdateStatus         = true;
 		gRequestDisplayScreen = DISPLAY_FM;
 
-		switch (Key)
-		{
+		switch (Key) {
 			case KEY_0:
 				ACTION_FM();
 				break;
 
-			case KEY_1:
+			case KEY_3:
 				gEeprom.FM_IsMrMode = !gEeprom.FM_IsMrMode;
 
 				if (!FM_ConfigureChannelState())
@@ -368,12 +362,8 @@ static void FM_Key_DIGITS(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 					gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
 				break;
 
-			case KEY_2:
-				ACTION_Scan(true);
-				break;
-
-			case KEY_3:
-				ACTION_Scan(false);
+			case KEY_STAR:
+				ACTION_Scan(autoScan);
 				break;
 
 			default:
@@ -383,12 +373,9 @@ static void FM_Key_DIGITS(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 	}
 }
 
-static void FM_Key_EXIT(bool bKeyPressed, bool bKeyHeld)
+static void Key_EXIT(uint8_t state)
 {
-	if (bKeyHeld)
-		return;
-
-	if (!bKeyPressed)
+	if (state != BUTTON_EVENT_SHORT)
 		return;
 
 	gBeepToPlay = BEEP_1KHZ_60MS_OPTIONAL;
@@ -443,13 +430,11 @@ static void FM_Key_EXIT(bool bKeyPressed, bool bKeyHeld)
 	gRequestDisplayScreen = DISPLAY_FM;
 }
 
-static void FM_Key_MENU(bool bKeyPressed, bool bKeyHeld)
+static void Key_MENU(uint8_t state)
 {
-	if (bKeyHeld)
+	if (state != BUTTON_EVENT_SHORT)
 		return;
 
-	if (!bKeyPressed)
-		return;
 
 	gRequestDisplayScreen = DISPLAY_FM;
 	gBeepToPlay           = BEEP_1KHZ_60MS_OPTIONAL;
@@ -503,38 +488,29 @@ static void FM_Key_MENU(bool bKeyPressed, bool bKeyHeld)
 	}
 }
 
-static void FM_Key_UP_DOWN(bool bKeyPressed, bool bKeyHeld, int8_t Step)
+static void Key_UP_DOWN(uint8_t state, int8_t Step)
 {
-	if (bKeyHeld || !bKeyPressed)
-	{
-		if (gInputBoxIndex)
-			return;
-
-		if (!bKeyPressed)
-			return;
-	}
-	else
-	{
-		if (gInputBoxIndex)
-		{
+	if (state == BUTTON_EVENT_PRESSED) {
+		if (gInputBoxIndex) {
 			gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
 			return;
 		}
 
 		gBeepToPlay = BEEP_1KHZ_60MS_OPTIONAL;
 	}
+	else {
+		if (gInputBoxIndex || state!=BUTTON_EVENT_HELD)
+			return;
+	}
 
-	if (gAskToSave)
-	{
+	if (gAskToSave) {
 		gRequestDisplayScreen = DISPLAY_FM;
 		gFM_ChannelPosition   = NUMBER_AddWithWraparound(gFM_ChannelPosition, Step, 0, 19);
 		return;
 	}
 
-	if (gFM_ScanState != FM_SCAN_OFF)
-	{
-		if (gFM_AutoScan)
-		{
+	if (gFM_ScanState != FM_SCAN_OFF) {
+		if (gFM_AutoScan) {
 			gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
 			return;
 		}
@@ -544,8 +520,7 @@ static void FM_Key_UP_DOWN(bool bKeyPressed, bool bKeyHeld, int8_t Step)
 		return;
 	}
 
-	if (gEeprom.FM_IsMrMode)
-	{
+	if (gEeprom.FM_IsMrMode) {
 		const uint8_t Channel = FM_FindNextChannel(gEeprom.FM_SelectedChannel + Step, Step);
 		if (Channel == 0xFF || gEeprom.FM_SelectedChannel == Channel)
 			goto Bail;
@@ -553,8 +528,7 @@ static void FM_Key_UP_DOWN(bool bKeyPressed, bool bKeyHeld, int8_t Step)
 		gEeprom.FM_SelectedChannel  = Channel;
 		gEeprom.FM_FrequencyPlaying = gFM_Channels[Channel];
 	}
-	else
-	{
+	else {
 		uint16_t Frequency = gEeprom.FM_SelectedFrequency + Step;
 		if (Frequency < gEeprom.FM_LowerLimit)
 			Frequency = gEeprom.FM_UpperLimit;
@@ -576,6 +550,10 @@ Bail:
 
 void FM_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 {
+	uint8_t state = bKeyPressed + 2 * bKeyHeld;
+
+
+
 	switch (Key)
 	{
 		case KEY_0:
@@ -588,19 +566,22 @@ void FM_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld)
 		case KEY_7:
 		case KEY_8:
 		case KEY_9:
-			FM_Key_DIGITS(Key, bKeyPressed, bKeyHeld);
+			Key_DIGITS(Key, state);
+			break;
+		case KEY_STAR:
+			Key_FUNC(Key, state);
 			break;
 		case KEY_MENU:
-			FM_Key_MENU(bKeyPressed, bKeyHeld);
+			Key_MENU(state);
 			return;
 		case KEY_UP:
-			FM_Key_UP_DOWN(bKeyPressed, bKeyHeld, 1);
+			Key_UP_DOWN(state, 1);
 			break;
 		case KEY_DOWN:
-			FM_Key_UP_DOWN(bKeyPressed, bKeyHeld, -1);
+			Key_UP_DOWN(state, -1);
 			break;;
 		case KEY_EXIT:
-			FM_Key_EXIT(bKeyPressed, bKeyHeld);
+			Key_EXIT(state);
 			break;
 		case KEY_F:
 			GENERIC_Key_F(bKeyPressed, bKeyHeld);

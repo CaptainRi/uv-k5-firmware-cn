@@ -49,7 +49,6 @@ void _putchar(char c)
 
 void Main(void)
 {
-	unsigned int i;
 	BOOT_Mode_t  BootMode;
 
 	// Enable clock gating of blocks we need
@@ -94,7 +93,7 @@ void Main(void)
 
 	RADIO_SetupRegisters(true);
 
-	for (i = 0; i < ARRAY_SIZE(gBatteryVoltages); i++)
+	for (unsigned int i = 0; i < ARRAY_SIZE(gBatteryVoltages); i++)
 		BOARD_ADC_GetBatteryInfo(&gBatteryVoltages[i], &gBatteryCurrent);
 
 	BATTERY_GetReadings(false);
@@ -108,17 +107,8 @@ void Main(void)
 	if (BootMode == BOOT_MODE_F_LOCK)
 	{
 		gF_LOCK = true;            // flag to say include the hidden menu items
-        gMenuListCount = 68;
-    }else gMenuListCount=60;
-	// count the number of menu items
-
- //   gMenuListCount=0;
-//	while (MenuList[gMenuListCount].name[0] != '\0') {
-//		if(!gF_LOCK && MenuList[gMenuListCount].menu_id == FIRST_HIDDEN_MENU_ITEM)
-//			break;
-//
-//		gMenuListCount++;
-//	}
+        gMenuListCount = 66;
+    }else gMenuListCount=58;
 
 	// wait for user to release all butts before moving on
 	if (/*!GPIO_CheckBit(&GPIOC->DATA, GPIOC_PIN_PTT) ||*/
@@ -127,12 +117,9 @@ void Main(void)
 	{	// keys are pressed
 		UI_DisplayReleaseKeys(BootMode);
 		BACKLIGHT_TurnOn();
-		i = 0;
-		while (i < 50)  // 500ms
+		while (KEYBOARD_Poll() != KEY_INVALID)  // 500ms
 		{
-			i = (GPIO_CheckBit(&GPIOC->DATA, GPIOC_PIN_PTT) && KEYBOARD_Poll() == KEY_INVALID) ? i + 1 : 0;
-			SYSTEM_DelayMs(10);
-		}
+        }
 		gKeyReading0 = KEY_INVALID;
 		gKeyReading1 = KEY_INVALID;
 		gDebounceCounter = 0;
@@ -155,21 +142,21 @@ void Main(void)
 
         BACKLIGHT_TurnOn();
 
-		if (gEeprom.POWER_ON_DISPLAY_MODE != POWER_ON_DISPLAY_MODE_NONE)
-		{	// 2.55 second boot-up screen
-			while (boot_counter_10ms > 0)
-			{
-				if (KEYBOARD_Poll() != KEY_INVALID)
-				{	// halt boot beeps
-					boot_counter_10ms = 0;
-					break;
-				}
-#ifdef ENABLE_BOOT_BEEPS
-				if ((boot_counter_10ms % 25) == 0)
-					AUDIO_PlayBeep(BEEP_880HZ_40MS_OPTIONAL);
-#endif
-			}
-		}
+//		if (gEeprom.POWER_ON_DISPLAY_MODE != POWER_ON_DISPLAY_MODE_NONE)
+//		{	// 2.55 second boot-up screen
+//			while (boot_counter_10ms > 0)
+//			{
+//				if (KEYBOARD_Poll() != KEY_INVALID)
+//				{	// halt boot beeps
+//					boot_counter_10ms = 0;
+//					break;
+//				}
+//#ifdef ENABLE_BOOT_BEEPS
+//				if ((boot_counter_10ms % 25) == 0)
+//					AUDIO_PlayBeep(BEEP_880HZ_40MS_OPTIONAL);
+//#endif
+//			}
+//		}
 
 #ifdef ENABLE_PWRON_PASSWORD
 		if (gEeprom.POWER_ON_PASSWORD < 1000000)
@@ -180,7 +167,7 @@ void Main(void)
 		}
 #endif
 
-		BOOT_ProcessMode(BootMode);
+		BOOT_ProcessMode();
 
 		GPIO_ClearBit(&GPIOA->DATA, GPIOA_PIN_VOICE_0);
 

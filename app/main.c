@@ -46,10 +46,14 @@
 #include <stdlib.h>
 
 void toggle_chan_scanlist(void) {    // toggle the selected channels scanlist setting
-
-    if (SCANNER_IsScanning() || !IS_MR_CHANNEL(gTxVfo->CHANNEL_SAVE))
+    if ( SCANNER_IsScanning())
         return;
-
+    if(!IS_MR_CHANNEL(gTxVfo->CHANNEL_SAVE)) {
+#ifdef ENABLE_SCAN_RANGES
+        gScanRangeStart = gScanRangeStart ? 0 : gTxVfo->pRX->Frequency;
+#endif
+        return;
+    }
     if (gTxVfo->SCANLIST1_PARTICIPATION) {
         if (gTxVfo->SCANLIST2_PARTICIPATION)
             gTxVfo->SCANLIST1_PARTICIPATION = 0;
@@ -450,14 +454,14 @@ static void MAIN_Key_EXIT(bool bKeyPressed, bool bKeyHeld) {
     if (!bKeyHeld && bKeyPressed) {    // exit key pressed
 
         gBeepToPlay = BEEP_1KHZ_60MS_OPTIONAL;
-
+#ifdef ENABLE_DTMF_CALLING
         if (gDTMF_CallState != DTMF_CALL_STATE_NONE &&
             gCurrentFunction != FUNCTION_TRANSMIT) {    // clear CALL mode being displayed
             gDTMF_CallState = DTMF_CALL_STATE_NONE;
             gUpdateDisplay = true;
             return;
         }
-
+#endif
 #ifdef ENABLE_FMRADIO
         if (!gFmRadioMode)
 #endif
@@ -756,12 +760,7 @@ void MAIN_ProcessKeys(KEY_Code_t Key, bool bKeyPressed, bool bKeyHeld) {
         case KEY_7:
         case KEY_8:
         case KEY_9:
-#ifdef ENABLE_FMRADIO
 
-            if(FM_EXIT_FLAG)
-                          FM_EXIT_FLAG=false;
-                            else
-#endif
             MAIN_Key_DIGITS(Key, bKeyPressed, bKeyHeld);
             break;
         case KEY_MENU:

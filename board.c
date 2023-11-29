@@ -61,10 +61,10 @@ void BOARD_FLASH_Init(void)
 		FLASH_Init(FLASH_READ_MODE_1_CYCLE);
 		FLASH_ConfigureTrimValues();
 		SYSTEM_ConfigureClocks();
-	
+
 		overlay_FLASH_MainClock       = 48000000;
 		overlay_FLASH_ClockMultiplier = 48;
-	
+
 		FLASH_Init(FLASH_READ_MODE_2_CYCLE);
 	}
 #endif
@@ -623,10 +623,13 @@ void BOARD_EEPROM_Init(void)
     // 0ED0..0ED7
     EEPROM_ReadBuffer(0x0ED0, Data, 8);
     gEeprom.DTMF_SIDE_TONE               = (Data[0] <   2) ? Data[0] : true;
+
+#ifdef ENABLE_DTMF_CALLING
     gEeprom.DTMF_SEPARATE_CODE           = DTMF_ValidateCodes((char *)(Data + 1), 1) ? Data[1] : '*';
-    gEeprom.DTMF_GROUP_CALL_CODE         = DTMF_ValidateCodes((char *)(Data + 2), 1) ? Data[2] : '#';
-    gEeprom.DTMF_DECODE_RESPONSE         = (Data[3] <   4) ? Data[3] : 0;
-    gEeprom.DTMF_auto_reset_time         = (Data[4] <  61) ? Data[4] : (Data[4] >= 5) ? Data[4] : 10;
+	gEeprom.DTMF_GROUP_CALL_CODE         = DTMF_ValidateCodes((char *)(Data + 2), 1) ? Data[2] : '#';
+	gEeprom.DTMF_DECODE_RESPONSE         = (Data[3] <   4) ? Data[3] : 0;
+	gEeprom.DTMF_auto_reset_time         = (Data[4] <  61) ? Data[4] : (Data[4] >= 5) ? Data[4] : 10;
+#endif
     gEeprom.DTMF_PRELOAD_TIME            = (Data[5] < 101) ? Data[5] * 10 : 300;
     gEeprom.DTMF_FIRST_CODE_PERSIST_TIME = (Data[6] < 101) ? Data[6] * 10 : 100;
     gEeprom.DTMF_HASH_CODE_PERSIST_TIME  = (Data[7] < 101) ? Data[7] * 10 : 100;
@@ -635,37 +638,41 @@ void BOARD_EEPROM_Init(void)
     EEPROM_ReadBuffer(0x0ED8, Data, 8);
     gEeprom.DTMF_CODE_PERSIST_TIME  = (Data[0] < 101) ? Data[0] * 10 : 100;
     gEeprom.DTMF_CODE_INTERVAL_TIME = (Data[1] < 101) ? Data[1] * 10 : 100;
+#ifdef ENABLE_DTMF_CALLING
     gEeprom.PERMIT_REMOTE_KILL      = (Data[2] <   2) ? Data[2] : true;
 
-    // 0EE0..0EE7
-    EEPROM_ReadBuffer(0x0EE0, Data, 8);
-    if (DTMF_ValidateCodes((char *)Data, 8))
-        memmove(gEeprom.ANI_DTMF_ID, Data, 8);
-    else
-    {
-        memset(gEeprom.ANI_DTMF_ID, 0, sizeof(gEeprom.ANI_DTMF_ID));
-        strcpy(gEeprom.ANI_DTMF_ID, "123");
-    }
+	// 0EE0..0EE7
 
-    // 0EE8..0EEF
-    EEPROM_ReadBuffer(0x0EE8, Data, 8);
-    if (DTMF_ValidateCodes((char *)Data, 8))
-        memmove(gEeprom.KILL_CODE, Data, 8);
-    else
-    {
-        memset(gEeprom.KILL_CODE, 0, sizeof(gEeprom.KILL_CODE));
-        strcpy(gEeprom.KILL_CODE, "ABCD9");
-    }
+	EEPROM_ReadBuffer(0x0EE0, Data, 8);
+	if (DTMF_ValidateCodes((char *)Data, 8))
+		memmove(gEeprom.ANI_DTMF_ID, Data, 8);
+	else
+	{
+		memset(gEeprom.ANI_DTMF_ID, 0, sizeof(gEeprom.ANI_DTMF_ID));
+		strcpy(gEeprom.ANI_DTMF_ID, "123");
+	}
 
-    // 0EF0..0EF7
-    EEPROM_ReadBuffer(0x0EF0, Data, 8);
-    if (DTMF_ValidateCodes((char *)Data, 8))
-        memmove(gEeprom.REVIVE_CODE, Data, 8);
-    else
-    {
-        memset(gEeprom.REVIVE_CODE, 0, sizeof(gEeprom.REVIVE_CODE));
-        strcpy(gEeprom.REVIVE_CODE, "9DCBA");
-    }
+
+	// 0EE8..0EEF
+	EEPROM_ReadBuffer(0x0EE8, Data, 8);
+	if (DTMF_ValidateCodes((char *)Data, 8))
+		memmove(gEeprom.KILL_CODE, Data, 8);
+	else
+	{
+		memset(gEeprom.KILL_CODE, 0, sizeof(gEeprom.KILL_CODE));
+		strcpy(gEeprom.KILL_CODE, "ABCD9");
+	}
+
+	// 0EF0..0EF7
+	EEPROM_ReadBuffer(0x0EF0, Data, 8);
+	if (DTMF_ValidateCodes((char *)Data, 8))
+		memmove(gEeprom.REVIVE_CODE, Data, 8);
+	else
+	{
+		memset(gEeprom.REVIVE_CODE, 0, sizeof(gEeprom.REVIVE_CODE));
+		strcpy(gEeprom.REVIVE_CODE, "9DCBA");
+	}
+#endif
 
     // 0EF8..0F07
     EEPROM_ReadBuffer(0x0EF8, Data, 16);
@@ -703,11 +710,13 @@ void BOARD_EEPROM_Init(void)
     EEPROM_ReadBuffer(0x0F40, Data, 8);
     gSetting_F_LOCK            = (Data[0] < F_LOCK_LEN) ? Data[0] : F_LOCK_DEF;
     gSetting_350TX             = (Data[1] < 2) ? Data[1] : false;  // was true
+#ifdef ENABLE_DTMF_CALLING
     gSetting_KILLED            = (Data[2] < 2) ? Data[2] : false;
+#endif
     gSetting_200TX             = (Data[3] < 2) ? Data[3] : false;
     gSetting_500TX             = (Data[4] < 2) ? Data[4] : false;
     gSetting_350EN             = (Data[5] < 2) ? Data[5] : true;
-   // gSetting_ScrambleEnable    = (Data[6] < 2) ? Data[6] : true;
+    gSetting_ScrambleEnable    = (Data[6] < 2) ? Data[6] : true;
     //gSetting_TX_EN             = (Data[7] & (1u << 0)) ? true : false;
     gSetting_live_DTMF_decoder = (Data[7] & (1u << 1)) ? true : false;
     gSetting_battery_text      = (((Data[7] >> 2) & 3u) <= 2) ? (Data[7] >> 2) & 3 : 2;

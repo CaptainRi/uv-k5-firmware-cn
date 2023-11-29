@@ -18,6 +18,7 @@
 #include <stdlib.h>  // abs()
 #include "driver/uart.h"
 #include "app/dtmf.h"
+#include "app/chFrScanner.h"
 #ifdef ENABLE_AM_FIX_SHOW_DATA
 	#include "am_fix.h"
 #endif
@@ -107,8 +108,11 @@ void UI_DisplayAudioBar(void)
 		const unsigned int line      = 3;
 
 		if (gCurrentFunction != FUNCTION_TRANSMIT ||
-			gScreenToDisplay != DISPLAY_MAIN      ||
-			gDTMF_CallState != DTMF_CALL_STATE_NONE)
+			gScreenToDisplay != DISPLAY_MAIN
+#ifdef ENABLE_DTMF_CALLING
+			|| gDTMF_CallState != DTMF_CALL_STATE_NONE
+#endif
+			)
 		{
 			return;  // screen is in use
 		}
@@ -162,8 +166,11 @@ static void DisplayRSSIBar(const int16_t rssi, const bool now)
 			return;     // display is in use
 
 		if (gCurrentFunction == FUNCTION_TRANSMIT ||
-			gScreenToDisplay != DISPLAY_MAIN ||
-			gDTMF_CallState != DTMF_CALL_STATE_NONE)
+			gScreenToDisplay != DISPLAY_MAIN
+#ifdef ENABLE_DTMF_CALLING
+			|| gDTMF_CallState != DTMF_CALL_STATE_NONE
+#endif
+			)
 			return;     // display is in use
 
 		if (now)
@@ -171,14 +178,14 @@ static void DisplayRSSIBar(const int16_t rssi, const bool now)
 
 		const int8_t dBmCorrTable[7] = {
 			-15, // band 1
-			-15, // band 2
-			-25, // band 3
-			-20, // band 4
-			-20, // band 5
-			-20, // band 6
-			 -7  // band 7
+			-25, // band 2
+			-20, // band 3
+			-4, // band 4
+			-7, // band 5
+			-6, // band 6
+			 -1  // band 7
 		};
-		const int16_t      s0_dBm       = -147;                  // S0 .. base level
+		const int16_t      s0_dBm       = -130;                  // S0 .. base level
 	//	const int16_t      rssi_dBm     = (rssi / 2) - 160;
 const int16_t rssi_dBm = (rssi / 2) - 160 + dBmCorrTable[gRxVfo->Band];
 		const uint8_t s_level = MIN(MAX((rssi_dBm - s0_dBm) / 6, 0), 9); // S0 - S9
@@ -298,9 +305,26 @@ void UI_DisplayMain(void)
 
 		if (activeTxVFO != vfo_num) // this is not active TX VFO
 		{
-			if (gDTMF_CallState != DTMF_CALL_STATE_NONE || gDTMF_IsTx || gDTMF_InputMode)
-			{	// show DTMF stuff
+#ifdef ENABLE_SCAN_RANGES
+            if(gScanRangeStart) {
+					UI_PrintStringSmall("ScnRng", 5, 0, line);
+					sprintf(String, "%3u.%05u", gScanRangeStart / 100000, gScanRangeStart % 100000);
+					UI_PrintStringSmall(String, 56, 0, line);
+					uint32_t frq = gEeprom.VfoInfo[vfo_num].pRX->Frequency;
+					sprintf(String, "%3u.%05u", frq / 100000, frq % 100000);
+					UI_PrintStringSmall(String, 56, 0, line + 1);
+				continue;
+			}
+#endif
 
+
+            if (
+#ifdef ENABLE_DTMF_CALLING
+                    gDTMF_CallState != DTMF_CALL_STATE_NONE || gDTMF_IsTx ||
+#endif
+                    gDTMF_InputMode)
+            {	// show DTMF stuff
+#ifdef ENABLE_DTMF_CALLING
 				char Contact[16];
 
 				if (!gDTMF_InputMode)
@@ -316,14 +340,15 @@ void UI_DisplayMain(void)
 						strcpy(String, (gDTMF_State == DTMF_STATE_TX_SUCC) ? "DTMF TX(SUCC)" : "DTMF TX");
 				}
 				else
+#endif
 				{
 					sprintf(String, ">%s", gDTMF_InputBox);
 				}
                 UI_PrintStringSmall(String, 2, 0, 0 + (vfo_num * 3));
-
+#ifdef ENABLE_DTMF_CALLING
 				memset(String,  0, sizeof(String));
-				if (!gDTMF_InputMode)
-				{
+                if (!gDTMF_InputMode) {
+
 					memset(Contact, 0, sizeof(Contact));
 					if (gDTMF_CallState == DTMF_CALL_STATE_CALL_OUT)
 						sprintf(String, ">%s", (DTMF_FindContact(gDTMF_String, Contact)) ? Contact : gDTMF_String);
@@ -335,7 +360,7 @@ void UI_DisplayMain(void)
 						sprintf(String, ">%s", gDTMF_String);
 				}
                 UI_PrintStringSmall(String, 2, 0, 2 + (vfo_num * 3));
-
+#endif
 				center_line = CENTER_LINE_IN_USE;
 
                 continue;
@@ -664,11 +689,11 @@ void UI_DisplayMain(void)
 			}
 			UI_PrintStringSmall(String, LCD_WIDTH + 70, 0, line + 1);
 		}
-
+#ifdef ENABLE_DTMF_CALLING
 		// show the DTMF decoding symbol
 		if (gEeprom.VfoInfo[vfo_num].DTMF_DECODING_ENABLE || gSetting_KILLED)
 			UI_PrintStringSmall("DTMF", LCD_WIDTH + 78, 0, line + 1);
-
+#endif
 		// show the audio scramble symbol
         if (gEeprom.VfoInfo[vfo_num].SCRAMBLING_TYPE > 0/* && gSetting_ScrambleEnable*/)
 
@@ -695,8 +720,11 @@ void UI_DisplayMain(void)
 #if defined(ENABLE_AM_FIX) && defined(ENABLE_AM_FIX_SHOW_DATA)
 		if (rx && gEeprom.VfoInfo[gEeprom.RX_VFO].Modulation == MODULATION_AM && gSetting_AM_fix)
 		{
-			if (gScreenToDisplay != DISPLAY_MAIN ||
-				gDTMF_CallState != DTMF_CALL_STATE_NONE)
+			if (gScreenToDisplay != DISPLAY_MAIN
+#ifdef ENABLE_DTMF_CALLING
+				|| gDTMF_CallState != DTMF_CALL_STATE_NONE
+#endif
+				)
 				return;
 
 			center_line = CENTER_LINE_AM_FIX_DATA;
@@ -752,8 +780,11 @@ void UI_DisplayMain(void)
 #ifdef ENABLE_SHOW_CHARGE_LEVEL
             else if (gChargingWithTypeC)
 			{	// charging .. show the battery state
-				if (gScreenToDisplay != DISPLAY_MAIN ||
-					gDTMF_CallState != DTMF_CALL_STATE_NONE)
+				if (gScreenToDisplay != DISPLAY_MAIN
+#ifdef ENABLE_DTMF_CALLING
+					|| gDTMF_CallState != DTMF_CALL_STATE_NONE
+#endif
+					)
 					return;
 
 				center_line = CENTER_LINE_CHARGE_DATA;

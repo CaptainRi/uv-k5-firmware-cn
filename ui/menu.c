@@ -82,7 +82,7 @@ const t_menu_item MenuList[] =
 #endif
                 {/*"ChDisp",*/ VOICE_ID_INVALID,                       MENU_MDF           ,"\x89\x8A\xA5\xA6\x0F\x82"}, // was "MDF"
                 {/*"POnMsg",*/ VOICE_ID_INVALID,                       MENU_PONMSG        ,"\xA8\xA9\xA5\xA6"},
-                {/*"BatTxt",*/ VOICE_ID_INVALID,                       MENU_BAT_TXT       ,"\x9F\xAA\xA5\xA6"},
+              //  {/*"BatTxt",*/ VOICE_ID_INVALID,                       MENU_BAT_TXT       ,"\x9F\xAA\xA5\xA6"},
                 {/*"BackLt",*/ VOICE_ID_INVALID,                       MENU_ABR           ,"\x98\x99\xAB\xAC"}, // was "ABR"
                 {/*"BLMin",*/  VOICE_ID_INVALID,                       MENU_ABR_MIN       ,"\xAD\xAE\xAF\xB0"},
                 {/*"BLMax",*/  VOICE_ID_INVALID,                       MENU_ABR_MAX       ,"\xAD\xB1\xAF\xB0"},
@@ -98,16 +98,22 @@ const t_menu_item MenuList[] =
 #ifdef ENABLE_ALARM//0
                 {/*"AlarmT",*/ VOICE_ID_INVALID,                       MENU_AL_MOD        ,""},
 #endif
+#ifdef ENABLE_DTMF_CALLING
                 {/*"ANI ID",*/ VOICE_ID_ANI_CODE,                      MENU_ANI_ID        ,"\xBD\xBE\xBF"},
+#endif
                 {/*"UPCode",*/ VOICE_ID_INVALID,                       MENU_UPCODE        ,"\x44\x54\x4D\x46\xC0\xC1\xBF"},
                 {/*"DWCode",*/ VOICE_ID_INVALID,                       MENU_DWCODE        ,"\x44\x54\x4D\x46\xC2\xC1\xBF"},
                 {/*"PTT ID",*/ VOICE_ID_INVALID,                       MENU_PTT_ID        ,"\x44\x54\x4D\x46\x05\x11"},
                 {/*"D ST",*/   VOICE_ID_INVALID,                       MENU_D_ST          ,"\x44\x54\x4D\x46\x95\x0E"},
+#ifdef ENABLE_DTMF_CALLING
                 {/*"D Resp",*/ VOICE_ID_INVALID,                       MENU_D_RSP         ,"\x44\x54\x4D\x46\xC3\xC4"},
                 {/*"D Hold",*/ VOICE_ID_INVALID,                       MENU_D_HOLD        ,"\x44\x54\x4D\x46\x92\xC5"},
+#endif
                 {/*"D Prel",*/ VOICE_ID_INVALID,                       MENU_D_PRE         ,"\x44\x54\x4D\x46\xC6\xC7\xC8"},
+#ifdef ENABLE_DTMF_CALLING
                 {/*"D Decd",*/ VOICE_ID_INVALID,                       MENU_D_DCD         ,"\x44\x54\x4D\x46\xC9\xBF"},
                 {/*"D List",*/ VOICE_ID_INVALID,                       MENU_D_LIST        ,"\x44\x54\x4D\x46\xCA\xCB\xCC"},
+#endif
                 {/*"D Live",*/ VOICE_ID_INVALID,                       MENU_D_LIVE_DEC    ,"\x44\x54\x4D\x46\xA5\xA6"}, // live DTMF decoder
 #ifdef ENABLE_AM_FIX//1
                 {/*"AM Fix",*/ VOICE_ID_INVALID,                       MENU_AM_FIX        ,"\x41\x4D\x98\x99\xA3\xA4"},
@@ -118,7 +124,7 @@ const t_menu_item MenuList[] =
 #ifdef ENABLE_VOX//1
                 {/*"VOX",*/    VOICE_ID_VOX,                           MENU_VOX           ,"\xCD\xCE\x05\x06"},
 #endif
-                {/*"BatVol",*/ VOICE_ID_INVALID,                       MENU_VOL           ,"\x9F\xAA\x9F\x1F"}, // was "VOL"
+            //    {/*"BatVol",*/ VOICE_ID_INVALID,                       MENU_VOL           ,"\x9F\xAA\x9F\x1F"}, // was "VOL"
                 {/*"RxMode",*/ VOICE_ID_DUAL_STANDBY,                  MENU_TDR           ,"\x09\x05\x0F\x82"},
                 {/*"Sql",*/    VOICE_ID_SQUELCH,                       MENU_SQL           ,"\xCF\xD0\xD1\xD2"},
 
@@ -134,10 +140,10 @@ const t_menu_item MenuList[] =
                 {/*"FrCali",*/ VOICE_ID_INVALID,                       MENU_F_CALI        ,""}, // reference xtal calibration
 #endif
                 {/*"BatCal",*/ VOICE_ID_INVALID,                       MENU_BATCAL        ,"\x9F\xAA\x80\x1F"}, // battery voltage calibration
-                {/*"BatTyp",*/ VOICE_ID_INVALID,                       MENU_BATTYP        ,"\x9F\xAA\xB1\xAE"}, // battery type 1600/2200mAh
+               {/*"BatTyp",*/ VOICE_ID_INVALID,                       MENU_BATTYP        ,"\x9F\xAA\xB1\xAE"}, // battery type 1600/2200mAh
                 {/*"Reset",*/  VOICE_ID_INITIALISATION,                MENU_RESET         ,"\xD4\x0B\x92\xC5"}, // might be better to move this to the hidden menu items ?
 
-             //   {/*"",*/       VOICE_ID_INVALID,                       0xff               ,"\x00"}  // end of list - DO NOT delete or move this this
+            //   {/*"",*/       VOICE_ID_INVALID,                       0xff               ,"\x00"}  // end of list - DO NOT delete or move this this
         };
 
 
@@ -277,7 +283,7 @@ const char gSubMenu_AL_MOD[][5] =
     "TONE"
 };
 #endif
-
+#ifdef ENABLE_DTMF_CALLING
 const char gSubMenu_D_RSP[][10] =//11
         {
 //                "DO\nNOTHING",
@@ -289,6 +295,7 @@ const char gSubMenu_D_RSP[][10] =//11
                 "\xE8\x92\xC3\xC4",
                 "\xE5\xE6\xC3\xE7\x2B\n\xE8\x92\xC3\xC4"
         };
+#endif
 
 const char *gSubMenu_PTT_ID[] =
         {
@@ -392,17 +399,17 @@ const char gSubMenu_AM_fix_test1[][8] =
 };
 #endif
 
-const char gSubMenu_BAT_TXT[][3] =//8
-        {
-//                "NONE",
-//                "VOLTAGE",
-//                "PERCENT"
-                "\xD9\xDA",
-                "\x9F\x1F",
-                "\xEF\xF0"
-        };
+//const char gSubMenu_BAT_TXT[][3] =//8
+//        {
+////                "NONE",
+////                "VOLTAGE",
+////                "PERCENT"
+//                "\xD9\xDA",
+//                "\x9F\x1F",
+//                "\xEF\xF0"
+//        };
 
-const char gSubMenu_BATTYP[][9] =
+const char gSubMenu_BATTYP[][8] =
         {
                 "1600mAh",
                 "2200mAh"
@@ -498,7 +505,9 @@ void UI_DisplayMenu(void) {
     const unsigned int menu_item_x2 = LCD_WIDTH - 1;
     unsigned int i;
     char String[128];  // bigger cuz we can now do multi-line in one string (use '\n' char)
-    char Contact[16];
+#ifdef ENABLE_DTMF_CALLING
+    char               Contact[16];
+#endif
 
     // clear the screen buffer
     memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
@@ -760,7 +769,9 @@ void UI_DisplayMenu(void) {
         case MENU_S_ADD2:
         case MENU_STE:
         case MENU_D_ST:
+#ifdef ENABLE_DTMF_CALLING
         case MENU_D_DCD:
+#endif
         case MENU_D_LIVE_DEC:
 #ifdef ENABLE_NOAA
             case MENU_NOAA_S:
@@ -917,10 +928,11 @@ void UI_DisplayMenu(void) {
                 sprintf(String, gSubMenu_AL_MOD[gSubMenuSelection]);
                 break;
 #endif
-
+#ifdef ENABLE_DTMF_CALLING
         case MENU_ANI_ID:
             strcpy(String, gEeprom.ANI_DTMF_ID);
             break;
+#endif
 
         case MENU_UPCODE:
             strcpy(String, gEeprom.DTMF_UP_CODE);
@@ -929,7 +941,7 @@ void UI_DisplayMenu(void) {
         case MENU_DWCODE:
             strcpy(String, gEeprom.DTMF_DOWN_CODE);
             break;
-
+#ifdef ENABLE_DTMF_CALLING
         case MENU_D_RSP:
             strcpy(String, gSubMenu_D_RSP[gSubMenuSelection]);
             
@@ -939,7 +951,7 @@ void UI_DisplayMenu(void) {
         case MENU_D_HOLD:
             sprintf(String, "%ds", gSubMenuSelection);
             break;
-
+#endif
         case MENU_D_PRE:
             sprintf(String, "%d*10ms", gSubMenuSelection);
             break;
@@ -950,12 +962,12 @@ void UI_DisplayMenu(void) {
             
             break;
 
-        case MENU_BAT_TXT:
-            strcpy(String, gSubMenu_BAT_TXT[gSubMenuSelection]);
-            
-            
-            break;
-
+//        case MENU_BAT_TXT:
+//            strcpy(String, gSubMenu_BAT_TXT[gSubMenuSelection]);
+//
+//
+//            break;
+#ifdef ENABLE_DTMF_CALLING
         case MENU_D_LIST:
             gIsDtmfContactValid = DTMF_GetContact((int) gSubMenuSelection - 1, Contact);
             if (!gIsDtmfContactValid)
@@ -963,7 +975,7 @@ void UI_DisplayMenu(void) {
             else
                 memmove(String, Contact, 8);
             break;
-
+#endif
         case MENU_PONMSG:
             strcpy(String, gSubMenu_PONMSG[gSubMenuSelection]);
             
@@ -976,11 +988,11 @@ void UI_DisplayMenu(void) {
             
             break;
 
-        case MENU_VOL:
-            sprintf(String, "%u.%02uV\n%u%%",
-                    gBatteryVoltageAverage / 100, gBatteryVoltageAverage % 100,
-                    BATTERY_VoltsToPercent(gBatteryVoltageAverage));
-            break;
+//        case MENU_VOL:
+//            sprintf(String, "%u.%02uV\n%u%%",
+//                    gBatteryVoltageAverage / 100, gBatteryVoltageAverage % 100,
+//                    BATTERY_VoltsToPercent(gBatteryVoltageAverage));
+//            break;
 
         case MENU_RESET:
             strcpy(String, gSubMenu_RESET[gSubMenuSelection]);
@@ -1021,7 +1033,7 @@ void UI_DisplayMenu(void) {
 
         case MENU_BATTYP:
             strcpy(String, gSubMenu_BATTYP[gSubMenuSelection]);
- 
+
             break;
 
         case MENU_F1SHRT:
@@ -1145,19 +1157,25 @@ void UI_DisplayMenu(void) {
     if (UI_MENU_GetCurrentMenuId() == MENU_DWCODE)
         if (strlen(gEeprom.DTMF_DOWN_CODE) > 8)
             UI_PrintStringSmall(gEeprom.DTMF_DOWN_CODE + 8, menu_item_x1, menu_item_x2, 5);
-
+#ifdef ENABLE_DTMF_CALLING
     if (UI_MENU_GetCurrentMenuId() == MENU_D_LIST && gIsDtmfContactValid) {
         Contact[11] = 0;
         memmove(&gDTMF_ID, Contact + 8, 4);
         sprintf(String, "ID:%s", Contact + 8);
         UI_PrintStringSmall(String, menu_item_x1, menu_item_x2, 5);
     }
-
+#endif
     if (UI_MENU_GetCurrentMenuId() == MENU_R_CTCS ||
         UI_MENU_GetCurrentMenuId() == MENU_T_CTCS ||
         UI_MENU_GetCurrentMenuId() == MENU_R_DCS ||
-        UI_MENU_GetCurrentMenuId() == MENU_T_DCS ||
-        UI_MENU_GetCurrentMenuId() == MENU_D_LIST) {
+            UI_MENU_GetCurrentMenuId() == MENU_T_DCS
+#ifdef ENABLE_DTMF_CALLING
+        || UI_MENU_GetCurrentMenuId() == MENU_D_LIST
+#endif
+            )
+
+    {
+
         sprintf(String, "%2d", gSubMenuSelection);
         UI_PrintStringSmall(String, 105, 0, 1);//small
     }

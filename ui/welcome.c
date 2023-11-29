@@ -30,37 +30,33 @@
 void UI_DisplayReleaseKeys(BOOT_Mode_t BootMode) {
     memset(gStatusLine, 0, sizeof(gStatusLine));
     memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
+
     if (BootMode == BOOT_MODE_F_LOCK) {
         //解锁，全部按键
         UI_PrintStringSmall("\xC9\x9A", 0, 127, 1);
         UI_PrintStringSmall("\xEC\xED\xF3\x88", 0, 127, 3);
         ST7565_BlitStatusLine();  // blank status line
         ST7565_BlitFullScreen();
-    } else {
-        ST7565_FillScreen(0xFF);
-
     }
+
 
 }
 
 void UI_DisplayWelcome(void) {
-    char WelcomeString0[16];
-    char WelcomeString1[16];
+    char WelcomeString0[16]={0};
+    char WelcomeString1[16]={0};
 
     memset(gStatusLine, 0, sizeof(gStatusLine));
     memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
 
     if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE) {
         ST7565_FillScreen(0xFF);
+
     }
-//	else
-//	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_FULL_SCREEN)
-//	{
-//		ST7565_FillScreen(0xFF);
-//	}
+
     else {
-        memset(WelcomeString0, 0, sizeof(WelcomeString0));
-        memset(WelcomeString1, 0, sizeof(WelcomeString1));
+//        memset(WelcomeString0, 0, sizeof(WelcomeString0));
+//        memset(WelcomeString1, 0, sizeof(WelcomeString1));
 
         if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_VOLTAGE) {//translate
 #ifdef test
@@ -85,10 +81,12 @@ void UI_DisplayWelcome(void) {
 
         //  UI_PrintStringSmall("egcn173 BY BG2FZV", 4, 0, 6);
 
-        UI_PrintStringSmall(Version, 40, 0, 6);
+     UI_PrintStringSmall(Version, 40, 0, 6);
 
         ST7565_BlitStatusLine();  // blank status line
         ST7565_BlitFullScreen();
+        SYSTEM_DelayMs(2550);
+
     }
 }
 
