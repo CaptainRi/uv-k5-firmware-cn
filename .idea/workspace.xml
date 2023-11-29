@@ -20,42 +20,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cea36e80-e289-4d69-9030-7186d540ac0e" name="更改" comment="payment">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="cea36e80-e289-4d69-9030-7186d540ac0e" name="更改" comment="1129 190 update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/action.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/action.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.h" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/chFrScanner.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/chFrScanner.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/chFrScanner.h" beforeDir="false" afterPath="$PROJECT_DIR$/app/chFrScanner.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/common.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/common.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dtmf.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/dtmf.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/dtmf.h" beforeDir="false" afterPath="$PROJECT_DIR$/app/dtmf.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/fm.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/fm.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/generic.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/generic.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/menu.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scanner.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/scanner.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/uart.c" beforeDir="false" afterPath="$PROJECT_DIR$/app/uart.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.c" beforeDir="false" afterPath="$PROJECT_DIR$/board.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions.c" beforeDir="false" afterPath="$PROJECT_DIR$/functions.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/battery.c" beforeDir="false" afterPath="$PROJECT_DIR$/helper/battery.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/boot.c" beforeDir="false" afterPath="$PROJECT_DIR$/helper/boot.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helper/boot.h" beforeDir="false" afterPath="$PROJECT_DIR$/helper/boot.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc.c" beforeDir="false" afterPath="$PROJECT_DIR$/misc.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/misc.h" beforeDir="false" afterPath="$PROJECT_DIR$/misc.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/radio.c" beforeDir="false" afterPath="$PROJECT_DIR$/radio.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/radio.h" beforeDir="false" afterPath="$PROJECT_DIR$/radio.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.c" beforeDir="false" afterPath="$PROJECT_DIR$/settings.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.h" beforeDir="false" afterPath="$PROJECT_DIR$/settings.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/menu.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/menu.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/menu.h" beforeDir="false" afterPath="$PROJECT_DIR$/ui/menu.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/status.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/status.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/welcome.c" beforeDir="false" afterPath="$PROJECT_DIR$/ui/welcome.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/version.c" beforeDir="false" afterPath="$PROJECT_DIR$/version.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +98,7 @@
       <workItem from="1701058563073" duration="2000" />
       <workItem from="1701091135159" duration="1000" />
       <workItem from="1701135910960" duration="1424000" />
-      <workItem from="1701228164424" duration="11243000" />
+      <workItem from="1701228164424" duration="11973000" />
     </task>
     <task id="LOCAL-00001" summary="bug fix">
       <created>1701136012311</created>
@@ -161,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701136490007</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="1129 190 update">
+      <created>1701241566748</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1701241566748</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +150,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="bug fix" />
     <MESSAGE value="payment" />
-    <option name="LAST_COMMIT_MESSAGE" value="payment" />
+    <MESSAGE value="1129 190 update" />
+    <option name="LAST_COMMIT_MESSAGE" value="1129 190 update" />
   </component>
 </project>

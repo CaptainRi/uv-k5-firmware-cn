@@ -15,7 +15,7 @@
  */
 
 #include <string.h>
-
+#include "driver/keyboard.h"
 #include "driver/eeprom.h"
 #include "driver/st7565.h"
 #include "external/printf/printf.h"
@@ -85,8 +85,14 @@ void UI_DisplayWelcome(void) {
 
         ST7565_BlitStatusLine();  // blank status line
         ST7565_BlitFullScreen();
-        SYSTEM_DelayMs(2550);
+        unsigned char i=250;
+        while (i--) {
+            if (KEYBOARD_Poll() == KEY_EXIT)
+                break;
+            SYSTEM_DelayMs(10);
 
+
+        }
     }
 }
 
