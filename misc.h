@@ -164,7 +164,6 @@ extern uint8_t           gSetting_AM_fix_test1;
 extern bool              gSetting_mic_bar;
 #endif
 extern bool                  gSetting_live_DTMF_decoder;
-extern uint8_t               gSetting_battery_text;
 
 extern bool                  gMonitor;
 

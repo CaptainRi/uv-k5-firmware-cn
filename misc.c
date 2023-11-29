@@ -100,7 +100,6 @@ uint8_t       gSetting_AM_fix_test1 = 0;
 bool          gSetting_mic_bar;
 #endif
 bool              gSetting_live_DTMF_decoder;
-uint8_t           gSetting_battery_text;
 
 bool              gMonitor = false;           // true opens the squelch
 

@@ -167,7 +167,7 @@ void UI_DisplayStatus()
     }
 
     {	// battery voltage or percentage
-        char         s[8];
+        char         s[16];
         unsigned int space_needed;
 
         unsigned int x2 = LCD_WIDTH - sizeof(BITMAP_BatteryLevel1) - 3;
@@ -175,14 +175,13 @@ void UI_DisplayStatus()
         if (gChargingWithTypeC)
             x2 -= sizeof(BITMAP_USB_C);  // the radio is on charge
 
-        switch (gSetting_battery_text)
-        {
-            default:
-            case 0:
-                break;
 
-            case 1:		// voltage
-            {
+//            default:
+//            case 0:
+//                break;
+//
+//            case 1:		// voltage
+//            {
                 const uint16_t voltage = (gBatteryVoltageAverage <= 999) ? gBatteryVoltageAverage : 999; // limit to 9.99V
                 sprintf(s, "%u.%02uV", voltage / 100, voltage % 100);
                 space_needed = (7 * strlen(s));
@@ -190,18 +189,17 @@ void UI_DisplayStatus()
                 {
                     UI_PrintStringSmallBuffer(s, line + x2 - space_needed);
                 }
-                break;
-            }
+//                break;
+//            }
 
-            case 2:		// percentage
-            {
-                sprintf(s, "%u%%", BATTERY_VoltsToPercent(gBatteryVoltageAverage));
-                space_needed = (7 * strlen(s));
-                if (x2 >= (x1 + space_needed))
-                    UI_PrintStringSmallBuffer(s, line + x2 - space_needed);
-                break;
-            }
-        }
+//            case 2:		// percentage
+//            {
+//                sprintf(s, "%u%%", BATTERY_VoltsToPercent(gBatteryVoltageAverage));
+//                space_needed = (7 * strlen(s));
+//                if (x2 >= (x1 + space_needed))
+//                    UI_PrintStringSmallBuffer(s, line + x2 - space_needed);
+//            }
+
     }
 
     // move to right side of the screen

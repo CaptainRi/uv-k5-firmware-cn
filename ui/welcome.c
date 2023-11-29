@@ -26,7 +26,7 @@
 #include "ui/welcome.h"
 #include "ui/status.h"
 #include "version.h"
-
+#include "driver/system.h"
 void UI_DisplayReleaseKeys(BOOT_Mode_t BootMode) {
     memset(gStatusLine, 0, sizeof(gStatusLine));
     memset(gFrameBuffer, 0, sizeof(gFrameBuffer));
@@ -43,6 +43,8 @@ void UI_DisplayReleaseKeys(BOOT_Mode_t BootMode) {
 }
 
 void UI_DisplayWelcome(void) {
+    BACKLIGHT_TurnOn();
+
     char WelcomeString0[16]={0};
     char WelcomeString1[16]={0};
 

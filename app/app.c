@@ -1473,7 +1473,7 @@ void APP_TimeSlice500ms(void)
     // regular display updates (once every 2 sec) - if need be
     if ((gBatteryCheckCounter & 3) == 0)
     {
-        if (gChargingWithTypeC || gSetting_battery_text > 0)
+        if (gChargingWithTypeC )
             gUpdateStatus = true;
 #ifdef ENABLE_SHOW_CHARGE_LEVEL
         if (gChargingWithTypeC)
