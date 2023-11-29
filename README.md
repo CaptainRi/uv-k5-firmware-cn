@@ -1,7 +1,3 @@
-**正在精简固件以加入MDC1200信令**，以后main分支可能不再更新，详情请见lite分支：
-
-https://github.com/wu58430/uv-k5-firmware-chinese/tree/lite
-
 # 主要功能：
 * 中文菜单
 * 按**侧键1**后开机打开隐藏菜单
