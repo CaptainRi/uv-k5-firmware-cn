@@ -583,7 +583,6 @@ static void MAIN_Key_STAR(bool bKeyPressed, bool bKeyHeld) {
     if (bKeyPressed) // just pressed
     {
         // gBeepToPlay = BEEP_1KHZ_60MS_OPTIONAL;
-        gBeepToPlay = BEEP_880HZ_40MS_OPTIONAL;
         return;
     }
 
@@ -591,12 +590,14 @@ static void MAIN_Key_STAR(bool bKeyPressed, bool bKeyHeld) {
 
     if (!gWasFKeyPressed) // pressed without the F-key
     {
-
+        if (gScanStateDir == SCAN_OFF
 #ifdef ENABLE_NOAA
-        if (gScanStateDir == SCAN_OFF && !IS_NOAA_CHANNEL(gTxVfo->CHANNEL_SAVE))
-#else
-        if (gScanStateDir == SCAN_OFF)
+            && !IS_NOAA_CHANNEL(gTxVfo->CHANNEL_SAVE)
 #endif
+#ifdef ENABLE_SCAN_RANGES
+            && gScanRangeStart == 0
+#endif
+                )
         {    // start entering a DTMF string
 
             memmove(gDTMF_InputBox, gDTMF_String, MIN(sizeof(gDTMF_InputBox), sizeof(gDTMF_String) - 1));
@@ -607,6 +608,8 @@ static void MAIN_Key_STAR(bool bKeyPressed, bool bKeyHeld) {
 
             gRequestDisplayScreen = DISPLAY_MAIN;
         }
+        else
+            gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
     } else {    // with the F-key
         gWasFKeyPressed = false;
 

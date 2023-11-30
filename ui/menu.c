@@ -293,7 +293,7 @@ const char gSubMenu_D_RSP[][10] =//11
                 "\xE4\xC3\xC4",
                 "\xE5\xE6\xC3\xE7",
                 "\xE8\x92\xC3\xC4",
-                "\xE5\xE6\xC3\xE7\x2B\n\xE8\x92\xC3\xC4"
+                "\xE5\xE6\xC3\xE7\n\xE8\x92\xC3\xC4"
         };
 #endif
 
