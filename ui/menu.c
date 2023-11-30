@@ -167,8 +167,8 @@ const char gSubMenu_SFT_D[][10] =//4
 //                "\x05\x11\x3D\n\x08\x09\x2D\xD7\xD8"
                  
                 "\xD9\xDA",
-                “\xC0\x12",
-                “\xC2\x12",
+                "\xC0\x12",
+                "\xC2\x12",
 
         };
 
